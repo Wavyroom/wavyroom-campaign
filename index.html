@@ -11,30 +11,22 @@
   ============================================================
   WAVYROOM US LANDING PAGE  ·  QR destination
   ============================================================
+  Google Sheets: SHEETS_ENDPOINT at the bottom of this file.
 
-  1) GOOGLE SHEETS CONNECTION
-     Replace SHEETS_ENDPOINT below with your Apps Script web app URL.
-     Apps Script code is in the file "apps-script.gs".
+  PHOTOS IN USE
+    hero                 images/sauna-exterior-dusk.jpg
+    The Sauna (4 shots)  sauna-exterior-evening / sauna-interior
+                         sauna-loyly / sauna-people
+    How it arrives       images/assembly.jpg
 
-  2) IMAGE SLOTS — replace each <div class="ph" id="..."> with
-     <img src="..." alt="..."> and the slot keeps its shape.
-
-       img-hero       Hero. Backyard room at dusk, warm light. 3:2 or wider
-       img-aerial     Aerial / bird's-eye of the room in a backyard. 4:3
-       img-exterior   Exterior 3/4 view, charred timber façade. 4:5
-       img-interior   Interior, empty and bright. 4:5
-       img-office     USE 1 — Backyard office. 4:5
-       img-guest      USE 2 — Guest room. 4:5
-       img-play       USE 3 — Kids' playroom. 4:5
-       img-yoga       USE 4 — Yoga room. 4:5
-       img-sauna      USE 5 — Outdoor sauna, cedar interior. 4:5
-       img-mat-wall   Material — charred timber + oil stain. 1:1
-       img-mat-roof   Material — shingle + zinc roof edge. 1:1
-       img-mat-insul  Material — wall section / insulation. 1:1
-       img-mat-floor  Material — LVT floor. 1:1
-       img-build      Assembly day — crew building in the yard. 3:2
-       img-price-room The Room, exterior. 4:3
-       img-price-sauna The Sauna, exterior or cedar interior. 4:3
+  STILL NEEDED (The Room, 4 shots, 4:5 vertical)
+    img-office   backyard office in use
+    img-guest    guest room, made bed
+    img-play     kids' playroom
+    img-yoga     yoga room
+  Empty slots are hidden by the ".ph { display:none }" rule.
+  To fill one, replace its <div class="ph" id="..."> with
+  <img class="shot ratio-45" src="images/NAME.jpg" alt="..." loading="lazy">
   ============================================================
 -->
 
@@ -282,7 +274,7 @@
   .mat .shot { border-radius: var(--r-m); aspect-ratio: 4/5; height: auto; }
   .mat .cap { margin-top: 12px; font-size: 14px; }
   .mat .cap b { display: block; font-weight: 700; }
-  .mat .cap span { color: #A8A49C; }
+  .mat .cap span { color: var(--muted); }
   .dims {
     margin-top: 30px; border-top: 1px solid #35342F;
     display: grid; gap: 0; grid-template-columns: 1fr;
@@ -365,6 +357,19 @@
     .product-pair { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
     .product-pair .shot { aspect-ratio: 3/4; }
   }
+
+  /* ---------- two models ---------- */
+  .model-sec.alt { background: var(--surface-2); }
+  .model-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px 20px; flex-wrap: wrap; border-top: 2px solid var(--fg); padding-top: 16px;
+  }
+  .model-no { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .model-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; font-size: clamp(32px, 7vw, 52px); margin-top: 4px; }
+  .model-price { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: clamp(17px, 3.4vw, 22px); }
+  .build { margin: 0; max-width: 460px; }
+  .build .shot { border-radius: var(--r-m); aspect-ratio: 4/3; height: auto; }
+  .build figcaption { margin-top: 10px; font-size: 13px; color: var(--muted); }
 
   /* ---------- company ---------- */
   .co-top { display: grid; gap: 30px; }
@@ -538,69 +543,89 @@
   </div>
 </section>
 
-<!-- ============================ THE ROOM ============================ -->
-<section id="product">
+<!-- ============================ TWO MODELS ============================ -->
+<section id="models" style="padding-bottom: 0;">
   <div class="wrap">
-    <p class="eyebrow">The room</p>
-    <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 18ch;">Dark outside. Warm inside.</h2>
+    <p class="eyebrow">Two models</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px);">Same shell.<br>Two ways to use it.</h2>
     <p class="lede" style="margin-top: 18px;">
-      Charred timber walls, a quiet roofline, and an interior you'd be happy to work, sleep or
-      stretch in. Same shell every time. You choose what it becomes.
+      Charred timber outside, insulated and finished inside. What changes is what we build in.
     </p>
-    <div class="uses" style="margin-top: 40px; grid-template-columns: 1fr;">
-      <div style="display:grid; gap:18px; grid-template-columns: 1fr;">
-        <div style="display:grid; gap:18px;" class="product-pair">
-          <img class="shot ratio-45" id="img-exterior" src="images/sauna-exterior-evening.jpg" alt="Wavyroom exterior at dusk — charred timber walls and shingle roof" loading="lazy" style="object-position:center 50%">
-          <img class="shot ratio-45" id="img-interior" src="images/sauna-interior.jpg" alt="Cedar interior of a Wavyroom sauna, benches lit from below" loading="lazy">
-        </div>
+  </div>
+</section>
+
+<!-- ============================ MODEL 01 · THE ROOM ============================ -->
+<section id="the-room" class="model-sec">
+  <div class="wrap">
+    <div class="model-head">
+      <div>
+        <p class="model-no">Model 01</p>
+        <h2 class="model-name">The Room</h2>
       </div>
+      <p class="model-price">From $21,900</p>
+    </div>
+    <p class="lede" style="margin-top: 18px;">
+      Finished walls, a Korean LVT floor and insulation on every side. One room, four ways to use it.
+    </p>
+    <div class="uses" style="margin-top: 32px;">
+      <article class="use">
+        <div class="ph ratio-45" id="img-office"><span>img-office</span></div>
+        <span class="tag">Use 01</span>
+        <h3>Backyard office</h3>
+        <p>A door that closes and a commute of thirty seconds.</p>
+      </article>
+      <article class="use">
+        <div class="ph ratio-45" id="img-guest"><span>img-guest</span></div>
+        <span class="tag">Use 02</span>
+        <h3>Guest room</h3>
+        <p>Family stays the weekend without anyone giving up a bedroom.</p>
+      </article>
+      <article class="use">
+        <div class="ph ratio-45" id="img-play"><span>img-play</span></div>
+        <span class="tag">Use 03</span>
+        <h3>Playroom for kids</h3>
+        <p>The mess lives out there. You can still see them from the kitchen.</p>
+      </article>
+      <article class="use">
+        <div class="ph ratio-45" id="img-yoga"><span>img-yoga</span></div>
+        <span class="tag">Use 04</span>
+        <h3>Yoga room</h3>
+        <p>A floor that's always clear, ten steps from your back door.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============================ FIVE USES ============================ -->
-<section style="padding-top: 0;">
+<!-- ============================ MODEL 02 · THE SAUNA ============================ -->
+<section id="the-sauna" class="model-sec alt">
   <div class="wrap">
-    <div class="uses-head">
+    <div class="model-head">
       <div>
-        <p class="eyebrow">Five ways people use it</p>
-        <h2 style="font-size: clamp(28px, 5vw, 48px);">One room.<br>Pick what it's for.</h2>
+        <p class="model-no">Model 02</p>
+        <h2 class="model-name">The Sauna</h2>
       </div>
-      <p style="font-size: 15px; color: var(--muted); max-width: 34ch;">
-        Four of these share the same model. The sauna is built differently inside.
-      </p>
+      <p class="model-price">From $24,900</p>
     </div>
-    <div class="uses">
-      <article class="use">
-        <div class="ph ratio-45" id="img-office"><span>img-office — backyard office: desk, laptop, morning light. 4:5</span></div>
-        <span class="tag">Use 01</span>
-        <h3>Backyard office</h3>
-        <p>A door that closes and a commute of thirty seconds. No one walking through your call.</p>
-      </article>
-      <article class="use">
-        <div class="ph ratio-45" id="img-guest"><span>img-guest — guest room: made bed, side table, soft evening light. 4:5</span></div>
-        <span class="tag">Use 02</span>
-        <h3>Guest room</h3>
-        <p>Family stays the weekend without anyone giving up a bedroom or sleeping on the couch.</p>
-      </article>
-      <article class="use">
-        <div class="ph ratio-45" id="img-play"><span>img-play — kids' playroom: toys, rug, kids mid-play. 4:5</span></div>
-        <span class="tag">Use 03</span>
-        <h3>Playroom for kids</h3>
-        <p>The mess lives out there. You can still see them through the window from the kitchen.</p>
-      </article>
-      <article class="use">
-        <div class="ph ratio-45" id="img-yoga"><span>img-yoga — yoga room: mat on the floor, plant, quiet daylight. 4:5</span></div>
-        <span class="tag">Use 04</span>
-        <h3>Yoga room</h3>
-        <p>A floor that's always clear and a space that's quiet, ten steps from your back door.</p>
-      </article>
-      <article class="use is-sauna">
-        
-        <span class="tag">Use 05</span>
-        <h3>Outdoor sauna</h3>
-        <p>Cedar lining, a stone heater, and a bench built in. Heat, cold, rest, on your own schedule.</p>
-      </article>
+    <p class="lede" style="margin-top: 18px;">
+      Same shell, built out as a Finnish sauna. Cedar lining, a stone heater and benches along two walls.
+    </p>
+    <div class="mats" style="margin-top: 32px;">
+      <figure class="mat">
+        <img class="shot" src="images/sauna-exterior-evening.jpg" alt="Wavyroom sauna at dusk, window glowing" loading="lazy">
+        <figcaption class="cap"><b>Dark outside</b><span>Charred timber and a shingle roof</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-interior.jpg" alt="Cedar interior of a Wavyroom sauna, benches lit from below" loading="lazy">
+        <figcaption class="cap"><b>Warm inside</b><span>Cedar lining and built-in benches</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-loyly.jpg" alt="Water poured over hot stones in a Wavyroom sauna" loading="lazy">
+        <figcaption class="cap"><b>Stone heater</b><span>Pour water, raise the steam</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-people.jpg" alt="People on the cedar benches inside a Wavyroom sauna" loading="lazy">
+        <figcaption class="cap"><b>Room for four</b><span>Benches along two walls</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -638,16 +663,6 @@
       </div>
     </div>
 
-    <div class="mats">
-      <figure class="mat">
-        <img class="shot" src="images/sauna-people.jpg" alt="People on the cedar benches inside a Wavyroom sauna" loading="lazy">
-        <figcaption class="cap"><b>The sauna model</b><span>Cedar lining and built-in benches</span></figcaption>
-      </figure>
-      <figure class="mat">
-        <img class="shot" src="images/sauna-loyly.jpg" alt="Water poured over hot stones in a Wavyroom sauna" loading="lazy">
-        <figcaption class="cap"><b>Stone heater</b><span>Pour water, raise the steam</span></figcaption>
-      </figure>
-    </div>
     <div class="dims">
       <div class="dim">
         <div class="k">Footprint</div>
@@ -699,8 +714,11 @@
         <p>Our crew puts it together in your backyard. Installation is included.</p>
       </div>
     </div>
-    <div class="frame" style="margin-top: 40px;">
-      <div class="ph ratio-32" id="img-build" style="border-radius: var(--r-l);"><span>img-build — assembly day: crew raising panels in a backyard. 3:2</span></div>
+    <div style="margin-top: 32px;">
+      <figure class="build">
+        <img class="shot" src="images/assembly.jpg" alt="Wavyroom crew assembling panels in a customer's backyard" loading="lazy">
+        <figcaption>Our crew assembling a Wavyroom in a backyard.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
