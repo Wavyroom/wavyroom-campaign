@@ -154,6 +154,13 @@
   .ratio-45 { aspect-ratio: 4/5; }
   .ratio-11 { aspect-ratio: 1/1; }
   .ph img, .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .shot { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-l); }
+  .shot.ratio-43 { aspect-ratio: 4/3; }
+  .shot.ratio-45 { aspect-ratio: 4/5; }
+  .shot.ratio-32 { aspect-ratio: 3/2; }
+  .plan .shot { border-radius: var(--r-m); }
+  .hero-media .shot { border-radius: 0; aspect-ratio: 4/5; min-height: 340px; }
+  @media (min-width: 760px) { .hero-media .shot { aspect-ratio: 21/9; min-height: 480px; } }
   .frame { border-radius: var(--r-l); overflow: hidden; }
 
   /* ---------- buttons ---------- */
@@ -271,6 +278,8 @@
   .spec .d { font-size: 14px; color: #A8A49C; margin-top: 8px; }
   .mats { display: grid; gap: 14px; margin-top: 20px; grid-template-columns: repeat(2, 1fr); }
   @media (min-width: 820px) { .mats { grid-template-columns: repeat(4, 1fr); } }
+  .mat { margin: 0; display: flex; flex-direction: column; }
+  .mat .shot { border-radius: var(--r-m); aspect-ratio: 4/5; height: auto; }
   .mat .cap { margin-top: 12px; font-size: 14px; }
   .mat .cap b { display: block; font-weight: 700; }
   .mat .cap span { color: #A8A49C; }
@@ -328,6 +337,34 @@
   .excluded ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
   .excluded li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
   .excluded li::before { content: "+"; color: var(--muted); font-weight: 700; }
+
+  /* 사진이 아직 없는 자리는 숨깁니다. 사진을 넣으면 <img class="shot">로 교체됩니다. */
+  .ph { display: none !important; }
+  .sol-grid, .co-top { grid-template-columns: 1fr !important; }
+
+  /* 모바일 압축 */
+  @media (max-width: 759px) {
+    section { padding-block: 44px; }
+    .uses { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+    .use h3 { font-size: 18px; }
+    .use p { font-size: 13.5px; margin-top: 6px; }
+    .use .tag { margin-top: 0; }
+    .spec-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .spec { padding: 16px; }
+    .spec .v { font-size: 16px; margin-top: 8px; }
+    .spec .d { font-size: 12.5px; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+    .stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat .l { font-size: 12px; margin-top: 6px; }
+    .compare { gap: 12px; }
+    .cmp { padding: 20px; }
+    .plan { padding: 20px; }
+    .plan ul { gap: 7px; font-size: 14px; }
+    .creds { padding: 20px; gap: 20px; }
+    .mats { gap: 10px; }
+    .product-pair { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .product-pair .shot { aspect-ratio: 3/4; }
+  }
 
   /* ---------- company ---------- */
   .co-top { display: grid; gap: 30px; }
@@ -427,14 +464,14 @@
 <!-- ============================ HERO ============================ -->
 <header class="hero">
   <div class="hero-media">
-    <div class="ph on-dark" id="img-hero"><span>img-hero — backyard room at dusk, warm light through the glass. 3:2 or wider</span></div>
+    <img class="shot on-dark" id="img-hero" src="images/sauna-exterior-dusk.jpg" alt="Wavyroom sauna in a backyard at dusk, door open and cedar interior glowing" fetchpriority="high" style="object-position:46% 45%">
     <div class="hero-scrim"></div>
   </div>
   <div class="hero-inner">
     <img class="hero-mark" src="images/logo_white.png" alt="Wavyroom">
     <div class="wrap">
       <h1>Your backyard<br>is <em>boring.</em></h1>
-      <p class="hero-sub">Got a backyard? Get a room. Assembled in one day, under 100 sq ft.</p>
+      <p class="hero-sub">Got a backyard? Get a Wavyroom. Assembled in one day, under 100 sq ft.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#claim">Get $200 off</a>
         <a class="btn btn-ghost" href="#pricing">See pricing</a>
@@ -450,20 +487,19 @@
     <p class="eyebrow">The backyard problem</p>
     <h2 style="font-size: clamp(30px, 5.5vw, 54px);">You're paying a mortgage<br>on a patch of grass.</h2>
     <p class="lede" style="margin-top: 20px;">
-      You already have the land. The usual way to put something on it is an ADU — and that means
-      drawings, plan check, a building permit, a contractor, and a yard that stays a construction
-      site for the better part of a year.
+      You already have the land. The usual way to build on it is an ADU: drawings, plan check,
+      a permit, a contractor, and a yard behind a fence for most of a year.
     </p>
     <div class="compare">
       <div class="cmp bad">
         <div class="cmp-label">Building an ADU</div>
         <div class="cmp-num">12<small>months +</small></div>
-        <p>Design, permitting, plan check, foundation, framing, inspections. Months of your yard behind a fence before anyone uses the space.</p>
+        <p>Design, permits, plan check, foundation, framing, inspections. Months before anyone uses the space.</p>
       </div>
       <div class="cmp good">
         <div class="cmp-label">Building a Wavyroom</div>
         <div class="cmp-num">1<small>day</small></div>
-        <p>A finished kit arrives at your house. Our crew assembles it in your backyard, and you use it that evening.</p>
+        <p>A finished kit arrives. Our crew assembles it in your yard, and you use it that evening.</p>
       </div>
     </div>
   </div>
@@ -476,14 +512,13 @@
       <p class="eyebrow">What we make</p>
       <h2 style="font-size: clamp(28px, 5vw, 48px);">A real room. Small enough to skip the year-long build.</h2>
       <p class="lede" style="margin-top: 18px;">
-        Wavyroom is a factory-built room that lands on your lawn. Wood structure, insulated walls,
-        finished inside and out. We keep the footprint under 100 square feet, which is where
-        backyard structures get simple instead of complicated.
+        A factory-built room that lands on your lawn. Wood structure, insulated walls, finished
+        inside and out, with a footprint under 100 square feet.
       </p>
       <ul class="sol-list">
         <li>
           <span class="n">01</span>
-          <span><strong>Under 100 sq ft</strong><span class="d">Many cities treat small backyard structures differently from an ADU. Rules vary by city, so we help you check yours before you order.</span></span>
+          <span><strong>Under 100 sq ft</strong><span class="d">Many cities treat small backyard structures differently from an ADU. Rules vary, so we help you check yours before you order.</span></span>
         </li>
         <li>
           <span class="n">02</span>
@@ -491,11 +526,11 @@
         </li>
         <li>
           <span class="n">03</span>
-          <span><strong>Insulated, so you use it all year</strong><span class="d">Glass wool or mineral wool in the walls. A room you want to sit in during January, not a shed.</span></span>
+          <span><strong>Insulated, so you use it all year</strong><span class="d">Glass wool or mineral wool in the walls. Comfortable in January, not a shed.</span></span>
         </li>
         <li>
           <span class="n">04</span>
-          <span><strong>No slab required</strong><span class="d">It sits on your yard. If you'd rather have a concrete mat poured first, that's your call and your contractor.</span></span>
+          <span><strong>No slab required</strong><span class="d">It sits on your yard. A concrete mat first is your call and your contractor.</span></span>
         </li>
       </ul>
     </div>
@@ -509,14 +544,14 @@
     <p class="eyebrow">The room</p>
     <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 18ch;">Dark outside. Warm inside.</h2>
     <p class="lede" style="margin-top: 18px;">
-      Charred timber walls, a quiet roofline, and an interior you'd be happy to work, sleep, or
-      stretch in. Same shell every time — you choose what it becomes.
+      Charred timber walls, a quiet roofline, and an interior you'd be happy to work, sleep or
+      stretch in. Same shell every time. You choose what it becomes.
     </p>
     <div class="uses" style="margin-top: 40px; grid-template-columns: 1fr;">
       <div style="display:grid; gap:18px; grid-template-columns: 1fr;">
         <div style="display:grid; gap:18px;" class="product-pair">
-          <div class="ph ratio-45" id="img-exterior"><span>img-exterior — 3/4 exterior view, charred timber façade, door open. 4:5</span></div>
-          <div class="ph ratio-45" id="img-interior"><span>img-interior — interior, empty and bright, daylight from the window. 4:5</span></div>
+          <img class="shot ratio-45" id="img-exterior" src="images/sauna-exterior-evening.jpg" alt="Wavyroom exterior at dusk — charred timber walls and shingle roof" loading="lazy" style="object-position:center 50%">
+          <img class="shot ratio-45" id="img-interior" src="images/sauna-interior.jpg" alt="Cedar interior of a Wavyroom sauna, benches lit from below" loading="lazy">
         </div>
       </div>
     </div>
@@ -561,10 +596,10 @@
         <p>A floor that's always clear and a space that's quiet, ten steps from your back door.</p>
       </article>
       <article class="use is-sauna">
-        <div class="ph ratio-45" id="img-sauna"><span>img-sauna — outdoor sauna: cedar interior, heater and stones, steam. 4:5</span></div>
+        
         <span class="tag">Use 05</span>
         <h3>Outdoor sauna</h3>
-        <p>Cedar lining, a stone heater, and a bench built in. Heat, cold, rest — at home, on your own schedule.</p>
+        <p>Cedar lining, a stone heater, and a bench built in. Heat, cold, rest, on your own schedule.</p>
       </article>
     </div>
   </div>
@@ -576,8 +611,8 @@
     <p class="eyebrow">What you're actually buying</p>
     <h2 style="font-size: clamp(28px, 5vw, 48px); color: #FFFFFF; max-width: 20ch;">Built like a house, not like a shed.</h2>
     <p class="lede" style="margin-top: 18px;">
-      This is the part that explains the price. Every panel is cut, insulated, and finished at our
-      factory before it ships — the same way we build our modular homes.
+      This is the part that explains the price. Every panel is cut, insulated and finished at our
+      factory before it ships, the same way we build our houses.
     </p>
 
     <div class="spec-grid">
@@ -589,7 +624,7 @@
       <div class="spec">
         <div class="k">Insulation</div>
         <div class="v">Glass or mineral wool</div>
-        <div class="d">Insulated walls, floor and roof, with a vapor layer — comfortable year-round.</div>
+        <div class="d">Insulated walls, floor and roof with a vapor layer. Comfortable year-round.</div>
       </div>
       <div class="spec">
         <div class="k">Exterior</div>
@@ -604,24 +639,15 @@
     </div>
 
     <div class="mats">
-      <div class="mat">
-        <div class="ph on-dark ratio-11" id="img-mat-wall" style="border-radius: var(--r-m);"><span>img-mat-wall — charred timber grain, macro. 1:1</span></div>
-        <div class="cap"><b>Charred timber</b><span>Exterior wall</span></div>
-      </div>
-      <div class="mat">
-        <div class="ph on-dark ratio-11" id="img-mat-roof" style="border-radius: var(--r-m);"><span>img-mat-roof — shingle and zinc edge, macro. 1:1</span></div>
-        <div class="cap"><b>Shingle &amp; zinc</b><span>Roof</span></div>
-      </div>
-      <div class="mat">
-        <div class="ph on-dark ratio-11" id="img-mat-insul" style="border-radius: var(--r-m);"><span>img-mat-insul — wall section showing insulation. 1:1</span></div>
-        <div class="cap"><b>Insulated wall</b><span>Wood frame build-up</span></div>
-      </div>
-      <div class="mat">
-        <div class="ph on-dark ratio-11" id="img-mat-floor" style="border-radius: var(--r-m);"><span>img-mat-floor — LVT floor texture, macro. 1:1</span></div>
-        <div class="cap"><b>LVT flooring</b><span>Interior floor</span></div>
-      </div>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-people.jpg" alt="People on the cedar benches inside a Wavyroom sauna" loading="lazy">
+        <figcaption class="cap"><b>The sauna model</b><span>Cedar lining and built-in benches</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-loyly.jpg" alt="Water poured over hot stones in a Wavyroom sauna" loading="lazy">
+        <figcaption class="cap"><b>Stone heater</b><span>Pour water, raise the steam</span></figcaption>
+      </figure>
     </div>
-
     <div class="dims">
       <div class="dim">
         <div class="k">Footprint</div>
@@ -682,7 +708,7 @@
 <!-- ============================ PRICING ============================ -->
 <section class="pricing" id="pricing">
   <div class="wrap">
-    <div class="offer" id="offer-badge">Early bird — through October 30, 2026</div>
+    <div class="offer" id="offer-badge">Early bird · through October 30, 2026</div>
     <h2 style="font-size: clamp(28px, 5vw, 48px); margin-top: 22px;">Two models. One price each.</h2>
     <p class="lede" style="margin-top: 16px;">
       Kit, ocean freight to Los Angeles, and assembly in your backyard are all included.
@@ -709,9 +735,9 @@
       </div>
 
       <div class="plan">
-        <div class="ph ratio-43" id="img-price-sauna"><span>img-price-sauna — The Sauna, cedar interior or exterior. 4:3</span></div>
+        
         <h3>The Sauna</h3>
-        <p class="for">Outdoor sauna — cedar lining, stone heater, built-in bench</p>
+        <p class="for">Outdoor sauna. Cedar lining, stone heater, built-in bench</p>
         <div class="price-row">
           <span class="price-now">$24,900</span>
           <span class="price-was">$27,900</span>
@@ -734,7 +760,7 @@
         <li><span>Local delivery from our Los Angeles warehouse to your address</span></li>
         <li><span>On-site electrical work and hookup, by a licensed electrician</span></li>
         <li><span>A concrete pad or foundation mat, if you want one poured first</span></li>
-        <li><span>Any permit your city requires — we'll help you find out what applies</span></li>
+        <li><span>Any permit your city requires. We'll help you find out what applies</span></li>
       </ul>
       <p style="font-size: 13px; color: var(--muted); margin-top: 14px;">
         Prices in US dollars, before applicable sales tax. Payment schedule and lead time are
@@ -752,14 +778,13 @@
         <p class="eyebrow">Who builds it</p>
         <h2 style="font-size: clamp(28px, 5vw, 48px);">Six years.<br>300 homes.</h2>
         <p class="lede" style="margin-top: 20px;">
-          Wavyroom is Korea's No.1 prefab home manufacturer. Over the past six years we've
-          designed, built and delivered 300 homes across the country. The room going into your
-          backyard comes off the same factory line, built by the same people.
+          Korea's No.1 prefab home manufacturer. Over six years we've designed, built and
+          delivered 300 homes. Your backyard room comes off the same line, built by the same people.
         </p>
         <p class="lede" style="margin-top: 16px;">
-          Korean construction is known for getting the quiet details right — the joint you run a
-          hand over, the finish that still looks considered years later. We build that sensibility
-          into something you can set down on a lawn. We call it K-Home.
+          Korean construction is known for the quiet details: the joint you run a hand over, the
+          finish that still looks considered years later. We build that into something you can set
+          down on a lawn. We call it K-Home.
         </p>
       </div>
       <div class="ph ratio-43" id="img-factory"><span>img-factory — the Wavyroom factory floor: modules under construction on the line. 4:3</span></div>
@@ -783,7 +808,7 @@
     <div class="creds">
       <div class="cred">
         <h4>Registered with the U.S. government</h4>
-        <p>We're registered in SAM.gov, the U.S. federal procurement system — the same vetting required to supply federal agencies.</p>
+        <p>We're registered in SAM.gov, the U.S. federal procurement system.</p>
         <div class="badges">
           <span class="badge">SAM.gov registered</span>
         </div>
@@ -808,9 +833,8 @@
       <p class="eyebrow">Claim your coupon</p>
       <h2 style="font-size: clamp(28px, 5vw, 46px); color: #FFFFFF;">Take $200 off,<br>on top of early bird.</h2>
       <p class="lede" style="margin-top: 18px; color: #A8A49C;">
-        Leave your details and we'll add you to our $200 coupon list. There's no code to keep
-        track of — when you place your order, we apply it for you. Someone from our team will
-        reach out to talk through your yard and what you'd use the room for.
+        Leave your details and we'll add you to our $200 coupon list. No code to keep track of.
+        We apply it when you order.
       </p>
       <div class="coupon">
         <div class="amt">$200</div>
@@ -849,12 +873,12 @@
 
       <div class="done" id="done" hidden>
         <h3>You're on the list.</h3>
-        <p>Your $200 coupon is registered under your name. There's no code to remember — when you place your order, we apply it for you.</p>
+        <p>Your $200 coupon is registered under your name. We apply it when you place your order.</p>
         <div class="applied">
           <div><span>The Room, with your coupon</span><b>$21,700</b></div>
           <div><span>The Sauna, with your coupon</span><b>$24,700</b></div>
         </div>
-        <p style="margin-top: 18px;">Someone from our team will reach out within two business days to talk through your yard and answer anything you want to ask.</p>
+        <p style="margin-top: 18px;">Someone from our team will reach out within two business days to talk through your yard.</p>
       </div>
     </div>
   </div>
@@ -892,8 +916,8 @@
       var badge = document.getElementById("offer-badge");
       var note = document.getElementById("hero-deadline");
       if (days > 0 && days <= 60) {
-        badge.textContent = "Early bird — " + days + (days === 1 ? " day left" : " days left");
-        note.textContent = "Early-bird pricing ends October 30, 2026 — " + days + (days === 1 ? " day" : " days") + " left.";
+        badge.textContent = "Early bird · " + days + (days === 1 ? " day left" : " days left");
+        note.textContent = "Early-bird pricing ends October 30, 2026. " + days + (days === 1 ? " day" : " days") + " left.";
       } else if (days <= 0) {
         badge.textContent = "Standard pricing";
         note.textContent = "Ask us about current pricing.";
