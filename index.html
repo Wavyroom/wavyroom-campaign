@@ -14,16 +14,15 @@
   Google Sheets: SHEETS_ENDPOINT at the bottom of this file.
 
   PHOTOS IN USE
-    hero                 images/sauna-exterior-dusk.jpg
+    hero                 images/hero-backyard.jpg
     The Sauna (4 shots)  sauna-exterior-evening / sauna-interior
                          sauna-loyly / sauna-people
-    How it arrives       images/assembly.jpg
+    How it arrives       images/factory.jpg, images/assembly.jpg
 
-  STILL NEEDED (The Room, 4 shots, 4:5 vertical)
-    img-office   backyard office in use
-    img-guest    guest room, made bed
-    img-play     kids' playroom
-    img-yoga     yoga room
+    The Room (4 shots)   room-office / room-guest / room-play / room-yoga
+
+  STILL NEEDED
+    img-shipping   ocean freight / container shot, 4:3 landscape
   Empty slots are hidden by the ".ph { display:none }" rule.
   To fill one, replace its <div class="ph" id="..."> with
   <img class="shot ratio-45" src="images/NAME.jpg" alt="..." loading="lazy">
@@ -151,8 +150,8 @@
   .shot.ratio-45 { aspect-ratio: 4/5; }
   .shot.ratio-32 { aspect-ratio: 3/2; }
   .plan .shot { border-radius: var(--r-m); }
-  .hero-media .shot { border-radius: 0; aspect-ratio: 4/5; min-height: 340px; }
-  @media (min-width: 760px) { .hero-media .shot { aspect-ratio: 21/9; min-height: 480px; } }
+  /* 히어로 사진은 원본 비율 그대로 전부 보이게 합니다. 잘라내지 않습니다. */
+  .hero-media .shot { border-radius: 0; aspect-ratio: 1672 / 941; height: auto; min-height: 0; object-fit: contain; }
   .frame { border-radius: var(--r-l); overflow: hidden; }
 
   /* ---------- buttons ---------- */
@@ -188,13 +187,16 @@
     overflow: hidden;
   }
   .hero-media { position: relative; }
-  .hero-media .ph, .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; aspect-ratio: 4/5; min-height: 340px; }
-  .hero-media .ph { place-items: start center; }
-  .hero-media .ph span { padding-top: 92px; }
-  @media (min-width: 760px) { .hero-media .ph, .hero-media .frame { aspect-ratio: 21/9; min-height: 480px; } }
+  .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; }
+  /* 글은 왼쪽에 놓이므로 왼쪽만 어둡게, 오른쪽은 원본 그대로 둡니다. */
   .hero-scrim {
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(14,14,13,.72) 0%, rgba(14,14,13,.38) 38%, rgba(14,14,13,.92) 100%);
+    background: linear-gradient(90deg,
+      rgba(14,14,13,.90) 0%,
+      rgba(14,14,13,.74) 26%,
+      rgba(14,14,13,.40) 50%,
+      rgba(14,14,13,.10) 72%,
+      rgba(14,14,13,0) 88%);
     pointer-events: none;
   }
   .hero-inner {
@@ -208,7 +210,14 @@
   }
   .hero h1 { font-size: clamp(38px, 8.5vw, 86px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; }
   .hero h1 em { font-style: normal; color: var(--lime); }
-  .hero-sub { margin-top: 18px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 36ch; }
+  .hero-sub { margin-top: 18px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
+  @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 620px; } }
+  /* 모바일에서는 사진 전체를 먼저 보여주고 글은 그 아래에 둡니다. */
+  @media (max-width: 759px) {
+    .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.72) 0%, rgba(14,14,13,.22) 30%, rgba(14,14,13,0) 56%); }
+    .hero-inner { position: static; justify-content: flex-start; padding-block: 26px 36px; }
+    .hero-mark { position: absolute; top: 20px; left: var(--gutter); z-index: 2; }
+  }
   .hero-cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
   .hero-note { margin-top: 20px; font-size: 13px; color: #A8A49C; }
 
@@ -244,7 +253,10 @@
   .uses { display: grid; gap: 18px; margin-top: 44px; grid-template-columns: 1fr; }
   @media (min-width: 560px) { .uses { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1000px) { .uses { grid-template-columns: repeat(3, 1fr); } }
-  .use { min-width: 0; }
+  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(4, 1fr); } }
+  .use { min-width: 0; display: flex; flex-direction: column; }
+  /* aspect-ratio가 그리드 늘림에 눌리지 않게 합니다. */
+  .use .shot, .use .ph { height: auto; margin-bottom: 12px; border-radius: var(--r-m); }
   .use .tag {
     display: inline-block; margin-top: 16px;
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
@@ -367,9 +379,12 @@
   .model-no { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
   .model-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; font-size: clamp(32px, 7vw, 52px); margin-top: 4px; }
   .model-price { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: clamp(17px, 3.4vw, 22px); }
-  .build { margin: 0; max-width: 460px; }
-  .build .shot { border-radius: var(--r-m); aspect-ratio: 4/3; height: auto; }
-  .build figcaption { margin-top: 10px; font-size: 13px; color: var(--muted); }
+  .build-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; max-width: 900px; }
+  .build-row figure { flex: 1 1 190px; min-width: 0; margin: 0; }
+  .build-row .shot, .build-row .ph { border-radius: var(--r-m); aspect-ratio: 4/3; height: auto; }
+  .build-row figcaption { margin-top: 9px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+  /* 사진이 아직 없는 칸은 설명글까지 통째로 숨깁니다. */
+  .build-row figure:has(.ph) { display: none; }
 
   /* ---------- company ---------- */
   .co-top { display: grid; gap: 30px; }
@@ -469,7 +484,7 @@
 <!-- ============================ HERO ============================ -->
 <header class="hero">
   <div class="hero-media">
-    <img class="shot on-dark" id="img-hero" src="images/sauna-exterior-dusk.jpg" alt="Wavyroom sauna in a backyard at dusk, door open and cedar interior glowing" fetchpriority="high" style="object-position:46% 45%">
+    <img class="shot on-dark" id="img-hero" src="images/hero-backyard.jpg" alt="A Wavyroom in a backyard at golden hour, charred timber outside and a lit desk visible through the open door" fetchpriority="high" width="1672" height="941">
     <div class="hero-scrim"></div>
   </div>
   <div class="hero-inner">
@@ -569,25 +584,25 @@
     </p>
     <div class="uses" style="margin-top: 32px;">
       <article class="use">
-        <div class="ph ratio-45" id="img-office"><span>img-office</span></div>
+        <img class="shot ratio-45" id="img-office" src="images/room-office.jpg" alt="A backyard office inside a Wavyroom: desk, monitor and pegboard under a pitched wood ceiling" loading="lazy">
         <span class="tag">Use 01</span>
         <h3>Backyard office</h3>
         <p>A door that closes and a commute of thirty seconds.</p>
       </article>
       <article class="use">
-        <div class="ph ratio-45" id="img-guest"><span>img-guest</span></div>
+        <img class="shot ratio-45" id="img-guest" src="images/room-guest.jpg" alt="A guest room inside a Wavyroom: a made bed under a pitched wood ceiling in morning light" loading="lazy">
         <span class="tag">Use 02</span>
         <h3>Guest room</h3>
         <p>Family stays the weekend without anyone giving up a bedroom.</p>
       </article>
       <article class="use">
-        <div class="ph ratio-45" id="img-play"><span>img-play</span></div>
+        <img class="shot ratio-45" id="img-play" src="images/room-play.jpg" alt="A kids' playroom inside a Wavyroom: low shelves, a small table and children drawing" loading="lazy">
         <span class="tag">Use 03</span>
         <h3>Playroom for kids</h3>
         <p>The mess lives out there. You can still see them from the kitchen.</p>
       </article>
       <article class="use">
-        <div class="ph ratio-45" id="img-yoga"><span>img-yoga</span></div>
+        <img class="shot ratio-45" id="img-yoga" src="images/room-yoga.jpg" alt="A yoga room inside a Wavyroom: an open floor, a mat and daylight from a tall window" loading="lazy">
         <span class="tag">Use 04</span>
         <h3>Yoga room</h3>
         <p>A floor that's always clear, ten steps from your back door.</p>
@@ -714,10 +729,18 @@
         <p>Our crew puts it together in your backyard. Installation is included.</p>
       </div>
     </div>
-    <div style="margin-top: 32px;">
-      <figure class="build">
+    <div class="build-row">
+      <figure>
+        <img class="shot" src="images/factory.jpg" alt="Wavyroom crew framing a module inside the factory in Korea" loading="lazy">
+        <figcaption>Framed and finished in our factory.</figcaption>
+      </figure>
+      <figure>
+        <div class="ph ratio-43" id="img-shipping"><span>img-shipping</span></div>
+        <figcaption>Shipped by ocean freight to Los Angeles.</figcaption>
+      </figure>
+      <figure>
         <img class="shot" src="images/assembly.jpg" alt="Wavyroom crew assembling panels in a customer's backyard" loading="lazy">
-        <figcaption>Our crew assembling a Wavyroom in a backyard.</figcaption>
+        <figcaption>Assembled in your backyard in one day.</figcaption>
       </figure>
     </div>
   </div>
