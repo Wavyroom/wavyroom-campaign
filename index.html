@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A factory-built backyard room, under 100 sq ft, assembled in one day. Office, guest room, playroom, yoga room or outdoor sauna.">
+<meta name="theme-color" content="#0E0E0D">
 <title>Backyard Room</title>
 
 <!--
@@ -81,6 +88,8 @@
   }
 
   * { box-sizing: border-box; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
   body {
     margin: 0;
     background: var(--bg);
@@ -181,6 +190,8 @@
   }
   .hero-media { position: relative; }
   .hero-media .ph, .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; aspect-ratio: 4/5; min-height: 340px; }
+  .hero-media .ph { place-items: start center; }
+  .hero-media .ph span { padding-top: 92px; }
   @media (min-width: 760px) { .hero-media .ph, .hero-media .frame { aspect-ratio: 21/9; min-height: 480px; } }
   .hero-scrim {
     position: absolute; inset: 0;
@@ -194,8 +205,7 @@
   }
   .hero-mark {
     position: absolute; top: clamp(20px, 4vw, 40px); left: var(--gutter);
-    font-family: var(--display); font-weight: 700; font-size: 15px;
-    letter-spacing: 0.02em; color: #F3F2EF;
+    width: clamp(118px, 13vw, 158px); height: auto; display: block;
   }
   .hero h1 { font-size: clamp(38px, 8.5vw, 86px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; }
   .hero h1 em { font-style: normal; color: var(--lime); }
@@ -319,6 +329,30 @@
   .excluded li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
   .excluded li::before { content: "+"; color: var(--muted); font-weight: 700; }
 
+  /* ---------- company ---------- */
+  .co-top { display: grid; gap: 30px; }
+  @media (min-width: 900px) { .co-top { grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; } }
+  .stats { display: grid; gap: 16px; margin-top: 48px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+  .stat { border-top: 2px solid var(--fg); padding-top: 16px; min-width: 0; }
+  .stat .n {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.045em;
+    font-size: clamp(36px, 7vw, 52px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .stat .l { margin-top: 10px; font-size: 14px; color: var(--muted); }
+  .creds {
+    margin-top: 40px; background: var(--surface-2); border-radius: var(--r-m);
+    padding: 28px; display: grid; gap: 26px;
+  }
+  @media (min-width: 820px) { .creds { grid-template-columns: 1fr 1fr; gap: 44px; } }
+  .cred h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .cred p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .badge {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 14px; font-size: 13px; font-weight: 500;
+  }
+
   /* ---------- form ---------- */
   .capture { background: var(--ink); color: #F3F2EF; }
   .capture .eyebrow { color: #A8A49C; }
@@ -353,16 +387,15 @@
   }
   .done h3 { font-size: 24px; }
   .done p { margin-top: 12px; font-size: 15px; color: #D8D5CE; }
-  .code {
-    margin-top: 20px; display: inline-flex; align-items: center; gap: 14px;
-    background: var(--lime); color: #121212; border-radius: var(--r-s);
-    padding: 13px 18px; font-family: var(--display); font-weight: 800; font-size: 20px; letter-spacing: 0.06em;
-  }
+  .applied { margin-top: 22px; display: grid; gap: 1px; background: #35342F; border-radius: var(--r-s); overflow: hidden; }
+  .applied div { background: #1A1A18; padding: 14px 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .applied span { font-size: 14px; color: #A8A49C; }
+  .applied b { font-family: var(--display); font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--lime); }
 
   /* ---------- footer ---------- */
   footer { background: var(--ink); color: #A8A49C; border-top: 1px solid #262521; padding-block: 40px; font-size: 13px; }
   .foot { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; }
-  .foot .brand { font-family: var(--display); font-weight: 700; font-size: 16px; color: #F3F2EF; letter-spacing: 0.02em; }
+  .foot .brand { width: 136px; height: auto; display: block; }
 
   /* ---------- sticky mobile bar ---------- */
   .sticky {
@@ -388,6 +421,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap">
 
+</head>
+<body>
+
 <!-- ============================ HERO ============================ -->
 <header class="hero">
   <div class="hero-media">
@@ -395,7 +431,7 @@
     <div class="hero-scrim"></div>
   </div>
   <div class="hero-inner">
-    <div class="hero-mark">WAVYROOM</div>
+    <img class="hero-mark" src="images/logo_white.png" alt="Wavyroom">
     <div class="wrap">
       <h1>Your backyard<br>is <em>boring.</em></h1>
       <p class="hero-sub">Got a backyard? Get a room. Assembled in one day, under 100 sq ft.</p>
@@ -708,6 +744,63 @@
   </div>
 </section>
 
+<!-- ============================ COMPANY ============================ -->
+<section id="company">
+  <div class="wrap">
+    <div class="co-top">
+      <div>
+        <p class="eyebrow">Who builds it</p>
+        <h2 style="font-size: clamp(28px, 5vw, 48px);">Six years.<br>300 homes.</h2>
+        <p class="lede" style="margin-top: 20px;">
+          Wavyroom is Korea's No.1 prefab home manufacturer. Over the past six years we've
+          designed, built and delivered 300 homes across the country. The room going into your
+          backyard comes off the same factory line, built by the same people.
+        </p>
+        <p class="lede" style="margin-top: 16px;">
+          Korean construction is known for getting the quiet details right — the joint you run a
+          hand over, the finish that still looks considered years later. We build that sensibility
+          into something you can set down on a lawn. We call it K-Home.
+        </p>
+      </div>
+      <div class="ph ratio-43" id="img-factory"><span>img-factory — the Wavyroom factory floor: modules under construction on the line. 4:3</span></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="n">6</div>
+        <div class="l">Years building homes in Korea</div>
+      </div>
+      <div class="stat">
+        <div class="n">300</div>
+        <div class="l">Homes designed, built and delivered</div>
+      </div>
+      <div class="stat">
+        <div class="n">No.1</div>
+        <div class="l">Prefab home manufacturer in Korea</div>
+      </div>
+    </div>
+
+    <div class="creds">
+      <div class="cred">
+        <h4>Registered with the U.S. government</h4>
+        <p>We're registered in SAM.gov, the U.S. federal procurement system — the same vetting required to supply federal agencies.</p>
+        <div class="badges">
+          <span class="badge">SAM.gov registered</span>
+        </div>
+      </div>
+      <div class="cred">
+        <h4>Certified to international standards</h4>
+        <p>Our factory holds three ISO certifications covering quality, environmental management and workplace safety.</p>
+        <div class="badges">
+          <span class="badge">ISO 9001 · Quality</span>
+          <span class="badge">ISO 14001 · Environment</span>
+          <span class="badge">ISO 45001 · Safety</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================ LEAD CAPTURE ============================ -->
 <section class="capture" id="claim">
   <div class="wrap cap-grid">
@@ -715,13 +808,13 @@
       <p class="eyebrow">Claim your coupon</p>
       <h2 style="font-size: clamp(28px, 5vw, 46px); color: #FFFFFF;">Take $200 off,<br>on top of early bird.</h2>
       <p class="lede" style="margin-top: 18px; color: #A8A49C;">
-        Leave your details and we'll send a $200 coupon good on either model, plus the full spec
-        sheet. Someone from our team will reach out to talk through your yard and what you'd use
-        the room for.
+        Leave your details and we'll add you to our $200 coupon list. There's no code to keep
+        track of — when you place your order, we apply it for you. Someone from our team will
+        reach out to talk through your yard and what you'd use the room for.
       </p>
       <div class="coupon">
         <div class="amt">$200</div>
-        <p>Stacks with early-bird pricing. The Room comes to <b style="color:#F3F2EF;">$21,700</b>, The Sauna to <b style="color:#F3F2EF;">$24,700</b>.</p>
+        <p>Applied on top of early-bird pricing. The Room comes to <b style="color:#F3F2EF;">$21,700</b>, The Sauna to <b style="color:#F3F2EF;">$24,700</b>.</p>
       </div>
     </div>
 
@@ -746,19 +839,22 @@
           <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="Street address, city, ZIP" required>
         </div>
         <p class="err" id="form-err" hidden></p>
-        <button class="btn btn-primary" type="submit" id="submit-btn">Send me the $200 coupon</button>
+        <button class="btn btn-primary" type="submit" id="submit-btn">Claim my $200 coupon</button>
         <p class="form-status" id="form-status"></p>
         <p class="consent">
-          We use your details to send the coupon and to contact you about your backyard room.
+          We use your details to register your coupon and to contact you about your backyard room.
           We don't sell your information, and you can ask us to delete it any time.
         </p>
       </form>
 
       <div class="done" id="done" hidden>
-        <h3>Your coupon is on its way.</h3>
-        <p>Check your email in the next few minutes. We'll follow up by phone within two business days to talk through your yard.</p>
-        <div class="code" id="coupon-code">WAVY200</div>
-        <p style="margin-top: 16px;">Show this code when you place your order to take $200 off the early-bird price.</p>
+        <h3>You're on the list.</h3>
+        <p>Your $200 coupon is registered under your name. There's no code to remember — when you place your order, we apply it for you.</p>
+        <div class="applied">
+          <div><span>The Room, with your coupon</span><b>$21,700</b></div>
+          <div><span>The Sauna, with your coupon</span><b>$24,700</b></div>
+        </div>
+        <p style="margin-top: 18px;">Someone from our team will reach out within two business days to talk through your yard and answer anything you want to ask.</p>
       </div>
     </div>
   </div>
@@ -767,7 +863,7 @@
 <footer>
   <div class="wrap foot">
     <div>
-      <div class="brand">WAVYROOM</div>
+      <img class="brand" src="images/logo_white.png" alt="Wavyroom">
       <p style="margin-top: 6px;">Spacewavy Co., Ltd. · Backyard rooms, built in a factory, assembled in a day.</p>
     </div>
     <div style="text-align: right;">
@@ -785,7 +881,6 @@
 <script>
   /* ====== CONFIG — paste your Google Apps Script web app URL here ====== */
   var SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyAx0BShb-8VQ2Fdyk_D53qawlQSYm0tywOWx2ewTrY7sfDRjQtaxUHd2y7NKXzichx/exec";
-  var COUPON_CODE     = "WAVY200";
   var OFFER_ENDS      = "2026-10-30T23:59:59-07:00";
   /* ===================================================================== */
 
@@ -804,8 +899,6 @@
         note.textContent = "Ask us about current pricing.";
       }
     } catch (e) {}
-
-    document.getElementById("coupon-code").textContent = COUPON_CODE;
 
     var form = document.getElementById("lead-form");
     var errEl = document.getElementById("form-err");
@@ -864,3 +957,6 @@
     });
   })();
 </script>
+
+</body>
+</html>
