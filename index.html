@@ -149,6 +149,7 @@
   .shot.ratio-43 { aspect-ratio: 4/3; }
   .shot.ratio-45 { aspect-ratio: 4/5; }
   .shot.ratio-32 { aspect-ratio: 3/2; }
+  .shot.ratio-169 { aspect-ratio: 16/9; height: auto; }
   .plan .shot { border-radius: var(--r-m); }
   /* 히어로 사진은 원본 비율 그대로 전부 보이게 합니다. 잘라내지 않습니다. */
   .hero-media .shot { border-radius: 0; aspect-ratio: 1672 / 941; height: auto; min-height: 0; object-fit: contain; }
@@ -344,7 +345,8 @@
 
   /* 사진이 아직 없는 자리는 숨깁니다. 사진을 넣으면 <img class="shot">로 교체됩니다. */
   .ph { display: none !important; }
-  .sol-grid, .co-top { grid-template-columns: 1fr !important; }
+  .sol-grid { grid-template-columns: 1fr !important; }
+  @media (min-width: 900px) { .co-top { grid-template-columns: 1fr 1.12fr !important; } }
 
   /* 모바일 압축 */
   @media (max-width: 759px) {
@@ -491,7 +493,7 @@
     <img class="hero-mark" src="images/logo_white.png" alt="Wavyroom">
     <div class="wrap">
       <h1>Your backyard<br>is <em>boring.</em></h1>
-      <p class="hero-sub">Got a backyard? Get a Wavyroom. Assembled in one day, under 100 sq ft.</p>
+      <p class="hero-sub">Got a backyard? Get a Wavyroom.<br>Assembled in one day, under 100 sq ft.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#claim">Get $200 off</a>
         <a class="btn btn-ghost" href="#pricing">See pricing</a>
@@ -542,30 +544,15 @@
         </li>
         <li>
           <span class="n">02</span>
-          <span><strong>Assembled in one day</strong><span class="d">The panels are cut and finished in our factory. On site it's assembly, not construction.</span></span>
+          <span><strong>Insulated like a real house</strong><span class="d">Glass wool or mineral wool on every side, the same build as a home we deliver. Warm in January, cool in August. Not a shed.</span></span>
         </li>
         <li>
           <span class="n">03</span>
-          <span><strong>Insulated, so you use it all year</strong><span class="d">Glass wool or mineral wool in the walls. Comfortable in January, not a shed.</span></span>
-        </li>
-        <li>
-          <span class="n">04</span>
-          <span><strong>No slab required</strong><span class="d">It sits on your yard. A concrete mat first is your call and your contractor.</span></span>
+          <span><strong>Built around how you'll use it</strong><span class="d">Tell us what the room is for and we finish the inside for it. One shell, a space that earns its place in your day.</span></span>
         </li>
       </ul>
     </div>
     <div class="ph ratio-43" id="img-aerial"><span>img-aerial — bird's-eye view of the room sitting in a backyard. 4:3</span></div>
-  </div>
-</section>
-
-<!-- ============================ TWO MODELS ============================ -->
-<section id="models" style="padding-bottom: 0;">
-  <div class="wrap">
-    <p class="eyebrow">Two models</p>
-    <h2 style="font-size: clamp(28px, 5vw, 48px);">Same shell.<br>Two ways to use it.</h2>
-    <p class="lede" style="margin-top: 18px;">
-      Charred timber outside, insulated and finished inside. What changes is what we build in.
-    </p>
   </div>
 </section>
 
@@ -688,11 +675,6 @@
         <div class="k">Exterior (W × L × H)</div>
         <div class="v">8'0" × 8'6" × 9'9"</div>
         <div class="m">2,440 × 2,600 × 2,960 mm</div>
-      </div>
-      <div class="dim">
-        <div class="k">Interior</div>
-        <div class="v">About 55 sq ft</div>
-        <div class="m">7'3" × 7'7" · 2,220 × 2,320 mm</div>
       </div>
     </div>
     <p style="font-size: 13px; color: #A8A49C; margin-top: 22px;">
@@ -828,7 +810,7 @@
           down on a lawn. We call it K-Home.
         </p>
       </div>
-      <div class="ph ratio-43" id="img-factory"><span>img-factory — the Wavyroom factory floor: modules under construction on the line. 4:3</span></div>
+      <img class="shot ratio-169" id="img-factory" src="images/factory-aerial.jpg" alt="Aerial view of the Wavyroom factory in Korea: three production halls and finished modules in the yard" loading="lazy">
     </div>
 
     <div class="stats">
