@@ -1,0 +1,866 @@
+<title>Backyard Room</title>
+
+<!--
+  ============================================================
+  WAVYROOM US LANDING PAGE  ·  QR destination
+  ============================================================
+
+  1) GOOGLE SHEETS CONNECTION
+     Replace SHEETS_ENDPOINT below with your Apps Script web app URL.
+     Apps Script code is in the file "apps-script.gs".
+
+  2) IMAGE SLOTS — replace each <div class="ph" id="..."> with
+     <img src="..." alt="..."> and the slot keeps its shape.
+
+       img-hero       Hero. Backyard room at dusk, warm light. 3:2 or wider
+       img-aerial     Aerial / bird's-eye of the room in a backyard. 4:3
+       img-exterior   Exterior 3/4 view, charred timber façade. 4:5
+       img-interior   Interior, empty and bright. 4:5
+       img-office     USE 1 — Backyard office. 4:5
+       img-guest      USE 2 — Guest room. 4:5
+       img-play       USE 3 — Kids' playroom. 4:5
+       img-yoga       USE 4 — Yoga room. 4:5
+       img-sauna      USE 5 — Outdoor sauna, cedar interior. 4:5
+       img-mat-wall   Material — charred timber + oil stain. 1:1
+       img-mat-roof   Material — shingle + zinc roof edge. 1:1
+       img-mat-insul  Material — wall section / insulation. 1:1
+       img-mat-floor  Material — LVT floor. 1:1
+       img-build      Assembly day — crew building in the yard. 3:2
+       img-price-room The Room, exterior. 4:3
+       img-price-sauna The Sauna, exterior or cedar interior. 4:3
+  ============================================================
+-->
+
+<style>
+  /* Layout: single scroll. Dark hero → warm neutral body → dark close.
+     Lime is the only accent and appears on CTAs and the offer badge. */
+  :root {
+    --ink:      #121212;
+    --paper:    #F7F6F3;
+    --sand:     #EDEBE6;
+    --line:     #D9D6CF;
+    --soft:     #4A4844;
+    --lime:     #D3F170;
+    --lime-dim: #C7E261;
+
+    --bg:        var(--paper);
+    --fg:        var(--ink);
+    --muted:     var(--soft);
+    --surface:   #FFFFFF;
+    --surface-2: var(--sand);
+    --border:    var(--line);
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body:    "DM Sans", "Helvetica Neue", Arial, sans-serif;
+
+    --gutter: clamp(20px, 5vw, 64px);
+    --maxw: 1180px;
+    --r-s: 8px;
+    --r-m: 16px;
+    --r-l: 24px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0E0E0D;
+      --fg:        #F3F2EF;
+      --muted:     #A8A49C;
+      --surface:   #1A1A18;
+      --surface-2: #232320;
+      --border:    #35342F;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #0E0E0D;
+    --fg:        #F3F2EF;
+    --muted:     #A8A49C;
+    --surface:   #1A1A18;
+    --surface-2: #232320;
+    --border:    #35342F;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 86px;
+  }
+  @media (min-width: 760px) { body { padding-bottom: 0; } }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    text-wrap: balance;
+    margin: 0;
+  }
+  p { margin: 0; }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+  section { padding-block: clamp(60px, 9vw, 120px); }
+
+  .eyebrow {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  .lede { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 62ch; }
+
+  /* ---------- image placeholders ---------- */
+  .ph {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: var(--r-l);
+    overflow: hidden;
+    min-height: 120px;
+  }
+  .ph span {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    padding: 20px;
+    max-width: 30ch;
+  }
+  .ph.on-dark { background: #232320; border-color: #3A3934; }
+  .ph.on-dark span { color: #A8A49C; }
+  .ratio-32 { aspect-ratio: 3/2; }
+  .ratio-43 { aspect-ratio: 4/3; }
+  .ratio-45 { aspect-ratio: 4/5; }
+  .ratio-11 { aspect-ratio: 1/1; }
+  .ph img, .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .frame { border-radius: var(--r-l); overflow: hidden; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .18s ease, background-color .18s ease;
+  }
+  .btn-primary { background: var(--lime); color: #121212; }
+  .btn-primary:hover { background: var(--lime-dim); }
+  .btn-ghost { background: transparent; color: inherit; border-color: currentColor; opacity: .85; }
+  .btn-ghost:hover { opacity: 1; }
+  .btn:active { transform: translateY(1px); }
+  :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    background: #0E0E0D;
+    color: #F3F2EF;
+    padding-block: 0;
+    overflow: hidden;
+  }
+  .hero-media { position: relative; }
+  .hero-media .ph, .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; aspect-ratio: 4/5; min-height: 340px; }
+  @media (min-width: 760px) { .hero-media .ph, .hero-media .frame { aspect-ratio: 21/9; min-height: 480px; } }
+  .hero-scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(14,14,13,.72) 0%, rgba(14,14,13,.38) 38%, rgba(14,14,13,.92) 100%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-block: clamp(28px, 5vw, 64px);
+  }
+  .hero-mark {
+    position: absolute; top: clamp(20px, 4vw, 40px); left: var(--gutter);
+    font-family: var(--display); font-weight: 700; font-size: 15px;
+    letter-spacing: 0.02em; color: #F3F2EF;
+  }
+  .hero h1 { font-size: clamp(38px, 8.5vw, 86px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero-sub { margin-top: 18px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 36ch; }
+  .hero-cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-note { margin-top: 20px; font-size: 13px; color: #A8A49C; }
+
+  /* ---------- problem ---------- */
+  .compare { display: grid; gap: 16px; margin-top: 42px; }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; gap: 20px; } }
+  .cmp { border-radius: var(--r-m); padding: 28px; border: 1px solid var(--border); background: var(--surface); }
+  .cmp.bad { background: var(--surface-2); border-color: transparent; }
+  .cmp-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .cmp-num {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.04em;
+    font-size: clamp(44px, 9vw, 68px); line-height: 1; margin-top: 14px;
+  }
+  .cmp-num small { font-size: 0.34em; font-weight: 600; letter-spacing: -0.01em; margin-left: 6px; }
+  .cmp p { margin-top: 12px; font-size: 15px; color: var(--muted); }
+  .cmp.good .cmp-num { color: var(--fg); }
+  .cmp.good { border-color: var(--fg); border-width: 1.5px; }
+
+  /* ---------- solution ---------- */
+  .solution { background: var(--surface-2); }
+  .sol-grid { display: grid; gap: 30px; align-items: center; }
+  @media (min-width: 880px) { .sol-grid { grid-template-columns: 1.05fr .95fr; gap: 56px; } }
+  .sol-list { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 2px; }
+  .sol-list li { display: grid; grid-template-columns: 26px 1fr; gap: 14px; align-items: start; padding-block: 14px; border-top: 1px solid var(--border); }
+  .sol-list li:last-child { border-bottom: 1px solid var(--border); }
+  .sol-list .n { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); padding-top: 4px; }
+  .sol-list strong { font-weight: 700; display: block; }
+  .sol-list span.d { font-size: 15px; color: var(--muted); }
+
+  /* ---------- uses ---------- */
+  .uses-head { display: grid; gap: 16px; align-items: end; }
+  @media (min-width: 860px) { .uses-head { grid-template-columns: 1fr auto; } }
+  .uses { display: grid; gap: 18px; margin-top: 44px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .uses { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .uses { grid-template-columns: repeat(3, 1fr); } }
+  .use { min-width: 0; }
+  .use .tag {
+    display: inline-block; margin-top: 16px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .use h3 { font-size: 22px; margin-top: 6px; }
+  .use p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+  .use.is-sauna h3::after {
+    content: "Sauna model";
+    display: inline-block; vertical-align: middle; margin-left: 10px;
+    font-family: var(--body); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--lime); color: #121212; padding: 4px 9px; border-radius: 999px;
+  }
+
+  /* ---------- specs ---------- */
+  .specs { background: var(--ink); color: #F3F2EF; }
+  .specs .eyebrow, .specs .lede { color: #A8A49C; }
+  .spec-grid { display: grid; gap: 14px; margin-top: 44px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .spec-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .spec-grid { grid-template-columns: repeat(4, 1fr); } }
+  .spec { background: #1A1A18; border-radius: var(--r-m); padding: 24px; min-width: 0; }
+  .spec .k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #A8A49C; }
+  .spec .v { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; margin-top: 10px; }
+  .spec .d { font-size: 14px; color: #A8A49C; margin-top: 8px; }
+  .mats { display: grid; gap: 14px; margin-top: 20px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 820px) { .mats { grid-template-columns: repeat(4, 1fr); } }
+  .mat .cap { margin-top: 12px; font-size: 14px; }
+  .mat .cap b { display: block; font-weight: 700; }
+  .mat .cap span { color: #A8A49C; }
+  .dims {
+    margin-top: 30px; border-top: 1px solid #35342F;
+    display: grid; gap: 0; grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .dims { grid-template-columns: repeat(3, 1fr); } }
+  .dim { padding-block: 20px; border-bottom: 1px solid #35342F; }
+  .dim .k { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49C; }
+  .dim .v { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: -0.03em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .dim .m { font-size: 13px; color: #A8A49C; margin-top: 2px; }
+
+  /* ---------- how ---------- */
+  .steps { display: grid; gap: 16px; margin-top: 42px; grid-template-columns: 1fr; counter-reset: s; }
+  @media (min-width: 680px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step { border-top: 2px solid var(--fg); padding-top: 16px; min-width: 0; }
+  .step .n { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  .step h3 { font-size: 18px; margin-top: 8px; }
+  .step p { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  /* ---------- pricing ---------- */
+  .pricing { background: var(--surface-2); }
+  .offer {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--lime); color: #121212;
+    border-radius: 999px; padding: 9px 18px;
+    font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .plans { display: grid; gap: 18px; margin-top: 36px; }
+  @media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; gap: 22px; } }
+  .plan {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-l);
+    padding: 26px; display: flex; flex-direction: column; min-width: 0;
+  }
+  .plan .frame, .plan .ph { border-radius: var(--r-m); }
+  .plan h3 { font-size: 26px; margin-top: 22px; }
+  .plan .for { font-size: 14px; color: var(--muted); margin-top: 8px; min-height: 42px; }
+  .price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .price-now {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.045em;
+    font-size: clamp(38px, 7vw, 50px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .price-was { font-size: 17px; color: var(--muted); text-decoration: line-through; }
+  .price-save { font-size: 13px; font-weight: 700; color: var(--fg); background: var(--surface-2); padding: 5px 11px; border-radius: 999px; }
+  .plan ul { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 9px; font-size: 15px; }
+  .plan ul li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
+  .plan ul li::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--fg); margin-top: 9px; }
+  .plan .btn { margin-top: 26px; width: 100%; }
+  .excluded {
+    margin-top: 26px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-m); padding: 22px;
+  }
+  .excluded h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
+  .excluded ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
+  .excluded li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
+  .excluded li::before { content: "+"; color: var(--muted); font-weight: 700; }
+
+  /* ---------- form ---------- */
+  .capture { background: var(--ink); color: #F3F2EF; }
+  .capture .eyebrow { color: #A8A49C; }
+  .cap-grid { display: grid; gap: 34px; }
+  @media (min-width: 900px) { .cap-grid { grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; } }
+  .coupon {
+    margin-top: 26px; border: 1.5px dashed var(--lime); border-radius: var(--r-m);
+    padding: 22px; display: flex; gap: 18px; align-items: center;
+  }
+  .coupon .amt { font-family: var(--display); font-weight: 800; font-size: 40px; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+  .coupon p { font-size: 14px; color: #D8D5CE; }
+  form { display: grid; gap: 14px; }
+  .field { display: grid; gap: 7px; min-width: 0; }
+  .row2 { display: grid; gap: 14px; }
+  @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49C; }
+  input, textarea {
+    font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    background: #1A1A18; border: 1px solid #35342F; border-radius: var(--r-s);
+    padding: 14px 15px; width: 100%; min-width: 0;
+  }
+  input::placeholder, textarea::placeholder { color: #6F6C65; }
+  input:focus, textarea:focus { border-color: var(--lime); outline: none; }
+  input[aria-invalid="true"] { border-color: #E4785F; }
+  .err { font-size: 13px; color: #E4785F; }
+  .consent { font-size: 13px; color: #A8A49C; line-height: 1.5; }
+  .consent a { color: #D8D5CE; }
+  form .btn { width: 100%; margin-top: 4px; }
+  .form-status { font-size: 14px; color: #A8A49C; min-height: 20px; }
+  .done {
+    border: 1.5px solid var(--lime); border-radius: var(--r-m); padding: 30px; text-align: left;
+  }
+  .done h3 { font-size: 24px; }
+  .done p { margin-top: 12px; font-size: 15px; color: #D8D5CE; }
+  .code {
+    margin-top: 20px; display: inline-flex; align-items: center; gap: 14px;
+    background: var(--lime); color: #121212; border-radius: var(--r-s);
+    padding: 13px 18px; font-family: var(--display); font-weight: 800; font-size: 20px; letter-spacing: 0.06em;
+  }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ink); color: #A8A49C; border-top: 1px solid #262521; padding-block: 40px; font-size: 13px; }
+  .foot { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; }
+  .foot .brand { font-family: var(--display); font-weight: 700; font-size: 16px; color: #F3F2EF; letter-spacing: 0.02em; }
+
+  /* ---------- sticky mobile bar ---------- */
+  .sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: rgba(14,14,13,.94);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #2B2A26;
+    padding: 12px var(--gutter);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  }
+  .sticky .s-txt { font-size: 13px; color: #D8D5CE; line-height: 1.3; min-width: 0; }
+  .sticky .s-txt b { display: block; color: #FFFFFF; font-weight: 700; }
+  .sticky .btn { padding: 13px 22px; font-size: 15px; white-space: nowrap; }
+  @media (min-width: 760px) { .sticky { display: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="hero-media">
+    <div class="ph on-dark" id="img-hero"><span>img-hero — backyard room at dusk, warm light through the glass. 3:2 or wider</span></div>
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-mark">WAVYROOM</div>
+    <div class="wrap">
+      <h1>Your backyard<br>is <em>boring.</em></h1>
+      <p class="hero-sub">Got a backyard? Get a room. Assembled in one day, under 100 sq ft.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#claim">Get $200 off</a>
+        <a class="btn btn-ghost" href="#pricing">See pricing</a>
+      </div>
+      <p class="hero-note" id="hero-deadline">Early-bird pricing through October 30, 2026.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ PROBLEM ============================ -->
+<section id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The backyard problem</p>
+    <h2 style="font-size: clamp(30px, 5.5vw, 54px);">You're paying a mortgage<br>on a patch of grass.</h2>
+    <p class="lede" style="margin-top: 20px;">
+      You already have the land. The usual way to put something on it is an ADU — and that means
+      drawings, plan check, a building permit, a contractor, and a yard that stays a construction
+      site for the better part of a year.
+    </p>
+    <div class="compare">
+      <div class="cmp bad">
+        <div class="cmp-label">Building an ADU</div>
+        <div class="cmp-num">12<small>months +</small></div>
+        <p>Design, permitting, plan check, foundation, framing, inspections. Months of your yard behind a fence before anyone uses the space.</p>
+      </div>
+      <div class="cmp good">
+        <div class="cmp-label">Building a Wavyroom</div>
+        <div class="cmp-num">1<small>day</small></div>
+        <p>A finished kit arrives at your house. Our crew assembles it in your backyard, and you use it that evening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SOLUTION ============================ -->
+<section class="solution" id="solution">
+  <div class="wrap sol-grid">
+    <div>
+      <p class="eyebrow">What we make</p>
+      <h2 style="font-size: clamp(28px, 5vw, 48px);">A real room. Small enough to skip the year-long build.</h2>
+      <p class="lede" style="margin-top: 18px;">
+        Wavyroom is a factory-built room that lands on your lawn. Wood structure, insulated walls,
+        finished inside and out. We keep the footprint under 100 square feet, which is where
+        backyard structures get simple instead of complicated.
+      </p>
+      <ul class="sol-list">
+        <li>
+          <span class="n">01</span>
+          <span><strong>Under 100 sq ft</strong><span class="d">Many cities treat small backyard structures differently from an ADU. Rules vary by city, so we help you check yours before you order.</span></span>
+        </li>
+        <li>
+          <span class="n">02</span>
+          <span><strong>Assembled in one day</strong><span class="d">The panels are cut and finished in our factory. On site it's assembly, not construction.</span></span>
+        </li>
+        <li>
+          <span class="n">03</span>
+          <span><strong>Insulated, so you use it all year</strong><span class="d">Glass wool or mineral wool in the walls. A room you want to sit in during January, not a shed.</span></span>
+        </li>
+        <li>
+          <span class="n">04</span>
+          <span><strong>No slab required</strong><span class="d">It sits on your yard. If you'd rather have a concrete mat poured first, that's your call and your contractor.</span></span>
+        </li>
+      </ul>
+    </div>
+    <div class="ph ratio-43" id="img-aerial"><span>img-aerial — bird's-eye view of the room sitting in a backyard. 4:3</span></div>
+  </div>
+</section>
+
+<!-- ============================ THE ROOM ============================ -->
+<section id="product">
+  <div class="wrap">
+    <p class="eyebrow">The room</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 18ch;">Dark outside. Warm inside.</h2>
+    <p class="lede" style="margin-top: 18px;">
+      Charred timber walls, a quiet roofline, and an interior you'd be happy to work, sleep, or
+      stretch in. Same shell every time — you choose what it becomes.
+    </p>
+    <div class="uses" style="margin-top: 40px; grid-template-columns: 1fr;">
+      <div style="display:grid; gap:18px; grid-template-columns: 1fr;">
+        <div style="display:grid; gap:18px;" class="product-pair">
+          <div class="ph ratio-45" id="img-exterior"><span>img-exterior — 3/4 exterior view, charred timber façade, door open. 4:5</span></div>
+          <div class="ph ratio-45" id="img-interior"><span>img-interior — interior, empty and bright, daylight from the window. 4:5</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FIVE USES ============================ -->
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <div class="uses-head">
+      <div>
+        <p class="eyebrow">Five ways people use it</p>
+        <h2 style="font-size: clamp(28px, 5vw, 48px);">One room.<br>Pick what it's for.</h2>
+      </div>
+      <p style="font-size: 15px; color: var(--muted); max-width: 34ch;">
+        Four of these share the same model. The sauna is built differently inside.
+      </p>
+    </div>
+    <div class="uses">
+      <article class="use">
+        <div class="ph ratio-45" id="img-office"><span>img-office — backyard office: desk, laptop, morning light. 4:5</span></div>
+        <span class="tag">Use 01</span>
+        <h3>Backyard office</h3>
+        <p>A door that closes and a commute of thirty seconds. No one walking through your call.</p>
+      </article>
+      <article class="use">
+        <div class="ph ratio-45" id="img-guest"><span>img-guest — guest room: made bed, side table, soft evening light. 4:5</span></div>
+        <span class="tag">Use 02</span>
+        <h3>Guest room</h3>
+        <p>Family stays the weekend without anyone giving up a bedroom or sleeping on the couch.</p>
+      </article>
+      <article class="use">
+        <div class="ph ratio-45" id="img-play"><span>img-play — kids' playroom: toys, rug, kids mid-play. 4:5</span></div>
+        <span class="tag">Use 03</span>
+        <h3>Playroom for kids</h3>
+        <p>The mess lives out there. You can still see them through the window from the kitchen.</p>
+      </article>
+      <article class="use">
+        <div class="ph ratio-45" id="img-yoga"><span>img-yoga — yoga room: mat on the floor, plant, quiet daylight. 4:5</span></div>
+        <span class="tag">Use 04</span>
+        <h3>Yoga room</h3>
+        <p>A floor that's always clear and a space that's quiet, ten steps from your back door.</p>
+      </article>
+      <article class="use is-sauna">
+        <div class="ph ratio-45" id="img-sauna"><span>img-sauna — outdoor sauna: cedar interior, heater and stones, steam. 4:5</span></div>
+        <span class="tag">Use 05</span>
+        <h3>Outdoor sauna</h3>
+        <p>Cedar lining, a stone heater, and a bench built in. Heat, cold, rest — at home, on your own schedule.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SPECS ============================ -->
+<section class="specs" id="specs">
+  <div class="wrap">
+    <p class="eyebrow">What you're actually buying</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); color: #FFFFFF; max-width: 20ch;">Built like a house, not like a shed.</h2>
+    <p class="lede" style="margin-top: 18px;">
+      This is the part that explains the price. Every panel is cut, insulated, and finished at our
+      factory before it ships — the same way we build our modular homes.
+    </p>
+
+    <div class="spec-grid">
+      <div class="spec">
+        <div class="k">Structure</div>
+        <div class="v">Wood frame</div>
+        <div class="d">2×4 and 2×6 framing with 18 mm OSB sheathing, built as finished panels.</div>
+      </div>
+      <div class="spec">
+        <div class="k">Insulation</div>
+        <div class="v">Glass or mineral wool</div>
+        <div class="d">Insulated walls, floor and roof, with a vapor layer — comfortable year-round.</div>
+      </div>
+      <div class="spec">
+        <div class="k">Exterior</div>
+        <div class="v">Charred timber</div>
+        <div class="d">Finished with two coats of oil stain. Ages quietly, no painting schedule.</div>
+      </div>
+      <div class="spec">
+        <div class="k">Roof</div>
+        <div class="v">Shingle + zinc</div>
+        <div class="d">Asphalt shingle roofing with zinc detailing at the edges.</div>
+      </div>
+    </div>
+
+    <div class="mats">
+      <div class="mat">
+        <div class="ph on-dark ratio-11" id="img-mat-wall" style="border-radius: var(--r-m);"><span>img-mat-wall — charred timber grain, macro. 1:1</span></div>
+        <div class="cap"><b>Charred timber</b><span>Exterior wall</span></div>
+      </div>
+      <div class="mat">
+        <div class="ph on-dark ratio-11" id="img-mat-roof" style="border-radius: var(--r-m);"><span>img-mat-roof — shingle and zinc edge, macro. 1:1</span></div>
+        <div class="cap"><b>Shingle &amp; zinc</b><span>Roof</span></div>
+      </div>
+      <div class="mat">
+        <div class="ph on-dark ratio-11" id="img-mat-insul" style="border-radius: var(--r-m);"><span>img-mat-insul — wall section showing insulation. 1:1</span></div>
+        <div class="cap"><b>Insulated wall</b><span>Wood frame build-up</span></div>
+      </div>
+      <div class="mat">
+        <div class="ph on-dark ratio-11" id="img-mat-floor" style="border-radius: var(--r-m);"><span>img-mat-floor — LVT floor texture, macro. 1:1</span></div>
+        <div class="cap"><b>LVT flooring</b><span>Interior floor</span></div>
+      </div>
+    </div>
+
+    <div class="dims">
+      <div class="dim">
+        <div class="k">Footprint</div>
+        <div class="v">Under 100 sq ft</div>
+        <div class="m">Roof footprint 8'10" × 11'2" · 2,700 × 3,400 mm</div>
+      </div>
+      <div class="dim">
+        <div class="k">Exterior (W × L × H)</div>
+        <div class="v">8'0" × 8'6" × 9'9"</div>
+        <div class="m">2,440 × 2,600 × 2,960 mm</div>
+      </div>
+      <div class="dim">
+        <div class="k">Interior</div>
+        <div class="v">About 55 sq ft</div>
+        <div class="m">7'3" × 7'7" · 2,220 × 2,320 mm</div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: #A8A49C; margin-top: 22px;">
+      Dimensions are nominal and confirmed on the final shop drawings. The sauna model uses cedar
+      lining and a stone heater in place of the standard interior.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ HOW IT ARRIVES ============================ -->
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it arrives</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 20ch;">From our factory to your lawn.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">STEP 01</div>
+        <h3>Built in the factory</h3>
+        <p>Panels cut, insulated and finished at our plant in Korea.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 02</div>
+        <h3>Shipped to Los Angeles</h3>
+        <p>Ocean freight to our LA warehouse, included in the price.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 03</div>
+        <h3>Delivered to you</h3>
+        <p>Local delivery from the warehouse to your address, quoted separately.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 04</div>
+        <h3>Assembled in one day</h3>
+        <p>Our crew puts it together in your backyard. Installation is included.</p>
+      </div>
+    </div>
+    <div class="frame" style="margin-top: 40px;">
+      <div class="ph ratio-32" id="img-build" style="border-radius: var(--r-l);"><span>img-build — assembly day: crew raising panels in a backyard. 3:2</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PRICING ============================ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="offer" id="offer-badge">Early bird — through October 30, 2026</div>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); margin-top: 22px;">Two models. One price each.</h2>
+    <p class="lede" style="margin-top: 16px;">
+      Kit, ocean freight to Los Angeles, and assembly in your backyard are all included.
+    </p>
+
+    <div class="plans">
+      <div class="plan">
+        <div class="ph ratio-43" id="img-price-room"><span>img-price-room — The Room, exterior. 4:3</span></div>
+        <h3>The Room</h3>
+        <p class="for">Backyard office · Guest room · Kids' playroom · Yoga room</p>
+        <div class="price-row">
+          <span class="price-now">$21,900</span>
+          <span class="price-was">$23,500</span>
+          <span class="price-save">Save $1,600</span>
+        </div>
+        <ul>
+          <li><span>Factory-built kit, wood frame and insulated</span></li>
+          <li><span>Charred timber exterior, shingle and zinc roof</span></li>
+          <li><span>Interior wall panels and LVT flooring</span></li>
+          <li><span>Ocean freight to our Los Angeles warehouse</span></li>
+          <li><span>Assembly and installation in your backyard</span></li>
+        </ul>
+        <a class="btn btn-primary" href="#claim">Get $200 off The Room</a>
+      </div>
+
+      <div class="plan">
+        <div class="ph ratio-43" id="img-price-sauna"><span>img-price-sauna — The Sauna, cedar interior or exterior. 4:3</span></div>
+        <h3>The Sauna</h3>
+        <p class="for">Outdoor sauna — cedar lining, stone heater, built-in bench</p>
+        <div class="price-row">
+          <span class="price-now">$24,900</span>
+          <span class="price-was">$27,900</span>
+          <span class="price-save">Save $3,000</span>
+        </div>
+        <ul>
+          <li><span>Everything in The Room</span></li>
+          <li><span>Cedar interior lining and built-in bench</span></li>
+          <li><span>Electric stone heater and controls</span></li>
+          <li><span>Sauna ventilation and heat-rated lighting</span></li>
+          <li><span>Assembly and installation in your backyard</span></li>
+        </ul>
+        <a class="btn btn-primary" href="#claim">Get $200 off The Sauna</a>
+      </div>
+    </div>
+
+    <div class="excluded">
+      <h4>Quoted separately</h4>
+      <ul>
+        <li><span>Local delivery from our Los Angeles warehouse to your address</span></li>
+        <li><span>On-site electrical work and hookup, by a licensed electrician</span></li>
+        <li><span>A concrete pad or foundation mat, if you want one poured first</span></li>
+        <li><span>Any permit your city requires — we'll help you find out what applies</span></li>
+      </ul>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 14px;">
+        Prices in US dollars, before applicable sales tax. Payment schedule and lead time are
+        confirmed in your order.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LEAD CAPTURE ============================ -->
+<section class="capture" id="claim">
+  <div class="wrap cap-grid">
+    <div>
+      <p class="eyebrow">Claim your coupon</p>
+      <h2 style="font-size: clamp(28px, 5vw, 46px); color: #FFFFFF;">Take $200 off,<br>on top of early bird.</h2>
+      <p class="lede" style="margin-top: 18px; color: #A8A49C;">
+        Leave your details and we'll send a $200 coupon good on either model, plus the full spec
+        sheet. Someone from our team will reach out to talk through your yard and what you'd use
+        the room for.
+      </p>
+      <div class="coupon">
+        <div class="amt">$200</div>
+        <p>Stacks with early-bird pricing. The Room comes to <b style="color:#F3F2EF;">$21,700</b>, The Sauna to <b style="color:#F3F2EF;">$24,700</b>.</p>
+      </div>
+    </div>
+
+    <div>
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label for="f-name">Full name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jordan Reyes" required>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(213) 555-0147" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-address">Where would it go?</label>
+          <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="Street address, city, ZIP" required>
+        </div>
+        <p class="err" id="form-err" hidden></p>
+        <button class="btn btn-primary" type="submit" id="submit-btn">Send me the $200 coupon</button>
+        <p class="form-status" id="form-status"></p>
+        <p class="consent">
+          We use your details to send the coupon and to contact you about your backyard room.
+          We don't sell your information, and you can ask us to delete it any time.
+        </p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <h3>Your coupon is on its way.</h3>
+        <p>Check your email in the next few minutes. We'll follow up by phone within two business days to talk through your yard.</p>
+        <div class="code" id="coupon-code">WAVY200</div>
+        <p style="margin-top: 16px;">Show this code when you place your order to take $200 off the early-bird price.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="brand">WAVYROOM</div>
+      <p style="margin-top: 6px;">Spacewavy Co., Ltd. · Backyard rooms, built in a factory, assembled in a day.</p>
+    </div>
+    <div style="text-align: right;">
+      <p>hello@spacewavy.com</p>
+      <p style="margin-top: 4px;">www.wavyroom.com</p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div class="s-txt"><b>$200 coupon</b>Early bird ends Oct 30</div>
+  <a class="btn btn-primary" href="#claim">Claim it</a>
+</div>
+
+<script>
+  /* ====== CONFIG — paste your Google Apps Script web app URL here ====== */
+  var SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwoefPrXhQamOy98g0MA-RA0nLaSafsSU0-Iqt-NizsSqk4YYuvOXBFaqy-XEF1trf_/exec";
+  var COUPON_CODE     = "WAVY200";
+  var OFFER_ENDS      = "2026-10-30T23:59:59-07:00";
+  /* ===================================================================== */
+
+  (function () {
+    // Days remaining on the early-bird offer
+    try {
+      var end = new Date(OFFER_ENDS);
+      var days = Math.ceil((end - new Date()) / 86400000);
+      var badge = document.getElementById("offer-badge");
+      var note = document.getElementById("hero-deadline");
+      if (days > 0 && days <= 60) {
+        badge.textContent = "Early bird — " + days + (days === 1 ? " day left" : " days left");
+        note.textContent = "Early-bird pricing ends October 30, 2026 — " + days + (days === 1 ? " day" : " days") + " left.";
+      } else if (days <= 0) {
+        badge.textContent = "Standard pricing";
+        note.textContent = "Ask us about current pricing.";
+      }
+    } catch (e) {}
+
+    document.getElementById("coupon-code").textContent = COUPON_CODE;
+
+    var form = document.getElementById("lead-form");
+    var errEl = document.getElementById("form-err");
+    var statusEl = document.getElementById("form-status");
+    var btn = document.getElementById("submit-btn");
+    var done = document.getElementById("done");
+
+    function invalid(el, on) { el.setAttribute("aria-invalid", on ? "true" : "false"); }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      errEl.hidden = true;
+
+      var f = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        address: form.address.value.trim()
+      };
+      var bad = null;
+      if (!f.name) { bad = form.name; errEl.textContent = "Please enter your name."; }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email)) { bad = form.email; errEl.textContent = "That email address doesn't look right."; }
+      else if (f.phone.replace(/\D/g, "").length < 10) { bad = form.phone; errEl.textContent = "Please enter a phone number we can reach you on."; }
+      else if (f.address.length < 6) { bad = form.address; errEl.textContent = "Please tell us the address where the room would go."; }
+
+      ["name", "email", "phone", "address"].forEach(function (k) { invalid(form[k], false); });
+      if (bad) { invalid(bad, true); errEl.hidden = false; bad.focus(); return; }
+
+      btn.disabled = true;
+      statusEl.textContent = "Sending…";
+
+      var payload = new URLSearchParams(Object.assign({}, f, {
+        source: "QR sign",
+        page: location.href,
+        submitted_at: new Date().toISOString()
+      }));
+
+      function finish() {
+        form.hidden = true;
+        done.hidden = false;
+        done.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      if (!SHEETS_ENDPOINT || SHEETS_ENDPOINT.indexOf("PASTE_") === 0) {
+        finish();
+        return;
+      }
+      fetch(SHEETS_ENDPOINT, { method: "POST", mode: "no-cors", body: payload })
+        .then(finish)
+        .catch(function () {
+          btn.disabled = false;
+          statusEl.textContent = "";
+          errEl.textContent = "We couldn't send that just now. Please try again, or email hello@spacewavy.com.";
+          errEl.hidden = false;
+        });
+    });
+  })();
+</script>
