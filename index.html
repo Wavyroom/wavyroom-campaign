@@ -453,8 +453,16 @@
 
   /* ---------- footer ---------- */
   footer { background: var(--ink); color: #A8A49C; border-top: 1px solid #262521; padding-block: 40px; font-size: 13px; }
-  .foot { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; }
+  .foot { display: grid; gap: 28px; align-items: start; }
+  @media (min-width: 820px) { .foot { grid-template-columns: minmax(230px, 300px) 1fr; gap: 48px; } }
   .foot .brand { width: 136px; height: auto; display: block; }
+  .addr { display: grid; gap: 20px 32px; }
+  @media (min-width: 560px) { .addr { grid-template-columns: repeat(3, 1fr); } }
+  .addr span {
+    display: block; margin-bottom: 5px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #6E6B64;
+  }
+  .addr div { line-height: 1.6; }
 
   /* ---------- sticky mobile bar ---------- */
   .sticky {
@@ -495,7 +503,7 @@
       <h1>Your backyard<br>is <em>boring.</em></h1>
       <p class="hero-sub">Got a backyard? Get a Wavyroom.<br>Assembled in one day, under 100 sq ft.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#claim">Get $200 off</a>
+        <a class="btn btn-primary" href="#claim">Reserve your price</a>
         <a class="btn btn-ghost" href="#pricing">See pricing</a>
       </div>
       <p class="hero-note" id="hero-deadline">Early-bird pricing through October 30, 2026.</p>
@@ -754,7 +762,7 @@
           <li><span>Ocean freight to our Los Angeles warehouse</span></li>
           <li><span>Assembly and installation in your backyard</span></li>
         </ul>
-        <a class="btn btn-primary" href="#claim">Get $200 off The Room</a>
+        <a class="btn btn-primary" href="#claim">Reserve The Room</a>
       </div>
 
       <div class="plan">
@@ -773,7 +781,7 @@
           <li><span>Sauna ventilation and heat-rated lighting</span></li>
           <li><span>Assembly and installation in your backyard</span></li>
         </ul>
-        <a class="btn btn-primary" href="#claim">Get $200 off The Sauna</a>
+        <a class="btn btn-primary" href="#claim">Reserve The Sauna</a>
       </div>
     </div>
 
@@ -853,15 +861,16 @@
 <section class="capture" id="claim">
   <div class="wrap cap-grid">
     <div>
-      <p class="eyebrow">Claim your coupon</p>
-      <h2 style="font-size: clamp(28px, 5vw, 46px); color: #FFFFFF;">Take $200 off,<br>on top of early bird.</h2>
+      <p class="eyebrow">Start your order</p>
+      <h2 style="font-size: clamp(28px, 5vw, 46px); color: #FFFFFF;">Early-bird pricing<br>is open now.</h2>
       <p class="lede" style="margin-top: 18px; color: #A8A49C;">
-        Leave your details and we'll add you to our $200 coupon list. No code to keep track of.
-        We apply it when you order.
+        Leave your details and a Wavyroom specialist calls you back. They walk you through the
+        two models, look at your yard with you and give you a delivery date. Your early-bird price
+        is held while you decide, and the $200 comes off on top when you order.
       </p>
       <div class="coupon">
         <div class="amt">$200</div>
-        <p>Applied on top of early-bird pricing. The Room comes to <b style="color:#F3F2EF;">$21,700</b>, The Sauna to <b style="color:#F3F2EF;">$24,700</b>.</p>
+        <p>Your price when you order: The Room <b style="color:#F3F2EF;">$21,700</b>, The Sauna <b style="color:#F3F2EF;">$24,700</b>. Early bird plus the $200, no code to keep track of.</p>
       </div>
     </div>
 
@@ -886,22 +895,24 @@
           <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="Street address, city, ZIP" required>
         </div>
         <p class="err" id="form-err" hidden></p>
-        <button class="btn btn-primary" type="submit" id="submit-btn">Claim my $200 coupon</button>
+        <button class="btn btn-primary" type="submit" id="submit-btn">Reserve my early-bird price</button>
         <p class="form-status" id="form-status"></p>
         <p class="consent">
-          We use your details to register your coupon and to contact you about your backyard room.
+          We use your details to hold your price and to contact you about your backyard room.
           We don't sell your information, and you can ask us to delete it any time.
         </p>
       </form>
 
       <div class="done" id="done" hidden>
-        <h3>You're on the list.</h3>
-        <p>Your $200 coupon is registered under your name. We apply it when you place your order.</p>
+        <h3>Your price is reserved.</h3>
+        <p>A Wavyroom specialist will call you within two business days to go through the model, your
+        yard and a delivery date. Your early-bird price and the $200 are registered under your name
+        and applied when you order.</p>
         <div class="applied">
-          <div><span>The Room, with your coupon</span><b>$21,700</b></div>
-          <div><span>The Sauna, with your coupon</span><b>$24,700</b></div>
+          <div><span>The Room, your price</span><b>$21,700</b></div>
+          <div><span>The Sauna, your price</span><b>$24,700</b></div>
         </div>
-        <p style="margin-top: 18px;">Someone from our team will reach out within two business days to talk through your yard.</p>
+        <p style="margin-top: 18px;">Nothing is charged today. The call is to answer your questions and plan the install.</p>
       </div>
     </div>
   </div>
@@ -911,18 +922,30 @@
   <div class="wrap foot">
     <div>
       <img class="brand" src="images/logo_white.png" alt="Wavyroom">
-      <p style="margin-top: 6px;">Spacewavy Co., Ltd. · Backyard rooms, built in a factory, assembled in a day.</p>
+      <p style="margin-top: 8px;">Spacewavy Co., Ltd.<br>Backyard rooms, built in a factory, assembled in a day.</p>
+      <p style="margin-top: 14px;">hello@spacewavy.com<br>+82 2 6085 1896</p>
     </div>
-    <div style="text-align: right;">
-      <p>hello@spacewavy.com</p>
-      <p style="margin-top: 4px;">www.wavyroom.com</p>
+    <div class="addr">
+      <div>
+        <span>Headquarters</span>
+        17-10 Cheongdam-dong, Gangnam-gu<br>Seoul, Republic of Korea
+      </div>
+      <div>
+        <span>Factory</span>
+        33 Jeongoksandan 1-gil, Seosin-myeon<br>Hwaseong-si, Gyeonggi-do, Republic of Korea
+      </div>
+      <div>
+        <span>United States</span>
+        <!-- TODO: 미국 법인 주소 -->
+        Wavyroom USA<br>Los Angeles, California
+      </div>
     </div>
   </div>
 </footer>
 
 <div class="sticky">
-  <div class="s-txt"><b>$200 coupon</b>Early bird ends Oct 30</div>
-  <a class="btn btn-primary" href="#claim">Claim it</a>
+  <div class="s-txt"><b>Early bird ends Oct 30</b>We call you back, $200 off</div>
+  <a class="btn btn-primary" href="#claim">Reserve</a>
 </div>
 
 <script>
