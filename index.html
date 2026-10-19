@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="A factory-built backyard room, under 100 sq ft, assembled in one day. Office, guest room, playroom, yoga room or outdoor sauna.">
+<meta name="description" content="A factory-built backyard room, under 100 sq ft, up in three days or less. Office, guest room, playroom, yoga room, prayer room or outdoor sauna.">
 <meta name="theme-color" content="#0E0E0D">
 <title>Backyard Room</title>
 
@@ -191,26 +191,26 @@
   .hero-media { position: relative; }
   .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; }
   /* 글은 왼쪽에 놓이므로 왼쪽만 어둡게, 오른쪽은 원본 그대로 둡니다. */
-  /* 글은 왼쪽 아래에 놓입니다. 왼쪽을 가볍게, 아래를 조금 더 어둡게 겹칩니다. */
+  /* 아이들이 왼쪽 아래를 지나가므로 글은 왼쪽 위 나무 그늘 쪽에 둡니다.
+     그늘을 따라 대각선으로만 어둡게 해서 사진의 아래쪽은 건드리지 않습니다. */
   .hero-scrim {
     position: absolute; inset: 0;
     background:
+      linear-gradient(160deg,
+        rgba(14,14,13,.80) 0%,
+        rgba(14,14,13,.62) 26%,
+        rgba(14,14,13,.26) 50%,
+        rgba(14,14,13,0) 72%),
       linear-gradient(90deg,
-        rgba(14,14,13,.72) 0%,
-        rgba(14,14,13,.52) 26%,
-        rgba(14,14,13,.24) 52%,
-        rgba(14,14,13,0) 78%),
-      linear-gradient(0deg,
-        rgba(14,14,13,.82) 0%,
-        rgba(14,14,13,.46) 26%,
-        rgba(14,14,13,.10) 50%,
-        rgba(14,14,13,0) 70%);
+        rgba(14,14,13,.42) 0%,
+        rgba(14,14,13,.16) 34%,
+        rgba(14,14,13,0) 60%);
     pointer-events: none;
   }
   .hero-inner {
     position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding-block: clamp(28px, 5vw, 52px);
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding-block: clamp(76px, 9vw, 108px) clamp(28px, 5vw, 52px);
   }
   .hero-mark {
     position: absolute; top: clamp(20px, 4vw, 40px); left: var(--gutter);
@@ -219,21 +219,24 @@
   .hero h1 { font-size: clamp(36px, 6.4vw, 68px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; text-wrap: balance; }
   .hero h1 em { font-style: normal; color: var(--lime); }
   .hero-sub { margin-top: 16px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
-  @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 620px; } }
+  @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 540px; } }
   /* 모바일에서는 사진 전체를 먼저 보여주고 글은 그 아래에 둡니다. */
   @media (max-width: 759px) {
     .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.72) 0%, rgba(14,14,13,.22) 30%, rgba(14,14,13,0) 56%); }
     .hero-inner { position: static; justify-content: flex-start; padding-block: 26px 36px; }
+    .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.68) 0%, rgba(14,14,13,.20) 28%, rgba(14,14,13,0) 54%); }
     .hero-mark { position: absolute; top: 20px; left: var(--gutter); z-index: 2; }
   }
   .hero-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
-  .hero-note { margin-top: 20px; font-size: 13px; color: #A8A49C; }
+  .hero-note { margin-top: 18px; font-size: 13px; color: #CFCCC5; text-shadow: 0 1px 10px rgba(14,14,13,.55); }
 
   /* ---------- problem ---------- */
   .compare { display: grid; gap: 16px; margin-top: 42px; }
-  @media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; gap: 20px; } }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1.45fr 1fr; gap: 20px; align-items: start; } }
   .cmp { border-radius: var(--r-m); padding: 28px; border: 1px solid var(--border); background: var(--surface); }
-  .cmp.bad { background: var(--surface-2); border-color: transparent; }
+  .cmp.bad { background: transparent; border-color: var(--border); padding: 22px; }
+  .cmp.bad .cmp-num { font-size: clamp(30px, 4.6vw, 42px); color: var(--muted); }
+  .cmp.bad p { font-size: 14px; }
   .cmp-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
   .cmp-num {
     font-family: var(--display); font-weight: 800; letter-spacing: -0.04em;
@@ -472,6 +475,26 @@
   }
   .addr div { line-height: 1.6; }
 
+
+  /* ---------- 중간 CTA ---------- */
+  .midcta { background: var(--fg); color: #F3F2EF; padding-block: clamp(36px, 5vw, 54px); }
+  .mid-in { display: grid; gap: 22px; align-items: center; }
+  @media (min-width: 900px) { .mid-in { grid-template-columns: 1.1fr 1fr; gap: 44px; } }
+  .midcta h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
+                font-size: clamp(22px, 3.2vw, 30px); color: #FFFFFF; }
+  .midcta p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: #A8A49C; max-width: 46ch; }
+  #mid-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  #mid-form input {
+    flex: 1 1 220px; min-width: 0; font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    background: rgba(255,255,255,.07); border: 1px solid #3A3934; border-radius: 999px;
+    padding: 15px 22px; -webkit-appearance: none;
+  }
+  #mid-form input::placeholder { color: #7D7A73; }
+  #mid-form input[aria-invalid="true"] { border-color: #E4705F; }
+  #mid-form .btn { flex: 0 0 auto; width: auto; margin-top: 0; }
+  @media (max-width: 519px) { #mid-form .btn { width: 100%; } }
+  .mid-msg { margin-top: 0; font-size: 15px; color: var(--lime); }
+
   /* ---------- FAQ ---------- */
   .faq { margin-top: 36px; border-top: 1px solid var(--line); }
   .faq details { border-bottom: 1px solid var(--line); }
@@ -533,11 +556,6 @@
     }
     .step:last-child::after { display: none; }
   }
-
-  /* 치수 도면 */
-  .elev { margin-top: 40px; max-width: 460px; }
-  .elev svg { width: 100%; height: auto; display: block; }
-  .elev figcaption { margin-top: 10px; font-size: 12.5px; color: #A8A49C; }
 
   /* 다음 단계 3컷 */
   .next { display: grid; gap: 16px; margin-top: 26px; grid-template-columns: repeat(3, 1fr); }
@@ -620,7 +638,7 @@
     <img class="hero-mark" src="images/logo_white.png" alt="Wavyroom">
     <div class="wrap">
       <h1>Your backyard<br>is <em>boring.</em></h1>
-      <p class="hero-sub">Got a backyard? Get a Wavyroom.<br>Assembled in one day, under 100 sq ft.</p>
+      <p class="hero-sub">Got a backyard? Get a Wavyroom.<br>Up in three days or less, under 100 sq ft.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#claim">Reserve your price</a>
         <a class="btn btn-ghost" href="#pricing">See pricing</a>
@@ -640,15 +658,16 @@
       a permit, a contractor, and a yard behind a fence for most of a year.
     </p>
     <div class="compare">
+      <div class="cmp good">
+        <div class="cmp-label">Building a Wavyroom</div>
+        <div class="cmp-num">3<small>days or less</small></div>
+        <p>A finished kit arrives. Our crew sets it down, assembles it and hands you the key, usually
+        inside a single long weekend.</p>
+      </div>
       <div class="cmp bad">
         <div class="cmp-label">Building an ADU</div>
         <div class="cmp-num">12<small>months +</small></div>
-        <p>Design, permits, plan check, foundation, framing, inspections. Months before anyone uses the space.</p>
-      </div>
-      <div class="cmp good">
-        <div class="cmp-label">Building a Wavyroom</div>
-        <div class="cmp-num">1<small>day</small></div>
-        <p>A finished kit arrives. Our crew assembles it in your yard, and you use it that evening.</p>
+        <p>Design, permits, plan check, foundation, framing, inspections.</p>
       </div>
     </div>
   </div>
@@ -765,6 +784,21 @@
   </div>
 </section>
 
+<!-- ============================ 중간 CTA ============================ -->
+<section class="midcta" id="midcta">
+  <div class="wrap mid-in">
+    <div>
+      <h3>Want the price for your yard?</h3>
+      <p>Leave an email and a Wavyroom specialist comes back with a written quote. No call until you want one.</p>
+    </div>
+    <form id="mid-form" novalidate>
+      <input id="m-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" aria-label="Email address" required>
+      <button class="btn btn-primary" type="submit" id="mid-btn">Send it to me</button>
+    </form>
+    <p class="mid-msg" id="mid-msg" hidden>Thank you. We'll be in touch within two business days.</p>
+  </div>
+</section>
+
 <!-- ============================ SPECS ============================ -->
 <section class="specs" id="specs">
   <div class="wrap">
@@ -811,35 +845,6 @@
       </div>
     </div>
 
-    <figure class="elev">
-      <svg viewBox="0 0 340 236" role="img" aria-label="Front elevation of a Wavyroom: 8 feet wide, 9 feet 9 inches tall at the peak.">
-        <g fill="none" stroke="#6E6B64" stroke-width="1" stroke-linecap="round">
-          <path d="M14 196h312"/>
-          <path d="M72 206v16"/><path d="M242 206v16"/>
-          <path d="M72 214h170"/>
-          <path d="M66 214 76 210"/><path d="M66 214 76 218"/>
-          <path d="M248 214 238 210"/><path d="M248 214 238 218"/>
-          <path d="M276 52h26"/><path d="M276 196h26"/>
-          <path d="M292 52v144"/>
-          <path d="M292 46 288 56"/><path d="M292 46 296 56"/>
-          <path d="M292 202 288 192"/><path d="M292 202 296 192"/>
-        </g>
-        <g fill="none" stroke="#F3F2EF" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round">
-          <path d="M72 196V88l38-36 132 44v100Z"/>
-          <path d="M110 52v36H72"/>
-          <path d="M178 196v-74h44v74"/>
-          <path d="M126 196v-14h44v14"/>
-        </g>
-        <g fill="none" stroke="#F3F2EF" stroke-width="1" opacity=".55">
-          <path d="M186 130h28v58h-28z"/>
-        </g>
-        <g fill="#A8A49C" font-family="var(--body)" font-size="11" letter-spacing="0.06em">
-          <text x="157" y="232" text-anchor="middle">8'0"</text>
-          <text x="306" y="128" text-anchor="start">9'9"</text>
-        </g>
-      </svg>
-      <figcaption>Front elevation, The Room.</figcaption>
-    </figure>
 
     <p style="font-size: 13px; color: #A8A49C; margin-top: 22px;">
       Dimensions are nominal and confirmed on the final shop drawings. The sauna model uses cedar
@@ -875,8 +880,8 @@
       <div class="step">
         <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg></span>
         <div class="n">STEP 04</div>
-        <h3>Assembled in one day</h3>
-        <p>Our crew puts it together in your backyard. Quoted separately from the kit.</p>
+        <h3>Up in three days or less</h3>
+        <p>Our crew sets it down and assembles it. Quoted separately from the kit.</p>
       </div>
     </div>
     <div class="build-row">
@@ -890,7 +895,7 @@
       </figure>
       <figure>
         <img class="shot" src="images/assembly.jpg" alt="Wavyroom crew assembling panels in a customer's backyard" loading="lazy">
-        <figcaption>Assembled in your backyard in one day.</figcaption>
+        <figcaption>Assembled in your backyard, not built on site.</figcaption>
       </figure>
     </div>
   </div>
@@ -1066,8 +1071,8 @@
         <summary>How long from order to a finished room in my yard?</summary>
         <div class="a">
           <p><b>Within three months of your order</b>, in your yard and finished. That covers the
-          build in our factory, ocean freight, local delivery and assembly. The assembly itself is
-          one day.</p>
+          build in our factory, ocean freight, local delivery and assembly. The part that happens on
+          your property takes three days or less.</p>
           <p>You get a dated schedule with your quote, once we know your address and which model you
           want.</p>
         </div>
@@ -1220,7 +1225,7 @@
   <div class="wrap foot">
     <div>
       <img class="brand" src="images/logo_white.png" alt="Wavyroom">
-      <p style="margin-top: 8px;">Spacewavy Co., Ltd.<br>Backyard rooms, built in a factory, assembled in a day.</p>
+      <p style="margin-top: 8px;">Spacewavy Co., Ltd.<br>Backyard rooms, built in a factory, assembled in days.</p>
       <p style="margin-top: 14px;">hello@spacewavy.com<br>+82 2 6085 1896</p>
     </div>
     <div class="addr">
@@ -1292,7 +1297,7 @@
         "#faq .eyebrow", "#faq h2", "#faq .lede", "#faq details",
         "#company .eyebrow", "#company h2", "#company .lede", "#company .co-top > div",
         ".stat", ".cert, .creds, .co-badges",
-        ".capture .eyebrow", ".capture h2", ".capture .lede", ".coupon", "#lead-form"
+        ".midcta h3", ".midcta p", "#mid-form", ".capture .eyebrow", ".capture h2", ".capture .lede", ".coupon", "#lead-form"
       ].join(",");
 
       var nodes = Array.prototype.slice.call(document.querySelectorAll(SEL));
@@ -1339,6 +1344,45 @@
     } catch (e) {
       document.documentElement.classList.remove("js");
     }
+
+
+    // ---------- 중간 CTA (이메일만) ----------
+    try {
+      var mForm = document.getElementById("mid-form");
+      var mMsg  = document.getElementById("mid-msg");
+      var mIn   = document.getElementById("m-email");
+      mForm.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var v = mIn.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+          mIn.setAttribute("aria-invalid", "true");
+          mIn.focus();
+          return;
+        }
+        mIn.setAttribute("aria-invalid", "false");
+        document.getElementById("mid-btn").disabled = true;
+
+        var src = "mid-form";
+        try {
+          var q = new URLSearchParams(location.search);
+          src = (q.get("s") || q.get("utm_source") || "site") + " / mid-form";
+        } catch (e2) {}
+
+        var body = new URLSearchParams({
+          name: "", email: v, phone: "", address: "",
+          source: src, page: location.href,
+          submitted_at: new Date().toISOString()
+        });
+        function ok() { mForm.hidden = true; mMsg.hidden = false; }
+        if (!SHEETS_ENDPOINT || SHEETS_ENDPOINT.indexOf("PASTE_") === 0) { ok(); return; }
+        fetch(SHEETS_ENDPOINT, { method: "POST", mode: "no-cors", body: body })
+          .then(ok)
+          .catch(function () {
+            document.getElementById("mid-btn").disabled = false;
+            mIn.setAttribute("aria-invalid", "true");
+          });
+      });
+    } catch (e) {}
 
     var form = document.getElementById("lead-form");
     var errEl = document.getElementById("form-err");
