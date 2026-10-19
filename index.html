@@ -476,7 +476,8 @@
 
 
   /* ---------- 중간 CTA ---------- */
-  .midcta { background: var(--fg); color: #F3F2EF; padding-block: clamp(36px, 5vw, 54px); }
+  /* --fg 는 다크모드에서 밝은색으로 뒤집히므로 항상 어두운 --ink 를 씁니다. */
+  .midcta { background: var(--ink); color: #F3F2EF; padding-block: clamp(36px, 5vw, 54px); }
   .mid-in { display: grid; gap: 22px; align-items: center; }
   @media (min-width: 900px) { .mid-in { grid-template-columns: 1.1fr 1fr; gap: 44px; } }
   .midcta h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
