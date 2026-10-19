@@ -14,7 +14,7 @@
   Google Sheets: SHEETS_ENDPOINT at the bottom of this file.
 
   PHOTOS IN USE
-    hero                 images/hero-backyard.jpg
+    hero                 images/hero-family.jpg
     The Sauna (4 shots)  sauna-exterior-evening / sauna-interior
                          sauna-loyly / sauna-people
     How it arrives       images/factory.jpg, images/assembly.jpg
@@ -48,8 +48,9 @@
     --surface-2: var(--sand);
     --border:    var(--line);
 
-    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-    --body:    "DM Sans", "Helvetica Neue", Arial, sans-serif;
+    /* 전 요소 Pretendard. 굵기로만 위계를 만듭니다. */
+    --display: "Pretendard Variable", Pretendard, "Helvetica Neue", Arial, sans-serif;
+    --body:    "Pretendard Variable", Pretendard, "Helvetica Neue", Arial, sans-serif;
 
     --gutter: clamp(20px, 5vw, 64px);
     --maxw: 1180px;
@@ -190,28 +191,34 @@
   .hero-media { position: relative; }
   .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; }
   /* 글은 왼쪽에 놓이므로 왼쪽만 어둡게, 오른쪽은 원본 그대로 둡니다. */
+  /* 글은 왼쪽 아래에 놓입니다. 왼쪽을 가볍게, 아래를 조금 더 어둡게 겹칩니다. */
   .hero-scrim {
     position: absolute; inset: 0;
-    background: linear-gradient(90deg,
-      rgba(14,14,13,.90) 0%,
-      rgba(14,14,13,.74) 26%,
-      rgba(14,14,13,.40) 50%,
-      rgba(14,14,13,.10) 72%,
-      rgba(14,14,13,0) 88%);
+    background:
+      linear-gradient(90deg,
+        rgba(14,14,13,.72) 0%,
+        rgba(14,14,13,.52) 26%,
+        rgba(14,14,13,.24) 52%,
+        rgba(14,14,13,0) 78%),
+      linear-gradient(0deg,
+        rgba(14,14,13,.82) 0%,
+        rgba(14,14,13,.46) 26%,
+        rgba(14,14,13,.10) 50%,
+        rgba(14,14,13,0) 70%);
     pointer-events: none;
   }
   .hero-inner {
     position: absolute; inset: 0;
     display: flex; flex-direction: column; justify-content: flex-end;
-    padding-block: clamp(28px, 5vw, 64px);
+    padding-block: clamp(28px, 5vw, 52px);
   }
   .hero-mark {
     position: absolute; top: clamp(20px, 4vw, 40px); left: var(--gutter);
     width: clamp(118px, 13vw, 158px); height: auto; display: block;
   }
-  .hero h1 { font-size: clamp(38px, 8.5vw, 86px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; }
+  .hero h1 { font-size: clamp(36px, 6.4vw, 68px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; text-wrap: balance; }
   .hero h1 em { font-style: normal; color: var(--lime); }
-  .hero-sub { margin-top: 18px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
+  .hero-sub { margin-top: 16px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
   @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 620px; } }
   /* 모바일에서는 사진 전체를 먼저 보여주고 글은 그 아래에 둡니다. */
   @media (max-width: 759px) {
@@ -219,7 +226,7 @@
     .hero-inner { position: static; justify-content: flex-start; padding-block: 26px 36px; }
     .hero-mark { position: absolute; top: 20px; left: var(--gutter); z-index: 2; }
   }
-  .hero-cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
   .hero-note { margin-top: 20px; font-size: 13px; color: #A8A49C; }
 
   /* ---------- problem ---------- */
@@ -242,7 +249,7 @@
   .sol-grid { display: grid; gap: 30px; align-items: center; }
   @media (min-width: 880px) { .sol-grid { grid-template-columns: 1.05fr .95fr; gap: 56px; } }
   .sol-list { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 2px; }
-  .sol-list li { display: grid; grid-template-columns: 26px 1fr; gap: 14px; align-items: start; padding-block: 14px; border-top: 1px solid var(--border); }
+  .sol-list li { display: grid; grid-template-columns: 42px 1fr; gap: 16px; align-items: start; padding-block: 16px; border-top: 1px solid var(--border); }
   .sol-list li:last-child { border-bottom: 1px solid var(--border); }
   .sol-list .n { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); padding-top: 4px; }
   .sol-list strong { font-weight: 700; display: block; }
@@ -341,8 +348,8 @@
   }
   .excluded h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
   .excluded ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
-  .excluded li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
-  .excluded li::before { content: "+"; color: var(--muted); font-weight: 700; }
+  .excluded li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: center; }
+  .excluded li .ic { width: 18px; height: 18px; color: var(--fg); opacity: .62; }
 
   /* 사진이 아직 없는 자리는 숨깁니다. 사진을 넣으면 <img class="shot">로 교체됩니다. */
   .ph { display: none !important; }
@@ -506,6 +513,40 @@
     * { animation: none !important; transition: none !important; }
   }
 
+
+  /* ---------- 아이콘 ---------- */
+  .ic { width: 22px; height: 22px; display: block; fill: none; stroke: currentColor;
+        stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .ic-dot {
+    width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center;
+    background: rgba(18,18,18,.06); color: var(--fg); flex: none;
+  }
+  .specs .ic-dot { background: #4A4844; color: #FFFFFF; }
+
+  /* 공정 다이어그램 */
+  .steps .ic-dot { margin-bottom: 14px; }
+  .step { position: relative; }
+  @media (min-width: 680px) {
+    .step::after {
+      content: ""; position: absolute; left: 50px; right: -16px; top: 37px;
+      border-top: 1px dashed var(--line);
+    }
+    .step:last-child::after { display: none; }
+  }
+
+  /* 치수 도면 */
+  .elev { margin-top: 40px; max-width: 460px; }
+  .elev svg { width: 100%; height: auto; display: block; }
+  .elev figcaption { margin-top: 10px; font-size: 12.5px; color: #A8A49C; }
+
+  /* 다음 단계 3컷 */
+  .next { display: grid; gap: 16px; margin-top: 26px; grid-template-columns: repeat(3, 1fr); }
+  .next div { min-width: 0; }
+  .next .ic-dot { background: rgba(255,255,255,.08); color: #FFFFFF; width: 36px; height: 36px; margin-bottom: 10px; }
+  .next .ic { width: 18px; height: 18px; }
+  .next b { display: block; font-family: var(--display); font-size: 13px; color: #FFFFFF; }
+  .next p { font-size: 12.5px; line-height: 1.5; color: #A8A49C; margin-top: 4px; }
+
   /* ================= MOTION =================
      브랜드 가이드 §Brand Mode: 등장 모션은 fade + 12px rise, 500ms ease-out.
      JS가 꺼져 있으면 .reveal 규칙이 적용되지 않아 모든 요소가 그대로 보입니다.
@@ -545,17 +586,34 @@
   }
 </style>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 
 </head>
 <body>
+<!-- 아이콘 스프라이트. 라인 아이콘, 선 굵기 1.75, 둥근 끝. 브랜드 가이드 §7-2 -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <g id="ic-size"><path d="M3 9V3h6"/><path d="M21 9V3h-6"/><path d="M3 15v6h6"/><path d="M21 15v6h-6"/></g>
+    <g id="ic-layers"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17 12 21.5 21 17"/></g>
+    <g id="ic-layout"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9.5h18"/><path d="M10 9.5V21"/></g>
+    <g id="ic-factory"><path d="M3 21V11l5 3.5V11l5 3.5V11l5 3.5V21H3Z"/><path d="M18 11V4h3v7"/><path d="M7 21v-3.5"/><path d="M13 21v-3.5"/></g>
+    <g id="ic-ship"><path d="M2.5 17.5c1.6 0 1.6 1.6 3.2 1.6s1.6-1.6 3.2-1.6 1.6 1.6 3.1 1.6 1.6-1.6 3.2-1.6 1.6 1.6 3.2 1.6 1.6-1.6 3.1-1.6"/><path d="M5 14.5V9h14v5.5"/><path d="M9 9V5.5h6V9"/></g>
+    <g id="ic-truck"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h3.9l2.6 3.2v3.3h-6.5z"/><circle cx="7" cy="18.6" r="1.7"/><circle cx="16.8" cy="18.6" r="1.7"/></g>
+    <g id="ic-box"><path d="M12 2.5 3.5 7v10l8.5 4.5 8.5-4.5V7L12 2.5Z"/><path d="M3.5 7 12 11.6 20.5 7"/><path d="M12 11.6v9.9"/></g>
+    <g id="ic-zap"><path d="M13.2 2.5 4.8 13.8H11l-.2 7.7 8.4-11.3H13l.2-7.7Z"/></g>
+    <g id="ic-pad"><path d="M4 11h16v5.5H4z"/><path d="M2 20.5h20"/><path d="M8 11v5.5"/><path d="M12 11v5.5"/><path d="M16 11v5.5"/></g>
+    <g id="ic-file"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/><path d="m9 14.5 2 2 4-4"/></g>
+    <g id="ic-send"><path d="M21.5 2.5 2.5 9.9l7.6 2.9 2.9 7.6 8.5-17.9Z"/><path d="M10.1 12.8 21.5 2.5"/></g>
+    <g id="ic-phone"><path d="M6.4 3h3.1l1.5 4-2 1.5a12.2 12.2 0 0 0 5.5 5.5L16 12l4 1.5v3.1A2.4 2.4 0 0 1 17.4 19 14.4 14.4 0 0 1 5 6.6 2.4 2.4 0 0 1 6.4 3Z"/></g>
+    <g id="ic-quote"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/><path d="M8.5 13.5h7"/><path d="M8.5 17h4.5"/></g>
+  </defs>
+</svg>
+
 
 <!-- ============================ HERO ============================ -->
 <header class="hero">
   <div class="hero-media">
-    <img class="shot on-dark" id="img-hero" src="images/hero-backyard.jpg" alt="A Wavyroom in a backyard at golden hour, charred timber outside and a lit desk visible through the open door" fetchpriority="high" width="1672" height="941">
+    <img class="shot on-dark" id="img-hero" src="images/hero-family.jpg" alt="A family in their backyard at golden hour: two parents on the step of a Wavyroom with coffee while their children run across the lawn" fetchpriority="high" width="1672" height="941">
     <div class="hero-scrim"></div>
   </div>
   <div class="hero-inner">
@@ -608,15 +666,15 @@
       </p>
       <ul class="sol-list">
         <li>
-          <span class="n">01</span>
+          <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-size"/></svg></span>
           <span><strong>Under 100 sq ft</strong><span class="d">Many cities treat small backyard structures differently from an ADU. Rules vary, so we help you check yours before you order.</span></span>
         </li>
         <li>
-          <span class="n">02</span>
+          <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-layers"/></svg></span>
           <span><strong>Insulated like a real house</strong><span class="d">Glass wool or mineral wool on every side, the same build as a home we deliver. Warm in January, cool in August. Not a shed.</span></span>
         </li>
         <li>
-          <span class="n">03</span>
+          <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-layout"/></svg></span>
           <span><strong>Built around how you'll use it</strong><span class="d">Tell us what the room is for and we finish the inside for it. One shell, a space that earns its place in your day.</span></span>
         </li>
       </ul>
@@ -752,6 +810,37 @@
         <div class="m">2,440 × 2,600 × 2,960 mm</div>
       </div>
     </div>
+
+    <figure class="elev">
+      <svg viewBox="0 0 340 236" role="img" aria-label="Front elevation of a Wavyroom: 8 feet wide, 9 feet 9 inches tall at the peak.">
+        <g fill="none" stroke="#6E6B64" stroke-width="1" stroke-linecap="round">
+          <path d="M14 196h312"/>
+          <path d="M72 206v16"/><path d="M242 206v16"/>
+          <path d="M72 214h170"/>
+          <path d="M66 214 76 210"/><path d="M66 214 76 218"/>
+          <path d="M248 214 238 210"/><path d="M248 214 238 218"/>
+          <path d="M276 52h26"/><path d="M276 196h26"/>
+          <path d="M292 52v144"/>
+          <path d="M292 46 288 56"/><path d="M292 46 296 56"/>
+          <path d="M292 202 288 192"/><path d="M292 202 296 192"/>
+        </g>
+        <g fill="none" stroke="#F3F2EF" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M72 196V88l38-36 132 44v100Z"/>
+          <path d="M110 52v36H72"/>
+          <path d="M178 196v-74h44v74"/>
+          <path d="M126 196v-14h44v14"/>
+        </g>
+        <g fill="none" stroke="#F3F2EF" stroke-width="1" opacity=".55">
+          <path d="M186 130h28v58h-28z"/>
+        </g>
+        <g fill="#A8A49C" font-family="var(--body)" font-size="11" letter-spacing="0.06em">
+          <text x="157" y="232" text-anchor="middle">8'0"</text>
+          <text x="306" y="128" text-anchor="start">9'9"</text>
+        </g>
+      </svg>
+      <figcaption>Front elevation, The Room.</figcaption>
+    </figure>
+
     <p style="font-size: 13px; color: #A8A49C; margin-top: 22px;">
       Dimensions are nominal and confirmed on the final shop drawings. The sauna model uses cedar
       lining and a stone heater in place of the standard interior.
@@ -766,21 +855,25 @@
     <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 20ch;">From our factory to your lawn.</h2>
     <div class="steps">
       <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-factory"/></svg></span>
         <div class="n">STEP 01</div>
         <h3>Built in the factory</h3>
         <p>Panels cut, insulated and finished at our plant in Korea.</p>
       </div>
       <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-ship"/></svg></span>
         <div class="n">STEP 02</div>
         <h3>Shipped to Los Angeles</h3>
         <p>Ocean freight to our LA warehouse, included in the price.</p>
       </div>
       <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg></span>
         <div class="n">STEP 03</div>
         <h3>Delivered to you</h3>
         <p>Local delivery from the warehouse to your address, quoted separately.</p>
       </div>
       <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg></span>
         <div class="n">STEP 04</div>
         <h3>Assembled in one day</h3>
         <p>Our crew puts it together in your backyard. Quoted separately from the kit.</p>
@@ -855,11 +948,11 @@
     <div class="excluded">
       <h4>Quoted separately</h4>
       <ul>
-        <li><span>Local delivery from our Los Angeles warehouse to your address</span></li>
-        <li><span>Assembly and installation in your backyard, by our crew</span></li>
-        <li><span>On-site electrical work and hookup, by a licensed electrician</span></li>
-        <li><span>A concrete pad or foundation mat, if you want one poured first</span></li>
-        <li><span>Any permit your city requires. We'll help you find out what applies</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg><span>Local delivery from our Los Angeles warehouse to your address</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg><span>Assembly and installation in your backyard, by our crew</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-zap"/></svg><span>On-site electrical work and hookup, by a licensed electrician</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-pad"/></svg><span>A concrete pad or foundation mat, if you want one poured first</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-file"/></svg><span>Any permit your city requires. We'll help you find out what applies</span></li>
       </ul>
       <p style="font-size: 13px; color: var(--muted); margin-top: 14px;">
         Prices in US dollars. Sales tax is not included and appears as its own line on your quote,
@@ -965,16 +1058,16 @@
       <details>
         <summary>Which models can I buy in the United States?</summary>
         <div class="a">
-          <p>Two: <b>The Room</b> and <b>The Sauna</b>, both on this page. Our other models, including
-          Loft, are built for the Korean market and are not sold here.</p>
+          <p>Two: <b>The Room</b> and <b>The Sauna</b>, both on this page.</p>
         </div>
       </details>
 
       <details>
         <summary>How long from order to a finished room in my yard?</summary>
         <div class="a">
-          <p>The build in our factory takes weeks, not months. Assembly in your yard is one day.
-          Between the two is ocean freight and local delivery, which move with the shipping schedule.</p>
+          <p><b>Within three months of your order</b>, in your yard and finished. That covers the
+          build in our factory, ocean freight, local delivery and assembly. The assembly itself is
+          one day.</p>
           <p>You get a dated schedule with your quote, once we know your address and which model you
           want.</p>
         </div>
@@ -1084,6 +1177,24 @@
         <p class="err" id="form-err" hidden></p>
         <button class="btn btn-primary" type="submit" id="submit-btn">Reserve my early-bird price</button>
         <p class="form-status" id="form-status"></p>
+
+        <div class="next">
+          <div>
+            <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-send"/></svg></span>
+            <b>You send this</b>
+            <p>City and ZIP is enough.</p>
+          </div>
+          <div>
+            <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-phone"/></svg></span>
+            <b>We call you</b>
+            <p>Within two business days.</p>
+          </div>
+          <div>
+            <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-quote"/></svg></span>
+            <b>You get a quote</b>
+            <p>In writing, every line priced.</p>
+          </div>
+        </div>
         <p class="consent">
           We use your details to hold your price and to contact you about your backyard room.
           We don't sell your information, and you can ask us to delete it any time.
@@ -1148,10 +1259,7 @@
       var days = Math.ceil((end - new Date()) / 86400000);
       var badge = document.getElementById("offer-badge");
       var note = document.getElementById("hero-deadline");
-      if (days > 0 && days <= 60) {
-        badge.textContent = "Early bird · " + days + (days === 1 ? " day left" : " days left");
-        note.textContent = "Early-bird pricing ends October 30, 2026. " + days + (days === 1 ? " day" : " days") + " left.";
-      } else if (days <= 0) {
+      if (days <= 0) {
         badge.textContent = "Standard pricing";
         note.textContent = "Ask us about current pricing.";
       }
