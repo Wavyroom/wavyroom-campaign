@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -254,7 +254,8 @@
   .uses { display: grid; gap: 18px; margin-top: 44px; grid-template-columns: 1fr; }
   @media (min-width: 560px) { .uses { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1000px) { .uses { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1240px) { #the-room .uses { grid-template-columns: repeat(5, 1fr); gap: 14px; } }
   .use { min-width: 0; display: flex; flex-direction: column; }
   /* aspect-ratio가 그리드 늘림에 눌리지 않게 합니다. */
   .use .shot, .use .ph { height: auto; margin-bottom: 12px; border-radius: var(--r-m); }
@@ -464,6 +465,24 @@
   }
   .addr div { line-height: 1.6; }
 
+  /* ---------- FAQ ---------- */
+  .faq { margin-top: 36px; border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    list-style: none; cursor: pointer; padding: 18px 34px 18px 0; position: relative;
+    font-family: var(--display); font-weight: 700; font-size: clamp(16px, 2.4vw, 19px);
+    letter-spacing: -0.015em;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%);
+    font-size: 22px; font-weight: 400; color: var(--muted); line-height: 1;
+  }
+  .faq details[open] summary::after { content: "\2212"; }
+  .faq .a { padding: 0 0 20px; max-width: 62ch; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
+  .faq .a p + p { margin-top: 10px; }
+  .faq .a b { color: var(--fg); font-weight: 700; }
+
   /* ---------- sticky mobile bar ---------- */
   .sticky {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
@@ -478,9 +497,51 @@
   .sticky .s-txt b { display: block; color: #FFFFFF; font-weight: 700; }
   .sticky .btn { padding: 13px 22px; font-size: 15px; white-space: nowrap; }
   @media (min-width: 760px) { .sticky { display: none; } }
+  /* 폼을 작성하는 동안에는 하단 바를 내려서 입력란을 가리지 않게 합니다. */
+  .sticky { transition: transform .22s ease; }
+  body.form-focus .sticky { transform: translateY(110%); pointer-events: none; }
+  #lead-form input { scroll-margin-bottom: 120px; }
 
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
+  }
+
+  /* ================= MOTION =================
+     브랜드 가이드 §Brand Mode: 등장 모션은 fade + 12px rise, 500ms ease-out.
+     JS가 꺼져 있으면 .reveal 규칙이 적용되지 않아 모든 요소가 그대로 보입니다.
+     기기에서 모션 줄이기를 켠 사용자에게는 전부 비활성화됩니다. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .reveal { opacity: 0; transform: translateY(12px); will-change: opacity, transform; }
+    html.js .reveal.in {
+      opacity: 1; transform: none;
+      transition: opacity .5s ease-out, transform .5s ease-out;
+    }
+    html.js .hero-inner > *, html.js .hero-mark { opacity: 0; transform: translateY(12px); }
+    html.js.ready .hero-inner > *, html.js.ready .hero-mark {
+      opacity: 1; transform: none;
+      transition: opacity .6s ease-out, transform .6s ease-out;
+    }
+    html.js.ready .hero-mark   { transition-delay: .05s; }
+    html.js.ready .hero-inner > .wrap { transition-delay: .14s; }
+
+    html.js .sticky { transform: translateY(110%); }
+    html.js.ready .sticky { transform: none; transition: transform .45s ease-out .5s; }
+    html.js.ready body.form-focus .sticky { transition-duration: .22s; transition-delay: 0s; }
+
+    .faq details[open] .a { animation: wr-fade .4s ease-out both; }
+    @keyframes wr-fade { from { opacity: 0; transform: translateY(-4px); } }
+
+    html { scroll-behavior: smooth; }
+  }
+
+  .faq summary { transition: color .18s ease; }
+  .faq summary:hover { color: var(--muted); }
+  .faq summary::after { transition: transform .22s ease; }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); }
+
+  @media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+    .use .shot, .mat .shot, .build-row .shot { transition: transform .45s cubic-bezier(.2,.6,.2,1); }
+    .use:hover .shot, .mat:hover .shot, .build-row figure:hover .shot { transform: scale(1.018); }
   }
 </style>
 
@@ -575,7 +636,7 @@
       <p class="model-price">From $21,900</p>
     </div>
     <p class="lede" style="margin-top: 18px;">
-      Finished walls, a Korean LVT floor and insulation on every side. One room, four ways to use it.
+      Finished walls, a Korean LVT floor and insulation on every side. One room, five ways to use it.
     </p>
     <div class="uses" style="margin-top: 32px;">
       <article class="use">
@@ -601,6 +662,12 @@
         <span class="tag">Use 04</span>
         <h3>Yoga room</h3>
         <p>A floor that's always clear, ten steps from your back door.</p>
+      </article>
+      <article class="use">
+        <img class="shot ratio-45" id="img-prayer" src="images/room-prayer.jpg" alt="A prayer room inside a Wavyroom: a kneeler, a small table and a wooden cross on the wall" loading="lazy">
+        <span class="tag">Use 05</span>
+        <h3>Prayer room</h3>
+        <p>A quiet room of your own, with a door you can close behind you.</p>
       </article>
     </div>
   </div>
@@ -742,15 +809,16 @@
     <div class="offer" id="offer-badge">Early bird · through October 30, 2026</div>
     <h2 style="font-size: clamp(28px, 5vw, 48px); margin-top: 22px;">Two models. One price each.</h2>
     <p class="lede" style="margin-top: 16px;">
-      The price covers the factory-built kit and ocean freight to our Los Angeles warehouse.
-      Local delivery from there and backyard assembly are quoted separately.
+      These are the two models we sell in the United States. The price covers the factory-built kit
+      and ocean freight to our Los Angeles warehouse. Local delivery from there and backyard assembly
+      are quoted separately.
     </p>
 
     <div class="plans">
       <div class="plan">
         <div class="ph ratio-43" id="img-price-room"><span>img-price-room — The Room, exterior. 4:3</span></div>
         <h3>The Room</h3>
-        <p class="for">Backyard office · Guest room · Kids' playroom · Yoga room</p>
+        <p class="for">Backyard office · Guest room · Playroom · Yoga · Prayer room</p>
         <div class="price-row">
           <span class="price-now">$21,900</span>
           <span class="price-was">$23,500</span>
@@ -794,10 +862,129 @@
         <li><span>Any permit your city requires. We'll help you find out what applies</span></li>
       </ul>
       <p style="font-size: 13px; color: var(--muted); margin-top: 14px;">
-        Prices in US dollars, before applicable sales tax. Payment schedule and lead time are
-        confirmed in your order.
+        Prices in US dollars. Sales tax is not included and appears as its own line on your quote,
+        based on your delivery address. Payment schedule and lead time are confirmed in your order.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">Before you ask</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 20ch;">You are not managing this yourself.</h2>
+    <p class="lede" style="margin-top: 18px; max-width: 54ch;">
+      We work with a licensed California general contractor. They handle the delivery, the assembly
+      and the local trades, so you have one number to call instead of five.
+    </p>
+
+    <div class="faq">
+      <details>
+        <summary>What does the whole thing cost, all in?</summary>
+        <div class="a">
+          <p>The price on this page covers the room itself and ocean freight to Los Angeles. On top of
+          that come delivery to your yard, assembly, and the power run from your house.</p>
+          <p>We do not print numbers for those, and you should be careful with anyone who does. What
+          they cost depends on how far you are from Los Angeles, whether a truck can reach the spot,
+          how level your ground is and how far the electrical run is. A figure quoted before anyone has
+          looked at your yard is a guess, and guesses move in one direction later.</p>
+          <p><b>Your specialist prices every line for your actual address and sends it in writing.</b>
+          Nothing is charged until you have it in front of you.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My yard is bare dirt. Do I need to pour concrete first?</summary>
+        <div class="a">
+          <p>Usually not. The room sits on adjustable footings that our crew levels before assembly,
+          so most yards take it as they are. What decides it is the slope, the soil and how much the
+          ground moves when it rains.</p>
+          <p>Send photos and rough measurements of the spot and we will tell you straight. <b>If a pad
+          is genuinely worth pouring, our GC partner quotes it; if it is not, we say so.</b></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How does the power get there? Can I add air conditioning?</summary>
+        <div class="a">
+          <p>Running a circuit from your house to the room is licensed electrical work in California.
+          Our GC partner's electrician does it, or you can use your own. Either way it is a separate
+          line so you can see what you are paying for it.</p>
+          <p>Air conditioning is not part of the standard build. A mini-split is the usual answer, and
+          whether your city allows one in a detached backyard structure depends on how they classify
+          it. <b>We check that for your address before you order, not after.</b></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do I need a permit?</summary>
+        <div class="a">
+          <p>Many California cities treat a detached structure under a certain size differently from
+          an ADU, which is part of why we keep the footprint under 100 square feet. But the line sits
+          in a different place in every city, and adding electrical usually moves it.</p>
+          <p><b>We do not guess and we do not promise you are exempt.</b> Our GC partner looks up what
+          your address requires and handles the filing if there is one. Any fee the city charges is
+          yours and is shown separately.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I'm in an HOA community. Will they approve it?</summary>
+        <div class="a">
+          <p>That is your HOA's decision, not ours. What we can do is give you a submission that looks
+          like a submission: drawings, dimensions, exterior finishes, siting and the structural basis,
+          rather than a brochure.</p>
+          <p>Send us your HOA's guidelines with your enquiry and we will tell you exactly which of
+          their requirements we can document for you.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is sales tax included?</summary>
+        <div class="a">
+          <p>No. Prices are before sales tax. How much applies, and to which lines, depends on your
+          delivery address and how the order is written, so we do not print a rate here that might be
+          wrong for your street.</p>
+          <p><b>Your quote shows the tax as its own line.</b></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What if something goes wrong after it is built?</summary>
+        <div class="a">
+          <p>The structure and the frame are warranted for <b>five years</b>. Workmanship and the
+          installation are warranted for <b>one year</b> from the day it is finished. Our California
+          GC partner handles the call-out, so you are not filing a claim across the Pacific.</p>
+          <p>Outside it: normal wear, weather damage, misuse or neglect, and anything changed or added
+          by another trade after handover. The full terms come with your quote, before you pay
+          anything.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Which models can I buy in the United States?</summary>
+        <div class="a">
+          <p>Two: <b>The Room</b> and <b>The Sauna</b>, both on this page. Our other models, including
+          Loft, are built for the Korean market and are not sold here.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How long from order to a finished room in my yard?</summary>
+        <div class="a">
+          <p>The build in our factory takes weeks, not months. Assembly in your yard is one day.
+          Between the two is ocean freight and local delivery, which move with the shipping schedule.</p>
+          <p>You get a dated schedule with your quote, once we know your address and which model you
+          want.</p>
+        </div>
+      </details>
+    </div>
+
+    <p style="margin-top: 26px; font-size: 14px; color: var(--muted);">
+      Something not answered here? Put it in the form below, or email
+      <a href="mailto:hello@spacewavy.com" style="color: inherit;">hello@spacewavy.com</a>.
+    </p>
   </div>
 </section>
 
@@ -892,7 +1079,7 @@
         </div>
         <div class="field">
           <label for="f-address">Where would it go?</label>
-          <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="Street address, city, ZIP" required>
+          <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP is enough to start" required>
         </div>
         <p class="err" id="form-err" hidden></p>
         <button class="btn btn-primary" type="submit" id="submit-btn">Reserve my early-bird price</button>
@@ -970,6 +1157,81 @@
       }
     } catch (e) {}
 
+    // 모바일에서 폼을 입력하는 동안 하단 고정 바가 입력란을 가리지 않게 합니다.
+    try {
+      var cap = document.getElementById("claim");
+      cap.addEventListener("focusin", function () { document.body.classList.add("form-focus"); });
+      cap.addEventListener("focusout", function () {
+        setTimeout(function () {
+          if (!cap.contains(document.activeElement)) document.body.classList.remove("form-focus");
+        }, 80);
+      });
+    } catch (e) {}
+
+
+    // ---------- 등장 모션 ----------
+    // 섹션 요소를 화면에 들어올 때 한 번만 올려 보여줍니다. 같은 줄에 있는
+    // 카드들은 60ms씩 차이를 둬서 한꺼번에 튀어나오지 않게 합니다.
+    try {
+      document.documentElement.classList.add("ready");
+      var SEL = [
+        "#problem .eyebrow", "#problem h2", "#problem .lede", "#problem .cmp",
+        ".solution .eyebrow", ".solution h2", ".solution .lede", ".sol-list li",
+        ".model-head", "#the-room .lede", ".use", "#the-sauna .lede", ".mat",
+        ".specs .eyebrow", ".specs h2", ".dim",
+        "#how .eyebrow", "#how h2", ".step", ".build-row figure",
+        ".pricing .offer", ".pricing h2", ".pricing .lede", ".plan", ".excluded",
+        "#faq .eyebrow", "#faq h2", "#faq .lede", "#faq details",
+        "#company .eyebrow", "#company h2", "#company .lede", "#company .co-top > div",
+        ".stat", ".cert, .creds, .co-badges",
+        ".capture .eyebrow", ".capture h2", ".capture .lede", ".coupon", "#lead-form"
+      ].join(",");
+
+      var nodes = Array.prototype.slice.call(document.querySelectorAll(SEL));
+      if ("IntersectionObserver" in window && nodes.length) {
+        // 같은 부모 안에서 몇 번째인지 세어 지연을 줍니다.
+        var seen = new Map();
+        nodes.forEach(function (el) {
+          el.classList.add("reveal");
+          var k = el.parentNode;
+          var n = (seen.get(k) || 0);
+          seen.set(k, n + 1);
+          if (n) el.style.transitionDelay = Math.min(n * 60, 240) + "ms";
+        });
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+        nodes.forEach(function (el) { io.observe(el); });
+
+        // 안전장치: 빠르게 스크롤해서 관찰자가 놓친 요소가 숨은 채로 남지 않게 합니다.
+        var sweeping = false;
+        function sweep() {
+          sweeping = false;
+          for (var i = nodes.length - 1; i >= 0; i--) {
+            var el = nodes[i];
+            if (el.classList.contains("in")) continue;
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+              el.classList.add("in");
+              io.unobserve(el);
+            }
+          }
+        }
+        addEventListener("scroll", function () {
+          if (sweeping) return;
+          sweeping = true;
+          requestAnimationFrame(sweep);
+        }, { passive: true });
+        addEventListener("resize", sweep, { passive: true });
+        sweep();
+      }
+    } catch (e) {
+      document.documentElement.classList.remove("js");
+    }
+
     var form = document.getElementById("lead-form");
     var errEl = document.getElementById("form-err");
     var statusEl = document.getElementById("form-status");
@@ -992,7 +1254,7 @@
       if (!f.name) { bad = form.name; errEl.textContent = "Please enter your name."; }
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email)) { bad = form.email; errEl.textContent = "That email address doesn't look right."; }
       else if (f.phone.replace(/\D/g, "").length < 10) { bad = form.phone; errEl.textContent = "Please enter a phone number we can reach you on."; }
-      else if (f.address.length < 6) { bad = form.address; errEl.textContent = "Please tell us the address where the room would go."; }
+      else if (f.address.length < 4) { bad = form.address; errEl.textContent = "Please tell us the city and ZIP where the room would go."; }
 
       ["name", "email", "phone", "address"].forEach(function (k) { invalid(form[k], false); });
       if (bad) { invalid(bad, true); errEl.hidden = false; bad.focus(); return; }
@@ -1000,13 +1262,22 @@
       btn.disabled = true;
       statusEl.textContent = "Sending…";
 
+      // ?s=... 로 어느 QR·채널에서 왔는지 구분합니다. 예: ?s=sign-sf-01
+      var src = "QR sign";
+      try {
+        var q = new URLSearchParams(location.search);
+        src = q.get("s") || q.get("utm_source") || src;
+      } catch (e) {}
+
       var payload = new URLSearchParams(Object.assign({}, f, {
-        source: "QR sign",
+        source: src,
         page: location.href,
         submitted_at: new Date().toISOString()
       }));
 
       function finish() {
+        statusEl.textContent = "";
+        document.body.classList.remove("form-focus");
         form.hidden = true;
         done.hidden = false;
         done.scrollIntoView({ behavior: "smooth", block: "center" });
