@@ -228,7 +228,6 @@
     .hero-mark { position: absolute; top: 20px; left: var(--gutter); z-index: 2; }
   }
   .hero-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
-  .hero-note { margin-top: 18px; font-size: 13px; color: #CFCCC5; text-shadow: 0 1px 10px rgba(14,14,13,.55); }
 
   /* ---------- problem ---------- */
   .compare { display: grid; gap: 16px; margin-top: 42px; }
@@ -483,16 +482,18 @@
   .midcta h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
                 font-size: clamp(22px, 3.2vw, 30px); color: #FFFFFF; }
   .midcta p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: #A8A49C; max-width: 46ch; }
-  #mid-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  #mid-form { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { #mid-form { grid-template-columns: 1fr 1fr; } }
   #mid-form input {
-    flex: 1 1 220px; min-width: 0; font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    min-width: 0; font-family: var(--body); font-size: 16px; color: #F3F2EF;
     background: rgba(255,255,255,.07); border: 1px solid #3A3934; border-radius: 999px;
-    padding: 15px 22px; -webkit-appearance: none;
+    padding: 14px 20px; -webkit-appearance: none;
   }
   #mid-form input::placeholder { color: #7D7A73; }
   #mid-form input[aria-invalid="true"] { border-color: #E4705F; }
-  #mid-form .btn { flex: 0 0 auto; width: auto; margin-top: 0; }
-  @media (max-width: 519px) { #mid-form .btn { width: 100%; } }
+  #mid-form .btn { width: 100%; margin-top: 2px; }
+  @media (min-width: 560px) { #mid-form .btn { grid-column: 1 / -1; } }
+  #mid-form input { scroll-margin-bottom: 120px; }
   .mid-msg { margin-top: 0; font-size: 15px; color: var(--lime); }
 
   /* ---------- FAQ ---------- */
@@ -643,7 +644,6 @@
         <a class="btn btn-primary" href="#claim">Reserve your price</a>
         <a class="btn btn-ghost" href="#pricing">See pricing</a>
       </div>
-      <p class="hero-note" id="hero-deadline">Early-bird pricing through October 30, 2026.</p>
     </div>
   </div>
 </header>
@@ -789,13 +789,17 @@
   <div class="wrap mid-in">
     <div>
       <h3>Want the price for your yard?</h3>
-      <p>Leave an email and a Wavyroom specialist comes back with a written quote. No call until you want one.</p>
+      <p>Leave your details and a Wavyroom specialist calls you back with a quote for your address,
+      usually within two business days.</p>
     </div>
     <form id="mid-form" novalidate>
+      <input id="m-name" name="name" type="text" autocomplete="name" placeholder="Full name" aria-label="Full name" required>
       <input id="m-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" aria-label="Email address" required>
-      <button class="btn btn-primary" type="submit" id="mid-btn">Send it to me</button>
+      <input id="m-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone" aria-label="Phone number" required>
+      <input id="m-addr" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP" aria-label="City and ZIP" required>
+      <button class="btn btn-primary" type="submit" id="mid-btn">Get my quote</button>
     </form>
-    <p class="mid-msg" id="mid-msg" hidden>Thank you. We'll be in touch within two business days.</p>
+    <p class="mid-msg" id="mid-msg" hidden>Thank you. A Wavyroom specialist will call you within two business days.</p>
   </div>
 </section>
 
@@ -1263,21 +1267,22 @@
       var end = new Date(OFFER_ENDS);
       var days = Math.ceil((end - new Date()) / 86400000);
       var badge = document.getElementById("offer-badge");
-      var note = document.getElementById("hero-deadline");
-      if (days <= 0) {
+      if (days <= 0 && badge) {
         badge.textContent = "Standard pricing";
-        note.textContent = "Ask us about current pricing.";
       }
     } catch (e) {}
 
     // 모바일에서 폼을 입력하는 동안 하단 고정 바가 입력란을 가리지 않게 합니다.
     try {
-      var cap = document.getElementById("claim");
-      cap.addEventListener("focusin", function () { document.body.classList.add("form-focus"); });
-      cap.addEventListener("focusout", function () {
-        setTimeout(function () {
-          if (!cap.contains(document.activeElement)) document.body.classList.remove("form-focus");
-        }, 80);
+      ["claim", "midcta"].forEach(function (id) {
+        var box = document.getElementById(id);
+        if (!box) return;
+        box.addEventListener("focusin", function () { document.body.classList.add("form-focus"); });
+        box.addEventListener("focusout", function () {
+          setTimeout(function () {
+            if (!box.contains(document.activeElement)) document.body.classList.remove("form-focus");
+          }, 80);
+        });
       });
     } catch (e) {}
 
@@ -1351,15 +1356,27 @@
       var mForm = document.getElementById("mid-form");
       var mMsg  = document.getElementById("mid-msg");
       var mIn   = document.getElementById("m-email");
+      var mName = document.getElementById("m-name");
+      var mPh   = document.getElementById("m-phone");
+      var mAddr = document.getElementById("m-addr");
+
       mForm.addEventListener("submit", function (ev) {
         ev.preventDefault();
-        var v = mIn.value.trim();
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
-          mIn.setAttribute("aria-invalid", "true");
-          mIn.focus();
-          return;
-        }
-        mIn.setAttribute("aria-invalid", "false");
+        var f = {
+          name: mName.value.trim(),
+          email: mIn.value.trim(),
+          phone: mPh.value.trim(),
+          address: mAddr.value.trim()
+        };
+        [mName, mIn, mPh, mAddr].forEach(function (el) { el.setAttribute("aria-invalid", "false"); });
+
+        var bad = null;
+        if (!f.name) bad = mName;
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email)) bad = mIn;
+        else if (f.phone.replace(/\D/g, "").length < 10) bad = mPh;
+        else if (f.address.length < 4) bad = mAddr;
+        if (bad) { bad.setAttribute("aria-invalid", "true"); bad.focus(); return; }
+
         document.getElementById("mid-btn").disabled = true;
 
         var src = "mid-form";
@@ -1368,11 +1385,10 @@
           src = (q.get("s") || q.get("utm_source") || "site") + " / mid-form";
         } catch (e2) {}
 
-        var body = new URLSearchParams({
-          name: "", email: v, phone: "", address: "",
+        var body = new URLSearchParams(Object.assign({}, f, {
           source: src, page: location.href,
           submitted_at: new Date().toISOString()
-        });
+        }));
         function ok() { mForm.hidden = true; mMsg.hidden = false; }
         if (!SHEETS_ENDPOINT || SHEETS_ENDPOINT.indexOf("PASTE_") === 0) { ok(); return; }
         fetch(SHEETS_ENDPOINT, { method: "POST", mode: "no-cors", body: body })
