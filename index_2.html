@@ -1,0 +1,1731 @@
+<!doctype html>
+<html lang="en" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A factory-built backyard room, 120 sq ft or under, up in three days or less. Backyard office, playroom, yoga room, prayer room or outdoor sauna.">
+<meta name="theme-color" content="#0E0E0D">
+<link rel="canonical" href="https://www.wavyroom.com/en/">
+<title>Backyard Room</title>
+
+<!--
+  ============================================================
+  WAVYROOM US LANDING PAGE  ·  QR destination
+  ============================================================
+  Google Sheets: SHEETS_ENDPOINT at the bottom of this file.
+
+  PHOTOS IN USE
+    hero                 images/hero-family.jpg
+    The Sauna (4 shots)  sauna-exterior-evening / sauna-interior
+                         sauna-loyly / sauna-people
+    How it arrives       images/factory.jpg, images/assembly.jpg
+
+    The Studio (4 shots) room-office / room-play / room-yoga / room-prayer
+
+  STILL NEEDED
+    img-shipping   ocean freight / container shot, 4:3 landscape
+  Empty slots are hidden by the ".ph { display:none }" rule.
+  To fill one, replace its <div class="ph" id="..."> with
+  <img class="shot ratio-45" src="images/NAME.jpg" alt="..." loading="lazy">
+  ============================================================
+-->
+
+<style>
+  /* Layout: single scroll. Dark hero → warm neutral body → dark close.
+     Lime is the only accent and appears on CTAs and the offer badge. */
+  :root {
+    --ink:      #121212;
+    --paper:    #F7F6F3;
+    --sand:     #EDEBE6;
+    --line:     #D9D6CF;
+    --soft:     #4A4844;
+    --lime:     #D3F170;
+    --lime-dim: #C7E261;
+
+    --bg:        var(--paper);
+    --fg:        var(--ink);
+    --muted:     var(--soft);
+    --surface:   #FFFFFF;
+    --surface-2: var(--sand);
+    --border:    var(--line);
+
+    /* 전 요소 Pretendard. 굵기로만 위계를 만듭니다. */
+    --display: "Pretendard Variable", Pretendard, "Helvetica Neue", Arial, sans-serif;
+    --body:    "Pretendard Variable", Pretendard, "Helvetica Neue", Arial, sans-serif;
+
+    --gutter: clamp(20px, 5vw, 64px);
+    --maxw: 1180px;
+    --r-s: 8px;
+    --r-m: 16px;
+    --r-l: 24px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0E0E0D;
+      --fg:        #F3F2EF;
+      --muted:     #A8A49C;
+      --surface:   #1A1A18;
+      --surface-2: #232320;
+      --border:    #35342F;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #0E0E0D;
+    --fg:        #F3F2EF;
+    --muted:     #A8A49C;
+    --surface:   #1A1A18;
+    --surface-2: #232320;
+    --border:    #35342F;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 86px;
+  }
+  @media (min-width: 760px) { body { padding-bottom: 0; } }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    text-wrap: balance;
+    margin: 0;
+  }
+  p { margin: 0; }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+  section { padding-block: clamp(60px, 9vw, 120px); }
+
+  .eyebrow {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  .lede { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 62ch; }
+
+  /* ---------- image placeholders ---------- */
+  .ph {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: var(--r-l);
+    overflow: hidden;
+    min-height: 120px;
+  }
+  .ph span {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    padding: 20px;
+    max-width: 30ch;
+  }
+  .ph.on-dark { background: #232320; border-color: #3A3934; }
+  .ph.on-dark span { color: #A8A49C; }
+  .ratio-32 { aspect-ratio: 3/2; }
+  .model-lead { margin: 0; }
+  .model-lead .shot { width: 100%; border-radius: var(--r-m); aspect-ratio: 3/2; height: auto; object-fit: cover; }
+  .model-lead:has(.ph) { display: none; }
+  .model-lead .cap { margin-top: 10px; display: grid; gap: 2px; }
+  .model-lead .cap b { font-size: 15px; font-weight: 700; color: var(--fg); }
+  .model-lead .cap span { font-size: 14px; color: var(--muted); }
+  .ratio-43 { aspect-ratio: 4/3; }
+  .ratio-45 { aspect-ratio: 4/5; }
+  .ratio-11 { aspect-ratio: 1/1; }
+  .ph img, .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .shot { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-l); }
+  .shot.ratio-43 { aspect-ratio: 4/3; }
+  .shot.ratio-45 { aspect-ratio: 4/5; }
+  .shot.ratio-32 { aspect-ratio: 3/2; }
+  .shot.ratio-169 { aspect-ratio: 16/9; height: auto; }
+  .plan .shot { border-radius: var(--r-m); }
+  /* 히어로 사진은 원본 비율 그대로 전부 보이게 합니다. 잘라내지 않습니다. */
+  .hero-media .shot { border-radius: 0; aspect-ratio: 1672 / 941; height: auto; min-height: 0; object-fit: contain; }
+  .frame { border-radius: var(--r-l); overflow: hidden; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .18s ease, background-color .18s ease;
+  }
+  .btn-primary { background: var(--lime); color: #121212; }
+  .btn-primary:hover { background: var(--lime-dim); }
+  .btn-ghost { background: transparent; color: inherit; border-color: currentColor; opacity: .85; }
+  .btn-ghost:hover { opacity: 1; }
+  .btn:active { transform: translateY(1px); }
+  :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    background: #0E0E0D;
+    color: #F3F2EF;
+    padding-block: 0;
+    overflow: hidden;
+  }
+  .hero-media { position: relative; }
+  .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; }
+  /* 글은 왼쪽에 놓이므로 왼쪽만 어둡게, 오른쪽은 원본 그대로 둡니다. */
+  /* 아이들이 왼쪽 아래를 지나가므로 글은 왼쪽 위 나무 그늘 쪽에 둡니다.
+     그늘을 따라 대각선으로만 어둡게 해서 사진의 아래쪽은 건드리지 않습니다. */
+  .hero-scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg,
+        rgba(14,14,13,.80) 0%,
+        rgba(14,14,13,.62) 26%,
+        rgba(14,14,13,.26) 50%,
+        rgba(14,14,13,0) 72%),
+      linear-gradient(90deg,
+        rgba(14,14,13,.42) 0%,
+        rgba(14,14,13,.16) 34%,
+        rgba(14,14,13,0) 60%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding-block: clamp(76px, 9vw, 108px) clamp(28px, 5vw, 52px);
+  }
+  .hero-mark {
+    position: absolute; top: clamp(20px, 4vw, 40px); left: var(--gutter);
+    width: clamp(118px, 13vw, 158px); height: auto; display: block;
+  }
+  .hero h1 { font-size: clamp(36px, 6.4vw, 68px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; text-wrap: balance; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  /* 시장 전환 */
+  html[data-market="us"] .only-ca, html[data-market="ca"] .only-us { display: none !important; }
+  .mkt-switch { position: absolute; top: clamp(18px, 3vw, 30px); right: var(--gutter); z-index: 4;
+    display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px;
+    background: rgba(14,14,13,.55); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.22); }
+  .mkt-switch button { appearance: none; border: 0; cursor: pointer; font: inherit;
+    font-size: 13px; font-weight: 650; letter-spacing: -0.01em; line-height: 1;
+    padding: 8px 14px; border-radius: 999px; color: #E9E7E1; background: transparent;
+    transition: background .18s ease, color .18s ease; }
+  .mkt-switch button:hover { background: rgba(255,255,255,.12); }
+  .mkt-switch button[aria-pressed="true"] { background: var(--lime); color: #121212; }
+  .mkt-switch button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  @media (max-width: 460px) { .mkt-switch button { padding: 7px 11px; font-size: 12px; } }
+
+  .hero-promise { margin-top: 14px; color: #FFFFFF; font-weight: 650;
+    font-size: clamp(19px, 2.7vw, 27px); line-height: 1.3; letter-spacing: -0.02em;
+    text-wrap: balance; max-width: 22ch; }
+
+  .hero-sub { margin-top: 10px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
+  @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 540px; } }
+  /* 모바일에서는 사진 전체를 먼저 보여주고 글은 그 아래에 둡니다. */
+  @media (max-width: 759px) {
+    .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.72) 0%, rgba(14,14,13,.22) 30%, rgba(14,14,13,0) 56%); }
+    .hero-inner { position: static; justify-content: flex-start; padding-block: 26px 36px; }
+    .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.68) 0%, rgba(14,14,13,.20) 28%, rgba(14,14,13,0) 54%); }
+    .hero-mark { position: absolute; top: 20px; left: var(--gutter); z-index: 2; }
+  }
+  .hero-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------- problem ---------- */
+  .compare { display: grid; gap: 16px; margin-top: 42px; }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1.45fr 1fr; gap: 20px; align-items: start; } }
+  .cmp { border-radius: var(--r-m); padding: 28px; border: 1px solid var(--border); background: var(--surface); }
+  .cmp.bad { background: transparent; border-color: var(--border); padding: 22px; }
+  .cmp.bad .cmp-num { font-size: clamp(30px, 4.6vw, 42px); color: var(--muted); }
+  .cmp.bad p { font-size: 14px; }
+  .cmp-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .cmp-num {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.04em;
+    font-size: clamp(44px, 9vw, 68px); line-height: 1; margin-top: 14px;
+  }
+  .cmp-num small { font-size: 0.34em; font-weight: 600; letter-spacing: -0.01em; margin-left: 6px; }
+  .cmp p { margin-top: 12px; font-size: 15px; color: var(--muted); }
+  .cmp.good .cmp-num { color: var(--fg); }
+  .cmp.good { border-color: var(--fg); border-width: 1.5px; }
+
+  /* ---------- solution ---------- */
+  .solution { background: var(--surface-2); }
+  .sol-grid { display: grid; gap: 30px; align-items: center; }
+  @media (min-width: 880px) { .sol-grid { grid-template-columns: 1.05fr .95fr; gap: 56px; } }
+  .sol-list { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 2px; }
+  .sol-list li { display: grid; grid-template-columns: 42px 1fr; gap: 16px; align-items: start; padding-block: 16px; border-top: 1px solid var(--border); }
+  .sol-list li:last-child { border-bottom: 1px solid var(--border); }
+  .sol-list .n { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); padding-top: 4px; }
+  .sol-list strong { font-weight: 700; display: block; }
+  .sol-list span.d { font-size: 15px; color: var(--muted); }
+
+  /* ---------- uses ---------- */
+  .uses-head { display: grid; gap: 16px; align-items: end; }
+  @media (min-width: 860px) { .uses-head { grid-template-columns: 1fr auto; } }
+  .uses { display: grid; gap: 18px; margin-top: 44px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .uses { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .uses { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1240px) { #the-room .uses { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  .use { min-width: 0; display: flex; flex-direction: column; }
+  /* aspect-ratio가 그리드 늘림에 눌리지 않게 합니다. */
+  .use .shot, .use .ph { height: auto; margin-bottom: 12px; border-radius: var(--r-m); }
+  .use .tag {
+    display: inline-block; margin-top: 16px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .use h3 { font-size: 22px; margin-top: 6px; }
+  .use p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+  .use.is-sauna h3::after {
+    content: "Sauna model";
+    display: inline-block; vertical-align: middle; margin-left: 10px;
+    font-family: var(--body); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--lime); color: #121212; padding: 4px 9px; border-radius: 999px;
+  }
+
+  /* ---------- specs ---------- */
+  .specs { background: var(--ink); color: #F3F2EF; }
+  .specs .eyebrow, .specs .lede { color: #A8A49C; }
+  .spec-grid { display: grid; gap: 14px; margin-top: 44px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .spec-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .spec-grid { grid-template-columns: repeat(4, 1fr); } }
+  .spec { background: #1A1A18; border-radius: var(--r-m); padding: 24px; min-width: 0; }
+  .spec .k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #A8A49C; }
+  .spec .v { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; margin-top: 10px; }
+  .spec .d { font-size: 14px; color: #A8A49C; margin-top: 8px; }
+  .mats { display: grid; gap: 14px; margin-top: 20px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 820px) { .mats { grid-template-columns: repeat(4, 1fr); } }
+  .mat { margin: 0; display: flex; flex-direction: column; }
+  .mat .shot { border-radius: var(--r-m); aspect-ratio: 4/5; height: auto; }
+  .mat .cap { margin-top: 12px; font-size: 14px; }
+  .mat .cap b { display: block; font-weight: 700; }
+  .mat .cap span { color: var(--muted); }
+  .dims {
+    margin-top: 30px; border-top: 1px solid #35342F;
+    display: grid; gap: 0; grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .dims { grid-template-columns: repeat(3, 1fr); } }
+  .dim { padding-block: 20px; border-bottom: 1px solid #35342F; }
+  .dim .k { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49C; }
+  .dim .v { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: -0.03em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .dim .m { font-size: 13px; color: #A8A49C; margin-top: 2px; }
+
+  /* ---------- how ---------- */
+  .steps { display: grid; gap: 16px; margin-top: 42px; grid-template-columns: 1fr; counter-reset: s; }
+  @media (min-width: 680px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step { border-top: 2px solid var(--fg); padding-top: 16px; min-width: 0; }
+  .step .n { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  .step h3 { font-size: 18px; margin-top: 8px; }
+  .step p { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  /* ---------- pricing ---------- */
+  .pricing { background: var(--surface-2); }
+  .offer {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--lime); color: #121212;
+    border-radius: 999px; padding: 9px 18px;
+    font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .plans { display: grid; gap: 18px; margin-top: 36px; }
+  @media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; gap: 22px; } }
+  .plan {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-l);
+    padding: 26px; display: flex; flex-direction: column; min-width: 0;
+  }
+  .plan .frame, .plan .ph { border-radius: var(--r-m); }
+  .plan h3 { font-size: 26px; margin-top: 22px; }
+  .plan .for { font-size: 14px; color: var(--muted); margin-top: 8px; min-height: 42px; }
+  .price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .price-now {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.045em;
+    font-size: clamp(38px, 7vw, 50px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .price-was { font-size: 17px; color: var(--muted); text-decoration: line-through; }
+  .price-save { font-size: 13px; font-weight: 700; color: var(--fg); background: var(--surface-2); padding: 5px 11px; border-radius: 999px; }
+  .plan ul { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 9px; font-size: 15px; }
+  .plan ul li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
+  .plan ul li::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--fg); margin-top: 9px; }
+  .plan .btn { margin-top: 26px; width: 100%; }
+  .excluded {
+    margin-top: 26px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-m); padding: 22px;
+  }
+  .excluded h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
+  .excluded ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
+  .excluded li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: center; }
+  .excluded li .ic { width: 18px; height: 18px; color: var(--fg); opacity: .62; }
+
+  /* 사진이 아직 없는 자리는 숨깁니다. 사진을 넣으면 <img class="shot">로 교체됩니다. */
+  .ph { display: none !important; }
+  .sol-grid { grid-template-columns: 1fr !important; }
+  @media (min-width: 900px) { .co-top { grid-template-columns: 1fr 1.12fr !important; } }
+
+  /* 모바일 압축 */
+  @media (max-width: 759px) {
+    section { padding-block: 44px; }
+    .uses { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+    .use h3 { font-size: 18px; }
+    .use p { font-size: 13.5px; margin-top: 6px; }
+    .use .tag { margin-top: 0; }
+    .spec-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .spec { padding: 16px; }
+    .spec .v { font-size: 16px; margin-top: 8px; }
+    .spec .d { font-size: 12.5px; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+    .stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat .l { font-size: 12px; margin-top: 6px; }
+    .compare { gap: 12px; }
+    .cmp { padding: 20px; }
+    .plan { padding: 20px; }
+    .plan ul { gap: 7px; font-size: 14px; }
+    .creds { padding: 20px; gap: 20px; }
+    .mats { gap: 10px; }
+    .product-pair { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .product-pair .shot { aspect-ratio: 3/4; }
+  }
+
+  /* ---------- two models ---------- */
+  .model-sec.alt { background: var(--surface-2); }
+  .model-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px 20px; flex-wrap: wrap; border-top: 2px solid var(--fg); padding-top: 16px;
+  }
+  .model-no { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .model-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; font-size: clamp(32px, 7vw, 52px); margin-top: 4px; }
+  .model-price { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: clamp(17px, 3.4vw, 22px); }
+  .build-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; max-width: 900px; }
+  .build-row figure { flex: 1 1 190px; min-width: 0; margin: 0; }
+  .build-row .shot, .build-row .ph { border-radius: var(--r-m); aspect-ratio: 4/3; height: auto; }
+  .build-row figcaption { margin-top: 9px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+  /* 사진이 아직 없는 칸은 설명글까지 통째로 숨깁니다. */
+  .build-row figure:has(.ph) { display: none; }
+
+  /* 히터 */
+  .heater { margin-top: 44px; display: grid; gap: 22px; align-items: start; }
+  @media (min-width: 860px) { .heater { grid-template-columns: 0.85fr 1.15fr; gap: 34px; } }
+  .heater-shots { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 10px; align-items: stretch; }
+  .heater-shots img { width: 100%; height: 100%; border-radius: var(--r-m); aspect-ratio: 3/4; }
+  .heater-shots img:first-child { object-fit: contain; background: #FFFFFF; padding: 14px; }
+  .heater-shots img:last-child  { object-fit: cover; }
+  .heater-txt h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 750; letter-spacing: -0.035em; margin-top: 6px; }
+  .lede-s { margin-top: 10px; font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 48ch; }
+  .hspec { margin: 18px 0 0; display: grid; gap: 0; max-width: 460px; }
+  .hspec > div { display: flex; justify-content: space-between; gap: 16px;
+                 padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .hspec dt { font-size: 13px; color: var(--muted); margin: 0; }
+  .hspec dd { font-size: 13px; font-weight: 650; color: var(--fg); margin: 0; text-align: right; }
+
+  /* 안내 문구 */
+  .fine { margin-top: 14px; font-size: 12px; line-height: 1.55; color: var(--muted); max-width: 62ch; }
+  .fine-block { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .fine-block h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--muted); }
+  .fine-rows { margin-top: 10px; display: grid; gap: 8px; max-width: 86ch; }
+  .fine-row { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted);
+              padding-left: 13px; position: relative; }
+  .fine-row::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 4px;
+                      border-radius: 50%; background: var(--border); }
+  .fine-row b { color: var(--fg); font-weight: 650; }
+
+  /* 실사용 세로 영상 */
+  .reelhead { margin-top: 40px; max-width: 54ch; }
+  .reelhead h3 { font-size: clamp(20px, 2.6vw, 26px); font-weight: 750; letter-spacing: -0.03em; }
+  .reelhead p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+  .reels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; max-width: 960px; }
+  @media (min-width: 720px) { .reels { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  .reel { margin: 0; }
+  .reelv { width: 100%; display: block; aspect-ratio: 9/16; height: auto; object-fit: cover;
+           border-radius: var(--r-m); background: #15150F; }
+  .reel figcaption { margin-top: 9px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+  @media (max-width: 560px) { .reels { gap: 8px; } .reel figcaption { font-size: 11.5px; margin-top: 7px; } }
+
+  /* 조립 타임랩스 */
+  .filmblock { margin: 36px 0 0; max-width: 900px; }
+  .film { width: 100%; display: block; aspect-ratio: 16/9; height: auto;
+          border-radius: var(--r-m); background: #15150F; object-fit: cover; }
+  .filmblock figcaption { margin-top: 12px; display: grid; gap: 4px; max-width: 62ch; }
+  .filmblock figcaption b { font-size: 15px; font-weight: 700; color: var(--fg); }
+  .filmblock figcaption span { font-size: 14px; line-height: 1.55; color: var(--muted); }
+
+  /* ---------- company ---------- */
+  .co-top { display: grid; gap: 30px; }
+  @media (min-width: 900px) { .co-top { grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; } }
+  .stats { display: grid; gap: 16px; margin-top: 48px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+  .stat { border-top: 2px solid var(--fg); padding-top: 16px; min-width: 0; }
+  .stat .n {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.045em;
+    font-size: clamp(36px, 7vw, 52px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .stat .l { margin-top: 10px; font-size: 14px; color: var(--muted); }
+  .creds {
+    margin-top: 40px; background: var(--surface-2); border-radius: var(--r-m);
+    padding: 28px; display: grid; gap: 26px;
+  }
+  @media (min-width: 820px) { .creds { grid-template-columns: 1fr 1fr; gap: 44px; } }
+  .cred h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .cred p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .badge {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 14px; font-size: 13px; font-weight: 500;
+  }
+
+  /* ---------- form ---------- */
+  .capture { background: var(--ink); color: #F3F2EF; }
+  .capture .eyebrow { color: #A8A49C; }
+  .cap-grid { display: grid; gap: 34px; }
+  @media (min-width: 900px) { .cap-grid { grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; } }
+  .coupon {
+    margin-top: 26px; border: 1.5px dashed var(--lime); border-radius: var(--r-m);
+    padding: 22px; display: flex; gap: 18px; align-items: center;
+  }
+  .coupon .amt { font-family: var(--display); font-weight: 800; font-size: 40px; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+  .coupon p { font-size: 14px; color: #D8D5CE; }
+  form { display: grid; gap: 14px; }
+  .field { display: grid; gap: 7px; min-width: 0; }
+  .row2 { display: grid; gap: 14px; }
+  @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49C; }
+  input, textarea {
+    font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    background: #1A1A18; border: 1px solid #35342F; border-radius: var(--r-s);
+    padding: 14px 15px; width: 100%; min-width: 0;
+  }
+  input::placeholder, textarea::placeholder { color: #6F6C65; }
+  input:focus, textarea:focus { border-color: var(--lime); outline: none; }
+  input[aria-invalid="true"] { border-color: #E4785F; }
+  .err { font-size: 13px; color: #E4785F; }
+  .consent { font-size: 13px; color: #A8A49C; line-height: 1.5; }
+  .consent a { color: #D8D5CE; }
+  form .btn { width: 100%; margin-top: 4px; }
+  .form-status { font-size: 14px; color: #A8A49C; min-height: 20px; }
+  .done {
+    border: 1.5px solid var(--lime); border-radius: var(--r-m); padding: 30px; text-align: left;
+  }
+  .done h3 { font-size: 24px; }
+  .done p { margin-top: 12px; font-size: 15px; color: #D8D5CE; }
+  .applied { margin-top: 22px; display: grid; gap: 1px; background: #35342F; border-radius: var(--r-s); overflow: hidden; }
+  .applied div { background: #1A1A18; padding: 14px 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .applied span { font-size: 14px; color: #A8A49C; }
+  .applied b { font-family: var(--display); font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--lime); }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ink); color: #A8A49C; border-top: 1px solid #262521; padding-block: 40px; font-size: 13px; }
+  .foot { display: grid; gap: 28px; align-items: start; }
+  @media (min-width: 820px) { .foot { grid-template-columns: minmax(230px, 300px) 1fr; gap: 48px; } }
+  .foot .brand { width: 136px; height: auto; display: block; }
+  .addr { display: grid; gap: 20px 32px; }
+  @media (min-width: 560px) { .addr { grid-template-columns: repeat(3, 1fr); } }
+  .addr span {
+    display: block; margin-bottom: 5px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #6E6B64;
+  }
+  .addr div { line-height: 1.6; }
+
+
+  /* ---------- 중간 CTA ---------- */
+  /* --fg 는 다크모드에서 밝은색으로 뒤집히므로 항상 어두운 --ink 를 씁니다. */
+  .midcta { background: var(--ink); color: #F3F2EF; padding-block: clamp(36px, 5vw, 54px); }
+  .mid-in { display: grid; gap: 22px; align-items: center; }
+  @media (min-width: 900px) { .mid-in { grid-template-columns: 1.1fr 1fr; gap: 44px; } }
+  .midcta h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
+                font-size: clamp(22px, 3.2vw, 30px); color: #FFFFFF; }
+  .midcta p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: #A8A49C; max-width: 46ch; }
+  #mid-form { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { #mid-form { grid-template-columns: 1fr 1fr; } }
+  #mid-form input {
+    min-width: 0; font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    background: rgba(255,255,255,.07); border: 1px solid #3A3934; border-radius: 999px;
+    padding: 14px 20px; -webkit-appearance: none;
+  }
+  #mid-form input::placeholder { color: #7D7A73; }
+  #mid-form input[aria-invalid="true"] { border-color: #E4705F; }
+  #mid-form .btn { width: 100%; margin-top: 2px; }
+  @media (min-width: 560px) { #mid-form .btn { grid-column: 1 / -1; } }
+  #mid-form input { scroll-margin-bottom: 120px; }
+  .mid-msg { margin-top: 0; font-size: 15px; color: var(--lime); }
+
+  /* ---------- FAQ ---------- */
+  .faq { margin-top: 36px; border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    list-style: none; cursor: pointer; padding: 18px 34px 18px 0; position: relative;
+    font-family: var(--display); font-weight: 700; font-size: clamp(16px, 2.4vw, 19px);
+    letter-spacing: -0.015em;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%);
+    font-size: 22px; font-weight: 400; color: var(--muted); line-height: 1;
+  }
+  .faq details[open] summary::after { content: "\2212"; }
+  .faq .a { padding: 0 0 20px; max-width: 62ch; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
+  .faq .a p + p { margin-top: 10px; }
+  .faq .a b { color: var(--fg); font-weight: 700; }
+
+  /* ---------- sticky mobile bar ---------- */
+  .sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: rgba(14,14,13,.94);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #2B2A26;
+    padding: 12px var(--gutter);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  }
+  .sticky .s-txt { font-size: 13px; color: #D8D5CE; line-height: 1.3; min-width: 0; }
+  .sticky .s-txt b { display: block; color: #FFFFFF; font-weight: 700; }
+  .sticky .btn { padding: 13px 22px; font-size: 15px; white-space: nowrap; }
+  @media (min-width: 760px) { .sticky { display: none; } }
+  /* 폼을 작성하는 동안에는 하단 바를 내려서 입력란을 가리지 않게 합니다. */
+  .sticky { transition: transform .22s ease; }
+  body.form-focus .sticky { transform: translateY(110%); pointer-events: none; }
+  #lead-form input { scroll-margin-bottom: 120px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+
+  /* ---------- 아이콘 ---------- */
+  .ic { width: 22px; height: 22px; display: block; fill: none; stroke: currentColor;
+        stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .ic-dot {
+    width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center;
+    background: rgba(18,18,18,.06); color: var(--fg); flex: none;
+  }
+  .specs .ic-dot { background: #4A4844; color: #FFFFFF; }
+
+  /* 공정 다이어그램 */
+  .steps .ic-dot { margin-bottom: 14px; }
+  .step { position: relative; }
+  @media (min-width: 680px) {
+    .step::after {
+      content: ""; position: absolute; left: 50px; right: -16px; top: 37px;
+      border-top: 1px dashed var(--line);
+    }
+    .step:last-child::after { display: none; }
+  }
+
+  /* 다음 단계 3컷 */
+  .next { display: grid; gap: 16px; margin-top: 26px; grid-template-columns: repeat(3, 1fr); }
+  .next div { min-width: 0; }
+  .next .ic-dot { background: rgba(255,255,255,.08); color: #FFFFFF; width: 36px; height: 36px; margin-bottom: 10px; }
+  .next .ic { width: 18px; height: 18px; }
+  .next b { display: block; font-family: var(--display); font-size: 13px; color: #FFFFFF; }
+  .next p { font-size: 12.5px; line-height: 1.5; color: #A8A49C; margin-top: 4px; }
+
+  /* ================= MOTION =================
+     브랜드 가이드 §Brand Mode: 등장 모션은 fade + 12px rise, 500ms ease-out.
+     JS가 꺼져 있으면 .reveal 규칙이 적용되지 않아 모든 요소가 그대로 보입니다.
+     기기에서 모션 줄이기를 켠 사용자에게는 전부 비활성화됩니다. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .reveal { opacity: 0; transform: translateY(12px); will-change: opacity, transform; }
+    html.js .reveal.in {
+      opacity: 1; transform: none;
+      transition: opacity .5s ease-out, transform .5s ease-out;
+    }
+    html.js .hero-inner > *, html.js .hero-mark { opacity: 0; transform: translateY(12px); }
+    html.js.ready .hero-inner > *, html.js.ready .hero-mark {
+      opacity: 1; transform: none;
+      transition: opacity .6s ease-out, transform .6s ease-out;
+    }
+    html.js.ready .hero-mark   { transition-delay: .05s; }
+    html.js.ready .hero-inner > .wrap { transition-delay: .14s; }
+
+    html.js .sticky { transform: translateY(110%); }
+    html.js.ready .sticky { transform: none; transition: transform .45s ease-out .5s; }
+    html.js.ready body.form-focus .sticky { transition-duration: .22s; transition-delay: 0s; }
+
+    .faq details[open] .a { animation: wr-fade .4s ease-out both; }
+    @keyframes wr-fade { from { opacity: 0; transform: translateY(-4px); } }
+
+    html { scroll-behavior: smooth; }
+  }
+
+  .faq summary { transition: color .18s ease; }
+  .faq summary:hover { color: var(--muted); }
+  .faq summary::after { transition: transform .22s ease; }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); }
+
+  @media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+    .use .shot, .mat .shot, .build-row .shot { transition: transform .45s cubic-bezier(.2,.6,.2,1); }
+    .use:hover .shot, .mat:hover .shot, .build-row figure:hover .shot { transform: scale(1.018); }
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+
+</head>
+<body>
+<!-- 아이콘 스프라이트. 라인 아이콘, 선 굵기 1.75, 둥근 끝. 브랜드 가이드 §7-2 -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <g id="ic-size"><path d="M3 9V3h6"/><path d="M21 9V3h-6"/><path d="M3 15v6h6"/><path d="M21 15v6h-6"/></g>
+    <g id="ic-layers"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17 12 21.5 21 17"/></g>
+    <g id="ic-layout"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9.5h18"/><path d="M10 9.5V21"/></g>
+    <g id="ic-factory"><path d="M3 21V11l5 3.5V11l5 3.5V11l5 3.5V21H3Z"/><path d="M18 11V4h3v7"/><path d="M7 21v-3.5"/><path d="M13 21v-3.5"/></g>
+    <g id="ic-ship"><path d="M2.5 17.5c1.6 0 1.6 1.6 3.2 1.6s1.6-1.6 3.2-1.6 1.6 1.6 3.1 1.6 1.6-1.6 3.2-1.6 1.6 1.6 3.2 1.6 1.6-1.6 3.1-1.6"/><path d="M5 14.5V9h14v5.5"/><path d="M9 9V5.5h6V9"/></g>
+    <g id="ic-truck"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h3.9l2.6 3.2v3.3h-6.5z"/><circle cx="7" cy="18.6" r="1.7"/><circle cx="16.8" cy="18.6" r="1.7"/></g>
+    <g id="ic-box"><path d="M12 2.5 3.5 7v10l8.5 4.5 8.5-4.5V7L12 2.5Z"/><path d="M3.5 7 12 11.6 20.5 7"/><path d="M12 11.6v9.9"/></g>
+    <g id="ic-zap"><path d="M13.2 2.5 4.8 13.8H11l-.2 7.7 8.4-11.3H13l.2-7.7Z"/></g>
+    <g id="ic-pad"><path d="M4 11h16v5.5H4z"/><path d="M2 20.5h20"/><path d="M8 11v5.5"/><path d="M12 11v5.5"/><path d="M16 11v5.5"/></g>
+    <g id="ic-file"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/><path d="m9 14.5 2 2 4-4"/></g>
+    <g id="ic-send"><path d="M21.5 2.5 2.5 9.9l7.6 2.9 2.9 7.6 8.5-17.9Z"/><path d="M10.1 12.8 21.5 2.5"/></g>
+    <g id="ic-phone"><path d="M6.4 3h3.1l1.5 4-2 1.5a12.2 12.2 0 0 0 5.5 5.5L16 12l4 1.5v3.1A2.4 2.4 0 0 1 17.4 19 14.4 14.4 0 0 1 5 6.6 2.4 2.4 0 0 1 6.4 3Z"/></g>
+    <g id="ic-quote"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/><path d="M8.5 13.5h7"/><path d="M8.5 17h4.5"/></g>
+  </defs>
+</svg>
+
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="hero-media">
+    <img class="shot on-dark" id="img-hero" src="images/hero-family.jpg" alt="A family in their backyard at golden hour: two parents on the step of a Wavyroom with coffee while their children run across the lawn" fetchpriority="high" width="1672" height="941">
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-inner">
+    <img class="hero-mark" src="images/logo_white.png" alt="Wavyroom">
+    <div class="mkt-switch" role="group" aria-label="Choose your country">
+      <button type="button" data-set-market="us" aria-pressed="true">US</button>
+      <button type="button" data-set-market="ca" aria-pressed="false">Canada</button>
+    </div>
+    <div class="wrap">
+      <h1>Your backyard<br>is <em>boring.</em></h1>
+      <p class="hero-promise">We fix that in three days.</p>
+      <p class="hero-sub"><span class="only-us">A factory-built room, 120 sq ft or under, finished inside and out.</span><span class="only-ca">A factory-built room, 80 sq ft, finished inside and out. Under BC's building-permit line.</span></p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#claim">Get my price</a>
+        <a class="btn btn-ghost" href="#pricing">See pricing</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ PROBLEM ============================ -->
+<section id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The backyard problem</p>
+    <h2 style="font-size: clamp(30px, 5.5vw, 54px);">You're paying a mortgage<br>on a patch of grass.</h2>
+    <p class="lede" style="margin-top: 20px;">
+      You already have the land. The usual way to build on it is an ADU: drawings, plan check,
+      a permit, a contractor, and a yard behind a fence for most of a year.
+    </p>
+    <div class="compare">
+      <div class="cmp good">
+        <div class="cmp-label">Building a Wavyroom</div>
+        <div class="cmp-num">3<small>days or less</small></div>
+        <p>A finished kit arrives. Our crew sets it down, assembles it and hands you the key, usually
+        inside a single long weekend.</p>
+      </div>
+      <div class="cmp bad">
+        <div class="cmp-label">Building an ADU</div>
+        <div class="cmp-num">12<small>months +</small></div>
+        <p>Design, permits, plan check, foundation, framing, inspections.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SOLUTION ============================ -->
+<section class="solution" id="solution">
+  <div class="wrap sol-grid">
+    <div>
+      <p class="eyebrow">What we make</p>
+      <h2 style="font-size: clamp(28px, 5vw, 48px);">A real room. Small enough to skip the year-long build.</h2>
+      <p class="lede" style="margin-top: 18px;">
+        A factory-built room that lands on your lawn. Wood structure, insulated walls, finished
+        inside and out. <span class="mkt" data-us="The Studio is 119 sq ft; the Sauna is 80 sq ft." data-ca="Both models are 80 sq ft in Canada.">The Studio is 119 sq ft; the Sauna is 80 sq ft.</span>
+      </p>
+      <ul class="sol-list">
+        <li>
+          <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-size"/></svg></span>
+          <span class="only-us"><strong>120 sq ft or under</strong><span class="d">California exempts a detached accessory structure of 120 sq ft or less from a building permit. Cities read that line differently and electrical usually changes it, so we check your address before you order.</span></span><span class="only-ca"><strong>Under BC's permit line</strong><span class="d">British Columbia exempts a detached accessory building of 10 m&sup2; (108 sq ft) or less from a building permit. Both Canadian models are 80 sq ft, so they sit under it. Zoning setbacks still apply and wiring needs its own electrical permit, and we check your municipality before you order.</span></span>
+        </li>
+        <li>
+          <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-layers"/></svg></span>
+          <span><strong>Insulated like a real house</strong><span class="d">Glass wool or mineral wool on every side, the same build as a home we deliver. Warm in January, cool in August. Not a shed.</span></span>
+        </li>
+        <li>
+          <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-layout"/></svg></span>
+          <span><strong>Built around how you'll use it</strong><span class="d">Tell us what the room is for and we finish the inside for it. One shell, a space that earns its place in your day.</span></span>
+        </li>
+      </ul>
+    </div>
+    <div class="ph ratio-43" id="img-aerial"><span>img-aerial — bird's-eye view of the room sitting in a backyard. 4:3</span></div>
+  </div>
+</section>
+
+<!-- ============================ MODEL 01 · THE ROOM ============================ -->
+<section id="the-room" class="model-sec">
+  <div class="wrap">
+    <div class="model-head">
+      <div>
+        <p class="model-no">Model 01</p>
+        <h2 class="model-name">The Studio</h2>
+      </div>
+      <p class="model-price">From <span class="mkt" data-us="$24,900" data-ca="C$30,900">$24,900</span></p>
+    </div>
+    <p class="lede" style="margin-top: 18px;">
+      Finished walls, a Korean LVT floor and insulation on every side. One studio, four ways to use it.
+    </p>
+    <figure class="model-lead" style="margin-top: 28px;">
+      <img class="shot" id="img-room-exterior" src="images/room-exterior.jpg" alt="The Wavyroom Studio in a backyard: charred timber walls, a pitched shingle roof, sliding glass and an open door with a family on the deck" loading="lazy">
+      <figcaption class="cap"><b>The Studio</b><span><span class="mkt" data-us="119 sq ft, charred timber and a shingle roof" data-ca="80 sq ft, charred timber and a shingle roof">119 sq ft, charred timber and a shingle roof</span></span></figcaption>
+      <p class="fine">Exterior and interior views are renderings. Finishes, hardware and furnishings shown
+      are for illustration; furniture is not included and the delivered unit may differ in detail.</p>
+    </figure>
+    <div class="uses" style="margin-top: 32px;">
+      <article class="use">
+        <img class="shot ratio-45" id="img-office" src="images/room-office.jpg" alt="A backyard office inside a Wavyroom: desk, monitor and pegboard under a pitched wood ceiling" loading="lazy">
+        <span class="tag">Use 01</span>
+        <h3>Backyard office</h3>
+        <p>A door that closes and a commute of thirty seconds.</p>
+      </article>
+      <article class="use">
+        <img class="shot ratio-45" id="img-play" src="images/room-play.jpg" alt="A kids' playroom inside a Wavyroom: low shelves, a small table and children drawing" loading="lazy">
+        <span class="tag">Use 02</span>
+        <h3>Playroom for kids</h3>
+        <p>The mess lives out there. You can still see them from the kitchen.</p>
+      </article>
+      <article class="use">
+        <img class="shot ratio-45" id="img-yoga" src="images/room-yoga.jpg" alt="A yoga room inside a Wavyroom: an open floor, a mat and daylight from a tall window" loading="lazy">
+        <span class="tag">Use 03</span>
+        <h3>Yoga room</h3>
+        <p>A floor that's always clear, ten steps from your back door.</p>
+      </article>
+      <article class="use">
+        <img class="shot ratio-45" id="img-prayer" src="images/room-prayer.jpg" alt="A prayer room inside a Wavyroom: a kneeler, a small table and a wooden cross on the wall" loading="lazy">
+        <span class="tag">Use 04</span>
+        <h3>Prayer room</h3>
+        <p>A quiet room of your own, with a door you can close behind you.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MODEL 02 · THE SAUNA ============================ -->
+<section id="the-sauna" class="model-sec alt">
+  <div class="wrap">
+    <div class="model-head">
+      <div>
+        <p class="model-no">Model 02</p>
+        <h2 class="model-name">The Sauna</h2>
+      </div>
+      <p class="model-price">From <span class="mkt" data-us="$27,900" data-ca="C$35,900">$27,900</span></p>
+    </div>
+    <p class="lede" style="margin-top: 18px;">
+      <span class="mkt" data-us="Same shell, built out as a Finnish sauna." data-ca="Same shell and the same footprint as the Studio, built out as a Finnish sauna.">Same shell, built out as a Finnish sauna.</span> Cedar lining, a stone heater and benches along two walls.
+    </p>
+    <div class="mats" style="margin-top: 32px;">
+      <figure class="mat">
+        <img class="shot" src="images/sauna-exterior-evening.jpg" alt="Wavyroom sauna at dusk, window glowing" loading="lazy">
+        <figcaption class="cap"><b>Dark outside</b><span>Charred timber and a shingle roof</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-interior.jpg" alt="Cedar interior of a Wavyroom sauna, benches lit from below" loading="lazy">
+        <figcaption class="cap"><b>Warm inside</b><span>Cedar lining and built-in benches</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-loyly.jpg" alt="Water poured over hot stones in a Wavyroom sauna" loading="lazy">
+        <figcaption class="cap"><b>Stone heater</b><span>Pour water, raise the steam</span></figcaption>
+      </figure>
+      <figure class="mat">
+        <img class="shot" src="images/sauna-people.jpg" alt="People on the cedar benches inside a Wavyroom sauna" loading="lazy">
+        <figcaption class="cap"><b>Room for four</b><span>Benches along two walls</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="reelhead">
+      <h3>Not a render. Ours, in use.</h3>
+      <p>Filmed at our own sauna events in Korea &mdash; the same model that ships to North America.</p>
+      <p class="fine">Footage shows units in our Korean specification. Finish options, heater and interior
+      fittings supplied in North America may differ from what appears here.</p>
+    </div>
+    <div class="reels">
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-day-poster.jpg"
+               aria-label="A Wavyroom sauna in daylight, guests resting in chairs outside between rounds">
+          <source src="images/sauna-day.mp4" type="video/mp4">
+        </video>
+        <figcaption>Afternoon, doors open between rounds.</figcaption>
+      </figure>
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-dusk-poster.jpg"
+               aria-label="A Wavyroom sauna at dusk under string lights with a crowd of guests">
+          <source src="images/sauna-dusk.mp4" type="video/mp4">
+        </video>
+        <figcaption>Dusk. A full house, lights on.</figcaption>
+      </figure>
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-night-poster.jpg"
+               aria-label="Two Wavyroom saunas at night under string lights, warm light spilling from the glass doors">
+          <source src="images/sauna-night.mp4" type="video/mp4">
+        </video>
+        <figcaption>After dark. Charred timber, lit doorways.</figcaption>
+      </figure>
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-stove-poster.jpg"
+               aria-label="Inside a Wavyroom sauna: cedar walls and lit benches">
+          <source src="images/sauna-stove.mp4" type="video/mp4">
+        </video>
+        <figcaption>Inside. Cedar lining and lit benches.</figcaption>
+      </figure>
+    </div>
+
+    <div class="heater">
+      <div class="heater-shots">
+        <img src="images/heater-product.jpg" alt="Harvia Cilindro PC90E electric sauna heater, a black steel cylinder filled with stones" loading="lazy">
+        <img src="images/heater-in-sauna.jpg" alt="A Harvia Cilindro heater standing in a finished cedar sauna beside the benches" loading="lazy">
+      </div>
+      <div class="heater-txt">
+        <p class="eyebrow">The heater</p>
+        <h3>Harvia Cilindro, 9&nbsp;kW.</h3>
+        <p class="lede-s">Finnish-made, the heater most sauna builders specify. A tall column of stones
+        instead of a flat tray, so the heat comes off the whole height of the unit and the steam is
+        softer when you pour. Included in the price with its stones and digital controls.</p>
+        <dl class="hspec">
+          <div><dt>Model</dt><dd>Harvia Cilindro PC90E</dd></div>
+          <div><dt>Output</dt><dd>9.0 kW</dd></div>
+          <div><dt>Room volume</dt><dd>141&ndash;494 cu ft</dd></div>
+          <div><dt>Power</dt><dd>240V single phase, 37.5&nbsp;A nominal</dd></div>
+          <div><dt>Stones</dt><dd>200 lbs, included</dd></div>
+          <div><dt>Controls</dt><dd>Harvia digital control panel, included</dd></div>
+        </dl>
+        <p class="fine">Heater supply depends on Harvia&rsquo;s North American stock at the time your order
+        is built. If this model is unavailable we supply an equivalent heater of the same output class and
+        comparable specification, and tell you which one before your order is confirmed. The 9&nbsp;kW heater
+        needs a dedicated 240V circuit sized by your electrician; that work is quoted separately and is not
+        included in the price.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 중간 CTA ============================ -->
+<section class="midcta" id="midcta">
+  <div class="wrap mid-in">
+    <div>
+      <h3>Want the price for your yard?</h3>
+      <p>Leave your details and a Wavyroom specialist calls you back with a quote for your address,
+      usually within two business days.</p>
+    </div>
+    <form id="mid-form" novalidate>
+      <input id="m-name" name="name" type="text" autocomplete="name" placeholder="Full name" aria-label="Full name" required>
+      <input id="m-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" aria-label="Email address" required>
+      <input id="m-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone" aria-label="Phone number" required>
+      <input id="m-addr" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP" aria-label="City and ZIP" data-us-ph="City and ZIP" data-ca-ph="City and postal code" required>
+      <button class="btn btn-primary" type="submit" id="mid-btn">Get my price</button>
+    </form>
+    <p class="mid-msg" id="mid-msg" hidden>Thank you. A Wavyroom specialist will call you within two business days.</p>
+  </div>
+</section>
+
+<!-- ============================ SPECS ============================ -->
+<section class="specs" id="specs">
+  <div class="wrap">
+    <p class="eyebrow">What you're actually buying</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); color: #FFFFFF; max-width: 20ch;">Built like a house, not like a shed.</h2>
+    <p class="lede" style="margin-top: 18px;">
+      This is the part that explains the price. Every panel is cut, insulated and finished at our
+      factory before it ships, the same way we build our houses.
+    </p>
+
+    <div class="spec-grid">
+      <div class="spec">
+        <div class="k">Structure</div>
+        <div class="v">Wood frame</div>
+        <div class="d">2×4 and 2×6 framing with 18 mm OSB sheathing, built as finished panels.</div>
+      </div>
+      <div class="spec">
+        <div class="k">Insulation</div>
+        <div class="v">Glass or mineral wool</div>
+        <div class="d">Insulated walls, floor and roof with a vapor layer. Comfortable year-round.</div>
+      </div>
+      <div class="spec">
+        <div class="k">Exterior</div>
+        <div class="v">Charred timber</div>
+        <div class="d">Finished with two coats of oil stain. Ages quietly, no painting schedule.</div>
+      </div>
+      <div class="spec">
+        <div class="k">Roof</div>
+        <div class="v">Shingle + zinc</div>
+        <div class="d">Asphalt shingle roofing with zinc detailing at the edges.</div>
+      </div>
+    </div>
+
+    <div class="dims">
+      <div class="dim">
+        <div class="k">The Studio</div>
+        <div class="v"><span class="mkt" data-us="8'3&quot; × 14'5&quot;" data-ca="8'3&quot; × 9'8&quot;">8'3" × 14'5"</span></div>
+        <div class="m"><span class="mkt" data-us="119 sq ft · 2,513 × 4,403 mm" data-ca="80 sq ft · 2,513 × 2,960 mm">119 sq ft · 2,513 × 4,403 mm</span></div>
+      </div>
+      <div class="dim">
+        <div class="k">The Sauna</div>
+        <div class="v">8'3" × 9'8"</div>
+        <div class="m"><span class="mkt" data-us="80 sq ft &middot; the same shell, shorter" data-ca="80 sq ft &middot; 2,513 &times; 2,960 mm">80 sq ft · the same shell, shorter</span></div>
+      </div>
+    </div>
+
+
+    <p style="font-size: 13px; color: #A8A49C; margin-top: 22px;">
+      <span class="mkt" data-us="Both models use the same shell, the same roof and the same height; the Sauna is the shorter of the two." data-ca="Both models use the same shell, roof, height and footprint; only the interior differs.">Both models use the same shell, the same roof and the same height; the Sauna is the shorter of the two.</span> Footprints are measured to the outside of the wall.
+      <span class="only-us">Both sit under California's 120 sq ft permit threshold.</span><span class="only-ca">Both Canadian models sit under British Columbia's 10 m&sup2; permit threshold.</span>
+      Final dimensions are confirmed on the shop drawings before your order is
+      released to the factory. The Sauna uses cedar lining and a stone heater in place of the
+      standard interior.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ HOW IT ARRIVES ============================ -->
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it arrives</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 20ch;">From our factory to your lawn.</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-factory"/></svg></span>
+        <div class="n">STEP 01</div>
+        <h3>Built in the factory</h3>
+        <p>Panels cut, insulated and finished at our plant in Korea.</p>
+      </div>
+      <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-ship"/></svg></span>
+        <div class="n">STEP 02</div>
+        <h3><span class="mkt" data-us="Shipped to Los Angeles" data-ca="Shipped to Vancouver">Shipped to Los Angeles</span></h3>
+        <p><span class="mkt" data-us="Ocean freight to our LA warehouse, included in the price." data-ca="Ocean freight to our Port Coquitlam warehouse, included in the price.">Ocean freight to our LA warehouse, included in the price.</span></p>
+      </div>
+      <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg></span>
+        <div class="n">STEP 03</div>
+        <h3>Delivered to you</h3>
+        <p><span class="mkt" data-us="Local delivery from our LA warehouse to your address, quoted separately." data-ca="Local delivery from our Port Coquitlam warehouse to your address, quoted separately.">Local delivery from our LA warehouse to your address, quoted separately.</span></p>
+      </div>
+      <div class="step">
+        <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg></span>
+        <div class="n">STEP 04</div>
+        <h3>Up in three days or less</h3>
+        <p>Our crew sets it down and assembles it. Quoted separately from the kit.</p>
+        <p class="fine">Typical for a level, cleared site a truck can reach. Ground conditions, access
+        and weather can extend it.</p>
+      </div>
+    </div>
+    <div class="build-row">
+      <figure>
+        <img class="shot" src="images/factory.jpg" alt="Wavyroom crew framing a module inside the factory in Korea" loading="lazy">
+        <figcaption>Framed and finished in our factory.</figcaption>
+      </figure>
+      <figure>
+        <div class="ph ratio-43" id="img-shipping"><span>img-shipping</span></div>
+        <figcaption><span class="mkt" data-us="Shipped by ocean freight to Los Angeles." data-ca="Shipped by ocean freight to Vancouver.">Shipped by ocean freight to Los Angeles.</span></figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="images/assembly.jpg" alt="Wavyroom crew assembling panels in a customer's backyard" loading="lazy">
+        <figcaption>Assembled in your backyard, not built on site.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="filmblock">
+      <video class="film" playsinline muted loop autoplay preload="metadata"
+             poster="images/assembly-poster.jpg"
+             aria-label="Time-lapse of a Wavyroom being assembled in a backyard">
+        <source src="images/assembly-timelapse.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        <b>A full build, in twenty seconds.</b>
+        <span>Empty lawn to finished room. Our crew sets the floor, stands the panels, lands the roof
+        and closes the walls &mdash; three days or less on your property, with no foundation poured
+        and no framing cut on site.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ PRICING ============================ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="offer" id="offer-badge">Early bird pricing</div>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); margin-top: 22px;">Two models. One price each.</h2>
+    <p class="lede" style="margin-top: 16px;">
+      These are the two models we sell in <span class="mkt" data-us="the United States" data-ca="Canada">the United States</span>. The price covers the factory-built kit
+      and ocean freight to our <span class="mkt" data-us="Los Angeles" data-ca="Port Coquitlam">Los Angeles</span> warehouse. Local delivery from there,
+      backyard assembly and electrical are quoted separately for every address.
+    </p>
+
+    <div class="plans">
+      <div class="plan">
+        <img class="shot ratio-43" id="img-price-room" src="images/room-exterior.jpg" alt="The Wavyroom Studio seen from the backyard" loading="lazy" style="width:100%;object-fit:cover;border-radius:var(--r-m);margin-bottom:14px;">
+        <h3>The Studio</h3>
+        <p class="for">Backyard office · Playroom · Yoga · Prayer room</p>
+        <div class="price-row">
+          <span class="price-now"><span class="mkt" data-us="$24,900" data-ca="C$30,900">$24,900</span></span>
+          <span class="price-was"><span class="mkt" data-us="$26,900" data-ca="C$32,900">$26,900</span></span>
+          <span class="price-save"><span class="mkt" data-us="Save $2,000" data-ca="Save C$2,000">Save $2,000</span></span>
+        </div>
+        <ul>
+          <li><span>Factory-built kit, wood frame and insulated</span></li>
+          <li><span>Charred timber exterior, shingle and zinc roof</span></li>
+          <li><span>Interior wall panels and LVT flooring</span></li>
+          <li><span><span class="mkt" data-us="Ocean freight to our Los Angeles warehouse" data-ca="Ocean freight to our Port Coquitlam warehouse">Ocean freight to our Los Angeles warehouse</span></span></li>
+        </ul>
+        <a class="btn btn-primary" href="#claim">Get my price</a>
+      </div>
+
+      <div class="plan">
+        
+        <h3>The Sauna</h3>
+        <p class="for">Outdoor sauna. Cedar lining, stone heater, built-in bench</p>
+        <div class="price-row">
+          <span class="price-now"><span class="mkt" data-us="$27,900" data-ca="C$35,900">$27,900</span></span>
+          <span class="price-was"><span class="mkt" data-us="$29,900" data-ca="C$37,900">$29,900</span></span>
+          <span class="price-save"><span class="mkt" data-us="Save $2,000" data-ca="Save C$2,000">Save $2,000</span></span>
+        </div>
+        <ul>
+          <li><span>Everything in The Studio</span></li>
+          <li><span>Cedar interior lining and built-in bench</span></li>
+          <li><span>Harvia Cilindro 9&nbsp;kW heater, stones and digital controls</span></li>
+          <li><span>Sauna ventilation and heat-rated lighting</span></li>
+        </ul>
+        <a class="btn btn-primary" href="#claim">Get my price</a>
+      </div>
+    </div>
+
+    <div class="excluded">
+      <h4>Quoted separately</h4>
+      <ul>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg><span><span class="mkt" data-us="Local delivery from our Los Angeles warehouse to your address" data-ca="Local delivery from our Port Coquitlam warehouse to your address">Local delivery from our Los Angeles warehouse to your address</span></span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg><span>Assembly and installation in your backyard, by our crew</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-zap"/></svg><span>On-site electrical work and hookup, by a licensed electrician</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-pad"/></svg><span>A concrete pad or foundation mat, if you want one poured first</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-file"/></svg><span>Any permit your city requires. We'll help you find out what applies</span></li>
+      </ul>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 14px;">
+        <span class="mkt" data-us="Prices in US dollars. Sales tax is not included and appears as its own line on your quote," data-ca="Prices in Canadian dollars. GST and PST are not included and appear as their own lines on your quote,">Prices in US dollars. Sales tax is not included and appears as its own line on your quote,</span>
+        based on your delivery address. The items above depend on your site, so we price them for your address rather than publish an average &mdash; leave your details and a specialist comes back with the full number. Payment schedule and lead time are confirmed in your order.
+      </p>
+    </div>
+  </div>
+  <div class="wrap"><div class="fine-block">
+        <h4>Before you order</h4>
+        <div class="fine-rows">
+          <p class="fine-row"><b>Prices.</b> Quoted in <span class="mkt" data-us="US dollars" data-ca="Canadian dollars">US dollars</span> and current at the date of your written quote. Until an order
+          is confirmed, prices may change with exchange rates, tariffs and material costs. Your written
+          quote is what binds, not this page.</p>
+          <p class="fine-row"><b>Permits.</b> The size thresholds described on this page are general and change by
+          municipality. We do not certify that your project is exempt and we do not act as your
+          design professional. Your city&rsquo;s determination governs.</p>
+          <p class="fine-row"><b>Use.</b> These are detached accessory buildings, not dwelling units and not ADUs. Local
+          rules often restrict sleeping, cooking, plumbing or rental use in a structure of this class.
+          Confirm permitted use for your address before you order.</p>
+          <p class="fine-row"><b>Site readiness.</b> Prices and schedules assume a level, cleared site with truck access.
+          Grading, drainage, tree or fence removal, craning and long carries are not included.</p>
+          <p class="fine-row"><b>Electrical.</b> No power is run to the unit as supplied. All on-site electrical work is
+          performed by a licensed <span class="mkt" data-us="California" data-ca="British Columbia">California</span> electrician under a separate permit and is quoted separately.</p>
+          <p class="fine-row"><b>Lead time.</b> &ldquo;Within three months&rdquo; is our target from confirmed order to
+          completed assembly. Ocean freight, customs, permit review and weather are outside our control
+          and can move the date.</p>
+          <p class="fine-row"><b>Finishes.</b> Timber is a natural material. Grain, colour and the weathering of charred
+          cladding vary between units and over time, and are not defects.</p>
+          <p class="fine-row"><b>Warranty.</b> Structure and frame are warranted five years, workmanship and installation
+          one year, from completion. The warranty excludes customer negligence, unauthorised modification,
+          movement of ground or foundations not supplied by us, misuse, and damage from storm, flood,
+          fire or other events beyond normal weather. Full terms are issued with your order.</p>
+          <p class="fine-row"><b>Contact.</b> &ldquo;A specialist calls you within two business days&rdquo; is our service
+          target, not a guarantee. Leaving your details places no order and no obligation on either side.</p>
+        </div>
+      </div></div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">Before you ask</p>
+    <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 20ch;">You are not managing this yourself.</h2>
+    <p class="lede" style="margin-top: 18px; max-width: 54ch;">
+      We work with a licensed <span class="mkt" data-us="California" data-ca="British Columbia">California</span> general contractor. They handle the delivery, the assembly
+      and the local trades, so you have one number to call instead of five.
+    </p>
+
+    <div class="faq">
+      <details>
+        <summary>What does the whole thing cost, all in?</summary>
+        <div class="a">
+          <p>The price on this page covers the room itself and ocean freight to <span class="mkt" data-us="Los Angeles" data-ca="Vancouver">Los Angeles</span>. On top of
+          that come delivery to your yard, assembly, and the power run from your house.</p>
+          <p>We do not print numbers for those, and you should be careful with anyone who does. What
+          they cost depends on how far you are from <span class="mkt" data-us="Los Angeles" data-ca="Port Coquitlam">Los Angeles</span>, whether a truck can reach the spot,
+          how level your ground is and how far the electrical run is. A figure quoted before anyone has
+          looked at your yard is a guess, and guesses move in one direction later.</p>
+          <p><b>Your specialist prices every line for your actual address and sends it in writing.</b>
+          Nothing is charged until you have it in front of you.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My yard is bare dirt. Do I need to pour concrete first?</summary>
+        <div class="a">
+          <p>Usually not. The room sits on adjustable footings that our crew levels before assembly,
+          so most yards take it as they are. What decides it is the slope, the soil and how much the
+          ground moves when it rains.</p>
+          <p>Send photos and rough measurements of the spot and we will tell you straight. <b>If a pad
+          is genuinely worth pouring, our GC partner quotes it; if it is not, we say so.</b></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How does the power get there? Can I add air conditioning?</summary>
+        <div class="a">
+          <p>Running a circuit from your house to the room is licensed electrical work in <span class="mkt" data-us="California" data-ca="British Columbia">California</span>.
+          Our GC partner's electrician does it, or you can use your own. Either way it is a separate
+          line so you can see what you are paying for it.</p>
+          <p>Air conditioning is not part of the standard build. A mini-split is the usual answer, and
+          whether your city allows one in a detached backyard structure depends on how they classify
+          it. <b>We check that for your address before you order, not after.</b></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do I need a permit?</summary>
+        <div class="a">
+          <p class="only-us">Many California cities treat a detached structure under a certain size differently from
+          an ADU. In California that line is 120 square feet, which is why both of our models sit at or
+          under it. But cities read it differently and adding electrical usually moves it.</p>
+          <p class="only-ca">British Columbia exempts a detached, single-storey accessory building of
+          10 m&sup2; &mdash; about 108 square feet &mdash; from a building permit. <b>Both of our Canadian models are
+          80 sq ft, so both sit under that line.</b> The exemption covers the building permit only: zoning
+          setbacks, lot coverage and height limits still apply, any wiring needs its own electrical permit,
+          and a few municipalities ask for a notification form.</p>
+          <p><b>We do not guess and we do not promise you are exempt.</b> Our GC partner looks up what
+          your address requires and handles the filing if there is one. Any fee the city charges is
+          yours and is shown separately.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I'm in an HOA community. Will they approve it?</summary>
+        <div class="a">
+          <p>That is your HOA's decision, not ours. What we can do is give you a submission that looks
+          like a submission: drawings, dimensions, exterior finishes, siting and the structural basis,
+          rather than a brochure.</p>
+          <p>Send us your HOA's guidelines with your enquiry and we will tell you exactly which of
+          their requirements we can document for you.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is sales tax included?</summary>
+        <div class="a">
+          <p>No. Prices are before sales tax. How much applies, and to which lines, depends on your
+          delivery address and how the order is written, so we do not print a rate here that might be
+          wrong for your street.</p>
+          <p><b>Your quote shows the tax as its own line.</b></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What if something goes wrong after it is built?</summary>
+        <div class="a">
+          <p>The structure and the frame are warranted for <b>five years</b>. Workmanship and the
+          installation are warranted for <b>one year</b> from the day it is finished. Our <span class="mkt" data-us="California" data-ca="British Columbia">California</span>
+          GC partner handles the call-out, so you are not filing a claim across the Pacific.</p>
+          <p>Outside it: normal wear, weather damage, misuse or neglect, and anything changed or added
+          by another trade after handover. The full terms come with your quote, before you pay
+          anything.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Which models can I buy in <span class="mkt" data-us="the United States" data-ca="Canada">the United States</span>?</summary>
+        <div class="a">
+          <p>Two: <b>The Studio</b> and <b>The Sauna</b>, both on this page.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How long from order to a finished room in my yard?</summary>
+        <div class="a">
+          <p><b>Within three months of your order</b>, in your yard and finished. That covers the
+          build in our factory, ocean freight, local delivery and assembly. The part that happens on
+          your property takes three days or less.</p>
+          <p>You get a dated schedule with your quote, once we know your address and which model you
+          want.</p>
+        </div>
+      </details>
+    </div>
+
+    <p style="margin-top: 26px; font-size: 14px; color: var(--muted);">
+      Something not answered here? Put it in the form below, or email
+      <a href="mailto:hello@spacewavy.com" style="color: inherit;">hello@spacewavy.com</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ COMPANY ============================ -->
+<section id="company">
+  <div class="wrap">
+    <div class="co-top">
+      <div>
+        <p class="eyebrow">Who builds it</p>
+        <h2 style="font-size: clamp(28px, 5vw, 48px);">Six years.<br>300 homes.</h2>
+        <p class="lede" style="margin-top: 20px;">
+          Korea's No.1 prefab home manufacturer. Over six years we've designed, built and
+          delivered 300 homes. Your backyard room comes off the same line, built by the same people.
+        </p>
+        <p class="lede" style="margin-top: 16px;">
+          Korean construction is known for the quiet details: the joint you run a hand over, the
+          finish that still looks considered years later. We build that into something you can set
+          down on a lawn. We call it K-Home.
+        </p>
+      </div>
+      <img class="shot ratio-169" id="img-factory" src="images/factory-aerial.jpg" alt="Aerial view of the Wavyroom factory in Korea: three production halls and finished modules in the yard" loading="lazy">
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="n">6</div>
+        <div class="l">Years building homes in Korea</div>
+      </div>
+      <div class="stat">
+        <div class="n">300</div>
+        <div class="l">Homes designed, built and delivered</div>
+      </div>
+      <div class="stat">
+        <div class="n">No.1</div>
+        <div class="l">Prefab home manufacturer in Korea</div>
+      </div>
+    </div>
+
+    <div class="creds">
+      <div class="cred">
+        <h4>Registered with the U.S. government</h4>
+        <p>We're registered in SAM.gov, the U.S. federal procurement system.</p>
+        <div class="badges">
+          <span class="badge">SAM.gov registered</span>
+        </div>
+      </div>
+      <div class="cred">
+        <h4>Certified to international standards</h4>
+        <p>Our factory holds three ISO certifications covering quality, environmental management and workplace safety.</p>
+        <div class="badges">
+          <span class="badge">ISO 9001 · Quality</span>
+          <span class="badge">ISO 14001 · Environment</span>
+          <span class="badge">ISO 45001 · Safety</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LEAD CAPTURE ============================ -->
+<section class="capture" id="claim">
+  <div class="wrap cap-grid">
+    <div>
+      <p class="eyebrow">Start your order</p>
+      <h2 style="font-size: clamp(28px, 5vw, 46px); color: #FFFFFF;">Early-bird pricing<br>is open now.</h2>
+      <p class="lede" style="margin-top: 18px; color: #A8A49C;">
+        Leave your details and a Wavyroom specialist calls you back. They walk you through the
+        two models, look at your yard with you and give you a delivery date. Your early-bird price
+        is held while you decide, and the <span class="mkt" data-us="$200" data-ca="C$300">$200</span> comes off on top when you order.
+      </p>
+      <div class="coupon">
+        <div class="amt"><span class="mkt" data-us="$200" data-ca="C$300">$200</span></div>
+        <p>Your price when you order: The Studio <b style="color:#F3F2EF;"><span class="mkt" data-us="$24,700" data-ca="C$30,600">$24,700</span></b>, The Sauna <b style="color:#F3F2EF;"><span class="mkt" data-us="$27,700" data-ca="C$35,600">$27,700</span></b>. Early bird plus the <span class="mkt" data-us="$200" data-ca="C$300">$200</span>, no code to keep track of.</p>
+      </div>
+    </div>
+
+    <div>
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label for="f-name">Full name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jordan Reyes" required>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(213) 555-0147" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-address">Where would it go?</label>
+          <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP is enough to start" data-us-ph="City and ZIP is enough to start" data-ca-ph="City and postal code is enough to start" required>
+        </div>
+        <p class="err" id="form-err" hidden></p>
+        <button class="btn btn-primary" type="submit" id="submit-btn">Get my price</button>
+        <p class="form-status" id="form-status"></p>
+
+        <div class="next">
+          <div>
+            <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-send"/></svg></span>
+            <b>You send this</b>
+            <p><span class="mkt" data-us="City and ZIP is enough." data-ca="City and postal code is enough.">City and ZIP is enough.</span></p>
+          </div>
+          <div>
+            <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-phone"/></svg></span>
+            <b>We call you</b>
+            <p>Within two business days.</p>
+          </div>
+          <div>
+            <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-quote"/></svg></span>
+            <b>You get a quote</b>
+            <p>In writing, every line priced.</p>
+          </div>
+        </div>
+        <p class="consent">
+          We use your details to hold your price and to contact you about your backyard room.
+          We don't sell your information, and you can ask us to delete it any time.
+          <a href="privacy.html" style="color:inherit;">Privacy policy</a>.
+        </p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <h3>Your price is reserved.</h3>
+        <p>A Wavyroom specialist will call you within two business days to go through the model, your
+        yard and a delivery date. Your early-bird price and the $200 are registered under your name
+        and applied when you order.</p>
+        <div class="applied">
+          <div><span>The Studio, your price</span><b><span class="mkt" data-us="$24,700" data-ca="C$30,600">$24,700</span></b></div>
+          <div><span>The Sauna, your price</span><b><span class="mkt" data-us="$27,700" data-ca="C$35,600">$27,700</span></b></div>
+        </div>
+        <p style="margin-top: 18px;">Nothing is charged today. The call is to answer your questions and plan the install.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img class="brand" src="images/logo_white.png" alt="Wavyroom">
+      <p style="margin-top: 8px;">Spacewavy Co., Ltd.<br>Backyard rooms, built in a factory, assembled in days.</p>
+      <p style="margin-top: 14px;">hello@spacewavy.com<br>+82 2 6085 1896</p>
+      <p style="margin-top: 14px;"><a href="privacy.html" style="color:#CFCCC5;">Privacy policy</a></p>
+    </div>
+    <div class="addr">
+      <div>
+        <span>Headquarters</span>
+        17-10 Cheongdam-dong, Gangnam-gu<br>Seoul, Republic of Korea
+      </div>
+      <div>
+        <span>Factory</span>
+        33 Jeongoksandan 1-gil, Seosin-myeon<br>Hwaseong-si, Gyeonggi-do, Republic of Korea
+      </div>
+      <div>
+        <span class="mkt" data-us="United States" data-ca="Canada">United States</span>
+        <!-- TODO: 미국 법인 주소 -->
+        <span class="only-us">Wavyroom USA<br>Los Angeles, California</span><span class="only-ca">Wavyroom Canada<br>Port Coquitlam, British Columbia</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div class="s-txt"><b>Early bird pricing</b>We call you back, <span class="mkt" data-us="$200" data-ca="C$300">$200</span> off</div>
+  <a class="btn btn-primary" href="#claim">Get my price</a>
+</div>
+
+<script>
+  /* ====== CONFIG — paste your Google Apps Script web app URL here ====== */
+  var SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyAx0BShb-8VQ2Fdyk_D53qawlQSYm0tywOWx2ewTrY7sfDRjQtaxUHd2y7NKXzichx/exec";
+  var OFFER_ENDS      = "2026-10-30T23:59:59-07:00";
+  /* ===================================================================== */
+
+  (function () {
+    // Days remaining on the early-bird offer
+    try {
+      var end = new Date(OFFER_ENDS);
+      var days = Math.ceil((end - new Date()) / 86400000);
+      var badge = document.getElementById("offer-badge");
+      if (days <= 0 && badge) {
+        badge.textContent = "Standard pricing";
+      }
+    } catch (e) {}
+
+    // 모바일에서 폼을 입력하는 동안 하단 고정 바가 입력란을 가리지 않게 합니다.
+    try {
+      ["claim", "midcta"].forEach(function (id) {
+        var box = document.getElementById(id);
+        if (!box) return;
+        box.addEventListener("focusin", function () { document.body.classList.add("form-focus"); });
+        box.addEventListener("focusout", function () {
+          setTimeout(function () {
+            if (!box.contains(document.activeElement)) document.body.classList.remove("form-focus");
+          }, 80);
+        });
+      });
+    } catch (e) {}
+
+
+    // ---------- 등장 모션 ----------
+    // 섹션 요소를 화면에 들어올 때 한 번만 올려 보여줍니다. 같은 줄에 있는
+    // 카드들은 60ms씩 차이를 둬서 한꺼번에 튀어나오지 않게 합니다.
+    try {
+      document.documentElement.classList.add("ready");
+      var SEL = [
+        "#problem .eyebrow", "#problem h2", "#problem .lede", "#problem .cmp",
+        ".solution .eyebrow", ".solution h2", ".solution .lede", ".sol-list li",
+        ".model-head", "#the-room .lede", ".use", "#the-sauna .lede", ".mat",
+        ".specs .eyebrow", ".specs h2", ".dim",
+        "#how .eyebrow", "#how h2", ".step", ".build-row figure", ".filmblock", ".reelhead", ".reel", ".heater",
+        ".pricing .offer", ".pricing h2", ".pricing .lede", ".plan", ".excluded",
+        "#faq .eyebrow", "#faq h2", "#faq .lede", "#faq details",
+        "#company .eyebrow", "#company h2", "#company .lede", "#company .co-top > div",
+        ".stat", ".cert, .creds, .co-badges",
+        ".midcta h3", ".midcta p", "#mid-form", ".capture .eyebrow", ".capture h2", ".capture .lede", ".coupon", "#lead-form"
+      ].join(",");
+
+      var nodes = Array.prototype.slice.call(document.querySelectorAll(SEL));
+      if ("IntersectionObserver" in window && nodes.length) {
+        // 같은 부모 안에서 몇 번째인지 세어 지연을 줍니다.
+        var seen = new Map();
+        nodes.forEach(function (el) {
+          el.classList.add("reveal");
+          var k = el.parentNode;
+          var n = (seen.get(k) || 0);
+          seen.set(k, n + 1);
+          if (n) el.style.transitionDelay = Math.min(n * 60, 240) + "ms";
+        });
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+        nodes.forEach(function (el) { io.observe(el); });
+
+        // 안전장치: 빠르게 스크롤해서 관찰자가 놓친 요소가 숨은 채로 남지 않게 합니다.
+        var sweeping = false;
+        function sweep() {
+          sweeping = false;
+          for (var i = nodes.length - 1; i >= 0; i--) {
+            var el = nodes[i];
+            if (el.classList.contains("in")) continue;
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+              el.classList.add("in");
+              io.unobserve(el);
+            }
+          }
+        }
+        addEventListener("scroll", function () {
+          if (sweeping) return;
+          sweeping = true;
+          requestAnimationFrame(sweep);
+        }, { passive: true });
+        addEventListener("resize", sweep, { passive: true });
+        sweep();
+      }
+    } catch (e) {
+      document.documentElement.classList.remove("js");
+    }
+
+
+    // ---------- 중간 CTA (이메일만) ----------
+    try {
+      var mForm = document.getElementById("mid-form");
+      var mMsg  = document.getElementById("mid-msg");
+      var mIn   = document.getElementById("m-email");
+      var mName = document.getElementById("m-name");
+      var mPh   = document.getElementById("m-phone");
+      var mAddr = document.getElementById("m-addr");
+
+      mForm.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var f = {
+          name: mName.value.trim(),
+          email: mIn.value.trim(),
+          phone: mPh.value.trim(),
+          address: mAddr.value.trim()
+        };
+        [mName, mIn, mPh, mAddr].forEach(function (el) { el.setAttribute("aria-invalid", "false"); });
+
+        var bad = null;
+        if (!f.name) bad = mName;
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email)) bad = mIn;
+        else if (f.phone.replace(/\D/g, "").length < 10) bad = mPh;
+        else if (f.address.length < 4) bad = mAddr;
+        if (bad) { bad.setAttribute("aria-invalid", "true"); bad.focus(); return; }
+
+        document.getElementById("mid-btn").disabled = true;
+
+        var src = "mid-form";
+        try {
+          var q = new URLSearchParams(location.search);
+          src = (q.get("s") || q.get("utm_source") || "site") + " / mid-form";
+        } catch (e2) {}
+
+        var body = new URLSearchParams(Object.assign({}, f, {
+          source: src, page: location.href,
+          market: (window.wrMarket ? window.wrMarket() : "us").toUpperCase(),
+          submitted_at: new Date().toISOString()
+        }));
+        function ok() { mForm.hidden = true; mMsg.hidden = false; }
+        if (!SHEETS_ENDPOINT || SHEETS_ENDPOINT.indexOf("PASTE_") === 0) { ok(); return; }
+        fetch(SHEETS_ENDPOINT, { method: "POST", mode: "no-cors", body: body })
+          .then(ok)
+          .catch(function () {
+            document.getElementById("mid-btn").disabled = false;
+            mIn.setAttribute("aria-invalid", "true");
+          });
+      });
+    } catch (e) {}
+
+    var form = document.getElementById("lead-form");
+    var errEl = document.getElementById("form-err");
+    var statusEl = document.getElementById("form-status");
+    var btn = document.getElementById("submit-btn");
+    var done = document.getElementById("done");
+
+    function invalid(el, on) { el.setAttribute("aria-invalid", on ? "true" : "false"); }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      errEl.hidden = true;
+
+      var f = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        address: form.address.value.trim()
+      };
+      var bad = null;
+      if (!f.name) { bad = form.name; errEl.textContent = "Please enter your name."; }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email)) { bad = form.email; errEl.textContent = "That email address doesn't look right."; }
+      else if (f.phone.replace(/\D/g, "").length < 10) { bad = form.phone; errEl.textContent = "Please enter a phone number we can reach you on."; }
+      else if (f.address.length < 4) { bad = form.address; errEl.textContent = "Please tell us the city and ZIP where the room would go."; }
+
+      ["name", "email", "phone", "address"].forEach(function (k) { invalid(form[k], false); });
+      if (bad) { invalid(bad, true); errEl.hidden = false; bad.focus(); return; }
+
+      btn.disabled = true;
+      statusEl.textContent = "Sending…";
+
+      // ?s=... 로 어느 QR·채널에서 왔는지 구분합니다. 예: ?s=sign-sf-01
+      var src = "QR sign";
+      try {
+        var q = new URLSearchParams(location.search);
+        src = q.get("s") || q.get("utm_source") || src;
+      } catch (e) {}
+
+      var payload = new URLSearchParams(Object.assign({}, f, {
+        source: src,
+        market: (window.wrMarket ? window.wrMarket() : "us").toUpperCase(),
+        page: location.href,
+        submitted_at: new Date().toISOString()
+      }));
+
+      function finish() {
+        statusEl.textContent = "";
+        document.body.classList.remove("form-focus");
+        form.hidden = true;
+        done.hidden = false;
+        done.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      if (!SHEETS_ENDPOINT || SHEETS_ENDPOINT.indexOf("PASTE_") === 0) {
+        finish();
+        return;
+      }
+      fetch(SHEETS_ENDPOINT, { method: "POST", mode: "no-cors", body: payload })
+        .then(finish)
+        .catch(function () {
+          btn.disabled = false;
+          statusEl.textContent = "";
+          errEl.textContent = "We couldn't send that just now. Please try again, or email hello@spacewavy.com.";
+          errEl.hidden = false;
+        });
+    });
+  })();
+</script>
+
+<script>
+(function () {
+  var vids = document.querySelectorAll("video.film, video.reelv");
+  if (!vids.length) return;
+  var play = function (v) { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); };
+  if (!("IntersectionObserver" in window)) {
+    for (var i = 0; i < vids.length; i++) play(vids[i]);
+    return;
+  }
+  // 화면 밖이면 멈춰 모바일 데이터와 배터리를 아낍니다.
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) play(e.target);
+      else if (!e.target.paused) e.target.pause();
+    });
+  }, { threshold: 0.3 });
+  for (var j = 0; j < vids.length; j++) { vids[j].muted = true; io.observe(vids[j]); }
+})();
+</script>
+<script>
+(function () {
+  var KEY = "wr-market";
+  var CA_TZ = /^America\/(Vancouver|Edmonton|Winnipeg|Toronto|Halifax|St_Johns|Regina|Whitehorse|Yellowknife|Iqaluit|Moncton|Glace_Bay|Goose_Bay|Dawson_Creek|Fort_Nelson|Creston|Swift_Current|Rankin_Inlet|Resolute|Cambridge_Bay|Inuvik|Atikokan|Blanc-Sablon|Nipigon|Rainy_River|Thunder_Bay|Montreal|Toronto)$/;
+
+  function apply(m) {
+    document.documentElement.setAttribute("data-market", m);
+    var i, els = document.querySelectorAll(".mkt");
+    for (i = 0; i < els.length; i++) {
+      var v = els[i].getAttribute("data-" + m);
+      if (v !== null) els[i].textContent = v;
+    }
+    els = document.querySelectorAll("[data-" + m + "-ph]");
+    for (i = 0; i < els.length; i++) {
+      var ph = els[i].getAttribute("data-" + m + "-ph");
+      els[i].setAttribute("placeholder", ph);
+      if (els[i].hasAttribute("aria-label")) els[i].setAttribute("aria-label", ph);
+    }
+    els = document.querySelectorAll("[data-set-market]");
+    for (i = 0; i < els.length; i++) {
+      els[i].setAttribute("aria-pressed", els[i].getAttribute("data-set-market") === m ? "true" : "false");
+    }
+    try { localStorage.setItem(KEY, m); } catch (e) {}
+  }
+  window.wrMarket = function () { return document.documentElement.getAttribute("data-market") || "us"; };
+
+  var q = null, stored = null, tz = "";
+  try { q = new URLSearchParams(location.search).get("m"); } catch (e) {}
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+  var start = (q === "ca" || q === "us") ? q : (stored === "ca" || stored === "us" ? stored : (CA_TZ.test(tz) ? "ca" : "us"));
+  apply(start);
+
+  document.addEventListener("click", function (ev) {
+    var t = ev.target;
+    while (t && t.nodeType === 1) {
+      if (t.hasAttribute("data-set-market")) { apply(t.getAttribute("data-set-market")); return; }
+      t = t.parentElement;
+    }
+  });
+})();
+</script>
+</body>
+</html>
