@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="A factory-built backyard room, under 100 sq ft, up in three days or less. Office, guest room, playroom, yoga room, prayer room or outdoor sauna.">
+<meta name="description" content="A factory-built backyard room, 120 sq ft or under, up in three days or less. Backyard office, playroom, yoga room, prayer room or outdoor sauna.">
 <meta name="theme-color" content="#0E0E0D">
 <link rel="canonical" href="https://www.wavyroom.com/en/">
 <title>Backyard Room</title>
@@ -20,7 +20,7 @@
                          sauna-loyly / sauna-people
     How it arrives       images/factory.jpg, images/assembly.jpg
 
-    The Room (4 shots)   room-office / room-guest / room-play / room-yoga
+    The Studio (4 shots) room-office / room-play / room-yoga / room-prayer
 
   STILL NEEDED
     img-shipping   ocean freight / container shot, 4:3 landscape
@@ -143,6 +143,12 @@
   .ph.on-dark { background: #232320; border-color: #3A3934; }
   .ph.on-dark span { color: #A8A49C; }
   .ratio-32 { aspect-ratio: 3/2; }
+  .model-lead { margin: 0; }
+  .model-lead .shot { width: 100%; border-radius: var(--r-m); aspect-ratio: 3/2; height: auto; object-fit: cover; }
+  .model-lead:has(.ph) { display: none; }
+  .model-lead .cap { margin-top: 10px; display: grid; gap: 2px; }
+  .model-lead .cap b { font-size: 15px; font-weight: 700; color: var(--fg); }
+  .model-lead .cap span { font-size: 14px; color: var(--muted); }
   .ratio-43 { aspect-ratio: 4/3; }
   .ratio-45 { aspect-ratio: 4/5; }
   .ratio-11 { aspect-ratio: 1/1; }
@@ -219,7 +225,26 @@
   }
   .hero h1 { font-size: clamp(36px, 6.4vw, 68px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; text-wrap: balance; }
   .hero h1 em { font-style: normal; color: var(--lime); }
-  .hero-sub { margin-top: 16px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
+  /* 시장 전환 */
+  html[data-market="us"] .only-ca, html[data-market="ca"] .only-us { display: none !important; }
+  .mkt-switch { position: absolute; top: clamp(18px, 3vw, 30px); right: var(--gutter); z-index: 4;
+    display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px;
+    background: rgba(14,14,13,.55); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.22); }
+  .mkt-switch button { appearance: none; border: 0; cursor: pointer; font: inherit;
+    font-size: 13px; font-weight: 650; letter-spacing: -0.01em; line-height: 1;
+    padding: 8px 14px; border-radius: 999px; color: #E9E7E1; background: transparent;
+    transition: background .18s ease, color .18s ease; }
+  .mkt-switch button:hover { background: rgba(255,255,255,.12); }
+  .mkt-switch button[aria-pressed="true"] { background: var(--lime); color: #121212; }
+  .mkt-switch button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  @media (max-width: 460px) { .mkt-switch button { padding: 7px 11px; font-size: 12px; } }
+
+  .hero-promise { margin-top: 14px; color: #FFFFFF; font-weight: 650;
+    font-size: clamp(19px, 2.7vw, 27px); line-height: 1.3; letter-spacing: -0.02em;
+    text-wrap: balance; max-width: 22ch; }
+
+  .hero-sub { margin-top: 10px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
   @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 540px; } }
   /* 모바일에서는 사진 전체를 먼저 보여주고 글은 그 아래에 둡니다. */
   @media (max-width: 759px) {
@@ -264,8 +289,8 @@
   .uses { display: grid; gap: 18px; margin-top: 44px; grid-template-columns: 1fr; }
   @media (min-width: 560px) { .uses { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1000px) { .uses { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1240px) { #the-room .uses { grid-template-columns: repeat(5, 1fr); gap: 14px; } }
+  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1240px) { #the-room .uses { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
   .use { min-width: 0; display: flex; flex-direction: column; }
   /* aspect-ratio가 그리드 늘림에 눌리지 않게 합니다. */
   .use .shot, .use .ph { height: auto; margin-bottom: 12px; border-radius: var(--r-m); }
@@ -398,6 +423,52 @@
   .build-row figcaption { margin-top: 9px; font-size: 13px; line-height: 1.45; color: var(--muted); }
   /* 사진이 아직 없는 칸은 설명글까지 통째로 숨깁니다. */
   .build-row figure:has(.ph) { display: none; }
+
+  /* 히터 */
+  .heater { margin-top: 44px; display: grid; gap: 22px; align-items: start; }
+  @media (min-width: 860px) { .heater { grid-template-columns: 0.85fr 1.15fr; gap: 34px; } }
+  .heater-shots { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 10px; align-items: stretch; }
+  .heater-shots img { width: 100%; height: 100%; border-radius: var(--r-m); aspect-ratio: 3/4; }
+  .heater-shots img:first-child { object-fit: contain; background: #FFFFFF; padding: 14px; }
+  .heater-shots img:last-child  { object-fit: cover; }
+  .heater-txt h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 750; letter-spacing: -0.035em; margin-top: 6px; }
+  .lede-s { margin-top: 10px; font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 48ch; }
+  .hspec { margin: 18px 0 0; display: grid; gap: 0; max-width: 460px; }
+  .hspec > div { display: flex; justify-content: space-between; gap: 16px;
+                 padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .hspec dt { font-size: 13px; color: var(--muted); margin: 0; }
+  .hspec dd { font-size: 13px; font-weight: 650; color: var(--fg); margin: 0; text-align: right; }
+
+  /* 안내 문구 */
+  .fine { margin-top: 14px; font-size: 12px; line-height: 1.55; color: var(--muted); max-width: 62ch; }
+  .fine-block { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .fine-block h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--muted); }
+  .fine-rows { margin-top: 10px; display: grid; gap: 8px; max-width: 86ch; }
+  .fine-row { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted);
+              padding-left: 13px; position: relative; }
+  .fine-row::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 4px;
+                      border-radius: 50%; background: var(--border); }
+  .fine-row b { color: var(--fg); font-weight: 650; }
+
+  /* 실사용 세로 영상 */
+  .reelhead { margin-top: 40px; max-width: 54ch; }
+  .reelhead h3 { font-size: clamp(20px, 2.6vw, 26px); font-weight: 750; letter-spacing: -0.03em; }
+  .reelhead p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+  .reels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; max-width: 960px; }
+  @media (min-width: 720px) { .reels { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  .reel { margin: 0; }
+  .reelv { width: 100%; display: block; aspect-ratio: 9/16; height: auto; object-fit: cover;
+           border-radius: var(--r-m); background: #15150F; }
+  .reel figcaption { margin-top: 9px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+  @media (max-width: 560px) { .reels { gap: 8px; } .reel figcaption { font-size: 11.5px; margin-top: 7px; } }
+
+  /* 조립 타임랩스 */
+  .filmblock { margin: 36px 0 0; max-width: 900px; }
+  .film { width: 100%; display: block; aspect-ratio: 16/9; height: auto;
+          border-radius: var(--r-m); background: #15150F; object-fit: cover; }
+  .filmblock figcaption { margin-top: 12px; display: grid; gap: 4px; max-width: 62ch; }
+  .filmblock figcaption b { font-size: 15px; font-weight: 700; color: var(--fg); }
+  .filmblock figcaption span { font-size: 14px; line-height: 1.55; color: var(--muted); }
 
   /* ---------- company ---------- */
   .co-top { display: grid; gap: 30px; }
@@ -639,11 +710,16 @@
   </div>
   <div class="hero-inner">
     <img class="hero-mark" src="images/logo_white.png" alt="Wavyroom">
+    <div class="mkt-switch" role="group" aria-label="Choose your country">
+      <button type="button" data-set-market="us" aria-pressed="true">US</button>
+      <button type="button" data-set-market="ca" aria-pressed="false">Canada</button>
+    </div>
     <div class="wrap">
       <h1>Your backyard<br>is <em>boring.</em></h1>
-      <p class="hero-sub">Got a backyard? Get a Wavyroom.<br>Up in three days or less, under 100 sq ft.</p>
+      <p class="hero-promise">We fix that in three days.</p>
+      <p class="hero-sub"><span class="only-us">A factory-built room, 120 sq ft or under, finished inside and out.</span><span class="only-ca">A factory-built room, 80 sq ft, finished inside and out. Under BC's building-permit line.</span></p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#claim">Reserve your price</a>
+        <a class="btn btn-primary" href="#claim">Get my price</a>
         <a class="btn btn-ghost" href="#pricing">See pricing</a>
       </div>
     </div>
@@ -683,12 +759,12 @@
       <h2 style="font-size: clamp(28px, 5vw, 48px);">A real room. Small enough to skip the year-long build.</h2>
       <p class="lede" style="margin-top: 18px;">
         A factory-built room that lands on your lawn. Wood structure, insulated walls, finished
-        inside and out, with a footprint under 100 square feet.
+        inside and out. <span class="mkt" data-us="The Studio is 119 sq ft; the Sauna is 80 sq ft." data-ca="Both models are 80 sq ft in Canada.">The Studio is 119 sq ft; the Sauna is 80 sq ft.</span>
       </p>
       <ul class="sol-list">
         <li>
           <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-size"/></svg></span>
-          <span><strong>Under 100 sq ft</strong><span class="d">Many cities treat small backyard structures differently from an ADU. Rules vary, so we help you check yours before you order.</span></span>
+          <span class="only-us"><strong>120 sq ft or under</strong><span class="d">California exempts a detached accessory structure of 120 sq ft or less from a building permit. Cities read that line differently and electrical usually changes it, so we check your address before you order.</span></span><span class="only-ca"><strong>Under BC's permit line</strong><span class="d">British Columbia exempts a detached accessory building of 10 m&sup2; (108 sq ft) or less from a building permit. Both Canadian models are 80 sq ft, so they sit under it. Zoning setbacks still apply and wiring needs its own electrical permit, and we check your municipality before you order.</span></span>
         </li>
         <li>
           <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-layers"/></svg></span>
@@ -710,13 +786,19 @@
     <div class="model-head">
       <div>
         <p class="model-no">Model 01</p>
-        <h2 class="model-name">The Room</h2>
+        <h2 class="model-name">The Studio</h2>
       </div>
-      <p class="model-price">From $21,900</p>
+      <p class="model-price">From <span class="mkt" data-us="$24,900" data-ca="C$30,900">$24,900</span></p>
     </div>
     <p class="lede" style="margin-top: 18px;">
-      Finished walls, a Korean LVT floor and insulation on every side. One room, five ways to use it.
+      Finished walls, a Korean LVT floor and insulation on every side. One studio, four ways to use it.
     </p>
+    <figure class="model-lead" style="margin-top: 28px;">
+      <img class="shot" id="img-room-exterior" src="images/room-exterior.jpg" alt="The Wavyroom Studio in a backyard: charred timber walls, a pitched shingle roof, sliding glass and an open door with a family on the deck" loading="lazy">
+      <figcaption class="cap"><b>The Studio</b><span><span class="mkt" data-us="119 sq ft, charred timber and a shingle roof" data-ca="80 sq ft, charred timber and a shingle roof">119 sq ft, charred timber and a shingle roof</span></span></figcaption>
+      <p class="fine">Exterior and interior views are renderings. Finishes, hardware and furnishings shown
+      are for illustration; furniture is not included and the delivered unit may differ in detail.</p>
+    </figure>
     <div class="uses" style="margin-top: 32px;">
       <article class="use">
         <img class="shot ratio-45" id="img-office" src="images/room-office.jpg" alt="A backyard office inside a Wavyroom: desk, monitor and pegboard under a pitched wood ceiling" loading="lazy">
@@ -725,26 +807,20 @@
         <p>A door that closes and a commute of thirty seconds.</p>
       </article>
       <article class="use">
-        <img class="shot ratio-45" id="img-guest" src="images/room-guest.jpg" alt="A guest room inside a Wavyroom: a made bed under a pitched wood ceiling in morning light" loading="lazy">
-        <span class="tag">Use 02</span>
-        <h3>Guest room</h3>
-        <p>Family stays the weekend without anyone giving up a bedroom.</p>
-      </article>
-      <article class="use">
         <img class="shot ratio-45" id="img-play" src="images/room-play.jpg" alt="A kids' playroom inside a Wavyroom: low shelves, a small table and children drawing" loading="lazy">
-        <span class="tag">Use 03</span>
+        <span class="tag">Use 02</span>
         <h3>Playroom for kids</h3>
         <p>The mess lives out there. You can still see them from the kitchen.</p>
       </article>
       <article class="use">
         <img class="shot ratio-45" id="img-yoga" src="images/room-yoga.jpg" alt="A yoga room inside a Wavyroom: an open floor, a mat and daylight from a tall window" loading="lazy">
-        <span class="tag">Use 04</span>
+        <span class="tag">Use 03</span>
         <h3>Yoga room</h3>
         <p>A floor that's always clear, ten steps from your back door.</p>
       </article>
       <article class="use">
         <img class="shot ratio-45" id="img-prayer" src="images/room-prayer.jpg" alt="A prayer room inside a Wavyroom: a kneeler, a small table and a wooden cross on the wall" loading="lazy">
-        <span class="tag">Use 05</span>
+        <span class="tag">Use 04</span>
         <h3>Prayer room</h3>
         <p>A quiet room of your own, with a door you can close behind you.</p>
       </article>
@@ -760,10 +836,10 @@
         <p class="model-no">Model 02</p>
         <h2 class="model-name">The Sauna</h2>
       </div>
-      <p class="model-price">From $24,900</p>
+      <p class="model-price">From <span class="mkt" data-us="$27,900" data-ca="C$35,900">$27,900</span></p>
     </div>
     <p class="lede" style="margin-top: 18px;">
-      Same shell, built out as a Finnish sauna. Cedar lining, a stone heater and benches along two walls.
+      <span class="mkt" data-us="Same shell, built out as a Finnish sauna." data-ca="Same shell and the same footprint as the Studio, built out as a Finnish sauna.">Same shell, built out as a Finnish sauna.</span> Cedar lining, a stone heater and benches along two walls.
     </p>
     <div class="mats" style="margin-top: 32px;">
       <figure class="mat">
@@ -783,6 +859,70 @@
         <figcaption class="cap"><b>Room for four</b><span>Benches along two walls</span></figcaption>
       </figure>
     </div>
+
+    <div class="reelhead">
+      <h3>Not a render. Ours, in use.</h3>
+      <p>Filmed at our own sauna events in Korea &mdash; the same model that ships to North America.</p>
+      <p class="fine">Footage shows units in our Korean specification. Finish options, heater and interior
+      fittings supplied in North America may differ from what appears here.</p>
+    </div>
+    <div class="reels">
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-day-poster.jpg"
+               aria-label="A Wavyroom sauna in daylight, guests resting in chairs outside between rounds">
+          <source src="images/sauna-day.mp4" type="video/mp4">
+        </video>
+        <figcaption>Afternoon, doors open between rounds.</figcaption>
+      </figure>
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-dusk-poster.jpg"
+               aria-label="A Wavyroom sauna at dusk under string lights with a crowd of guests">
+          <source src="images/sauna-dusk.mp4" type="video/mp4">
+        </video>
+        <figcaption>Dusk. A full house, lights on.</figcaption>
+      </figure>
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-night-poster.jpg"
+               aria-label="Two Wavyroom saunas at night under string lights, warm light spilling from the glass doors">
+          <source src="images/sauna-night.mp4" type="video/mp4">
+        </video>
+        <figcaption>After dark. Charred timber, lit doorways.</figcaption>
+      </figure>
+      <figure class="reel">
+        <video class="reelv" playsinline muted loop preload="none" poster="images/sauna-stove-poster.jpg"
+               aria-label="Inside a Wavyroom sauna: cedar walls and lit benches">
+          <source src="images/sauna-stove.mp4" type="video/mp4">
+        </video>
+        <figcaption>Inside. Cedar lining and lit benches.</figcaption>
+      </figure>
+    </div>
+
+    <div class="heater">
+      <div class="heater-shots">
+        <img src="images/heater-product.jpg" alt="Harvia Cilindro PC90E electric sauna heater, a black steel cylinder filled with stones" loading="lazy">
+        <img src="images/heater-in-sauna.jpg" alt="A Harvia Cilindro heater standing in a finished cedar sauna beside the benches" loading="lazy">
+      </div>
+      <div class="heater-txt">
+        <p class="eyebrow">The heater</p>
+        <h3>Harvia Cilindro, 9&nbsp;kW.</h3>
+        <p class="lede-s">Finnish-made, the heater most sauna builders specify. A tall column of stones
+        instead of a flat tray, so the heat comes off the whole height of the unit and the steam is
+        softer when you pour. Included in the price with its stones and digital controls.</p>
+        <dl class="hspec">
+          <div><dt>Model</dt><dd>Harvia Cilindro PC90E</dd></div>
+          <div><dt>Output</dt><dd>9.0 kW</dd></div>
+          <div><dt>Room volume</dt><dd>141&ndash;494 cu ft</dd></div>
+          <div><dt>Power</dt><dd>240V single phase, 37.5&nbsp;A nominal</dd></div>
+          <div><dt>Stones</dt><dd>200 lbs, included</dd></div>
+          <div><dt>Controls</dt><dd>Harvia digital control panel, included</dd></div>
+        </dl>
+        <p class="fine">Heater supply depends on Harvia&rsquo;s North American stock at the time your order
+        is built. If this model is unavailable we supply an equivalent heater of the same output class and
+        comparable specification, and tell you which one before your order is confirmed. The 9&nbsp;kW heater
+        needs a dedicated 240V circuit sized by your electrician; that work is quoted separately and is not
+        included in the price.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -798,8 +938,8 @@
       <input id="m-name" name="name" type="text" autocomplete="name" placeholder="Full name" aria-label="Full name" required>
       <input id="m-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" aria-label="Email address" required>
       <input id="m-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone" aria-label="Phone number" required>
-      <input id="m-addr" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP" aria-label="City and ZIP" required>
-      <button class="btn btn-primary" type="submit" id="mid-btn">Get my quote</button>
+      <input id="m-addr" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP" aria-label="City and ZIP" data-us-ph="City and ZIP" data-ca-ph="City and postal code" required>
+      <button class="btn btn-primary" type="submit" id="mid-btn">Get my price</button>
     </form>
     <p class="mid-msg" id="mid-msg" hidden>Thank you. A Wavyroom specialist will call you within two business days.</p>
   </div>
@@ -840,21 +980,24 @@
 
     <div class="dims">
       <div class="dim">
-        <div class="k">Footprint</div>
-        <div class="v">Under 100 sq ft</div>
-        <div class="m">Roof footprint 8'10" × 11'2" · 2,700 × 3,400 mm</div>
+        <div class="k">The Studio</div>
+        <div class="v"><span class="mkt" data-us="8'3&quot; × 14'5&quot;" data-ca="8'3&quot; × 9'8&quot;">8'3" × 14'5"</span></div>
+        <div class="m"><span class="mkt" data-us="119 sq ft · 2,513 × 4,403 mm" data-ca="80 sq ft · 2,513 × 2,960 mm">119 sq ft · 2,513 × 4,403 mm</span></div>
       </div>
       <div class="dim">
-        <div class="k">Exterior (W × L × H)</div>
-        <div class="v">8'0" × 8'6" × 9'9"</div>
-        <div class="m">2,440 × 2,600 × 2,960 mm</div>
+        <div class="k">The Sauna</div>
+        <div class="v">8'3" × 9'8"</div>
+        <div class="m"><span class="mkt" data-us="80 sq ft &middot; the same shell, shorter" data-ca="80 sq ft &middot; 2,513 &times; 2,960 mm">80 sq ft · the same shell, shorter</span></div>
       </div>
     </div>
 
 
     <p style="font-size: 13px; color: #A8A49C; margin-top: 22px;">
-      Dimensions are nominal and confirmed on the final shop drawings. The sauna model uses cedar
-      lining and a stone heater in place of the standard interior.
+      <span class="mkt" data-us="Both models use the same shell, the same roof and the same height; the Sauna is the shorter of the two." data-ca="Both models use the same shell, roof, height and footprint; only the interior differs.">Both models use the same shell, the same roof and the same height; the Sauna is the shorter of the two.</span> Footprints are measured to the outside of the wall.
+      <span class="only-us">Both sit under California's 120 sq ft permit threshold.</span><span class="only-ca">Both Canadian models sit under British Columbia's 10 m&sup2; permit threshold.</span>
+      Final dimensions are confirmed on the shop drawings before your order is
+      released to the factory. The Sauna uses cedar lining and a stone heater in place of the
+      standard interior.
     </p>
   </div>
 </section>
@@ -874,20 +1017,22 @@
       <div class="step">
         <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-ship"/></svg></span>
         <div class="n">STEP 02</div>
-        <h3>Shipped to Los Angeles</h3>
-        <p>Ocean freight to our LA warehouse, included in the price.</p>
+        <h3><span class="mkt" data-us="Shipped to Los Angeles" data-ca="Shipped to Vancouver">Shipped to Los Angeles</span></h3>
+        <p><span class="mkt" data-us="Ocean freight to our LA warehouse, included in the price." data-ca="Ocean freight to our Port Coquitlam warehouse, included in the price.">Ocean freight to our LA warehouse, included in the price.</span></p>
       </div>
       <div class="step">
         <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg></span>
         <div class="n">STEP 03</div>
         <h3>Delivered to you</h3>
-        <p>Local delivery from the warehouse to your address, quoted separately.</p>
+        <p><span class="mkt" data-us="Local delivery from our LA warehouse to your address, quoted separately." data-ca="Local delivery from our Port Coquitlam warehouse to your address, quoted separately.">Local delivery from our LA warehouse to your address, quoted separately.</span></p>
       </div>
       <div class="step">
         <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg></span>
         <div class="n">STEP 04</div>
         <h3>Up in three days or less</h3>
         <p>Our crew sets it down and assembles it. Quoted separately from the kit.</p>
+        <p class="fine">Typical for a level, cleared site a truck can reach. Ground conditions, access
+        and weather can extend it.</p>
       </div>
     </div>
     <div class="build-row">
@@ -897,44 +1042,58 @@
       </figure>
       <figure>
         <div class="ph ratio-43" id="img-shipping"><span>img-shipping</span></div>
-        <figcaption>Shipped by ocean freight to Los Angeles.</figcaption>
+        <figcaption><span class="mkt" data-us="Shipped by ocean freight to Los Angeles." data-ca="Shipped by ocean freight to Vancouver.">Shipped by ocean freight to Los Angeles.</span></figcaption>
       </figure>
       <figure>
         <img class="shot" src="images/assembly.jpg" alt="Wavyroom crew assembling panels in a customer's backyard" loading="lazy">
         <figcaption>Assembled in your backyard, not built on site.</figcaption>
       </figure>
     </div>
+
+    <figure class="filmblock">
+      <video class="film" playsinline muted loop autoplay preload="metadata"
+             poster="images/assembly-poster.jpg"
+             aria-label="Time-lapse of a Wavyroom being assembled in a backyard">
+        <source src="images/assembly-timelapse.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        <b>A full build, in twenty seconds.</b>
+        <span>Empty lawn to finished room. Our crew sets the floor, stands the panels, lands the roof
+        and closes the walls &mdash; three days or less on your property, with no foundation poured
+        and no framing cut on site.</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- ============================ PRICING ============================ -->
 <section class="pricing" id="pricing">
   <div class="wrap">
-    <div class="offer" id="offer-badge">Early bird · through October 30, 2026</div>
+    <div class="offer" id="offer-badge">Early bird pricing</div>
     <h2 style="font-size: clamp(28px, 5vw, 48px); margin-top: 22px;">Two models. One price each.</h2>
     <p class="lede" style="margin-top: 16px;">
-      These are the two models we sell in the United States. The price covers the factory-built kit
-      and ocean freight to our Los Angeles warehouse. Local delivery from there and backyard assembly
-      are quoted separately.
+      These are the two models we sell in <span class="mkt" data-us="the United States" data-ca="Canada">the United States</span>. The price covers the factory-built kit
+      and ocean freight to our <span class="mkt" data-us="Los Angeles" data-ca="Port Coquitlam">Los Angeles</span> warehouse. Local delivery from there,
+      backyard assembly and electrical are quoted separately for every address.
     </p>
 
     <div class="plans">
       <div class="plan">
-        <div class="ph ratio-43" id="img-price-room"><span>img-price-room — The Room, exterior. 4:3</span></div>
-        <h3>The Room</h3>
-        <p class="for">Backyard office · Guest room · Playroom · Yoga · Prayer room</p>
+        <img class="shot ratio-43" id="img-price-room" src="images/room-exterior.jpg" alt="The Wavyroom Studio seen from the backyard" loading="lazy" style="width:100%;object-fit:cover;border-radius:var(--r-m);margin-bottom:14px;">
+        <h3>The Studio</h3>
+        <p class="for">Backyard office · Playroom · Yoga · Prayer room</p>
         <div class="price-row">
-          <span class="price-now">$21,900</span>
-          <span class="price-was">$23,500</span>
-          <span class="price-save">Save $1,600</span>
+          <span class="price-now"><span class="mkt" data-us="$24,900" data-ca="C$30,900">$24,900</span></span>
+          <span class="price-was"><span class="mkt" data-us="$26,900" data-ca="C$32,900">$26,900</span></span>
+          <span class="price-save"><span class="mkt" data-us="Save $2,000" data-ca="Save C$2,000">Save $2,000</span></span>
         </div>
         <ul>
           <li><span>Factory-built kit, wood frame and insulated</span></li>
           <li><span>Charred timber exterior, shingle and zinc roof</span></li>
           <li><span>Interior wall panels and LVT flooring</span></li>
-          <li><span>Ocean freight to our Los Angeles warehouse</span></li>
+          <li><span><span class="mkt" data-us="Ocean freight to our Los Angeles warehouse" data-ca="Ocean freight to our Port Coquitlam warehouse">Ocean freight to our Los Angeles warehouse</span></span></li>
         </ul>
-        <a class="btn btn-primary" href="#claim">Reserve The Room</a>
+        <a class="btn btn-primary" href="#claim">Get my price</a>
       </div>
 
       <div class="plan">
@@ -942,35 +1101,64 @@
         <h3>The Sauna</h3>
         <p class="for">Outdoor sauna. Cedar lining, stone heater, built-in bench</p>
         <div class="price-row">
-          <span class="price-now">$24,900</span>
-          <span class="price-was">$27,900</span>
-          <span class="price-save">Save $3,000</span>
+          <span class="price-now"><span class="mkt" data-us="$27,900" data-ca="C$35,900">$27,900</span></span>
+          <span class="price-was"><span class="mkt" data-us="$29,900" data-ca="C$37,900">$29,900</span></span>
+          <span class="price-save"><span class="mkt" data-us="Save $2,000" data-ca="Save C$2,000">Save $2,000</span></span>
         </div>
         <ul>
-          <li><span>Everything in The Room</span></li>
+          <li><span>Everything in The Studio</span></li>
           <li><span>Cedar interior lining and built-in bench</span></li>
-          <li><span>Electric stone heater and controls</span></li>
+          <li><span>Harvia Cilindro 9&nbsp;kW heater, stones and digital controls</span></li>
           <li><span>Sauna ventilation and heat-rated lighting</span></li>
         </ul>
-        <a class="btn btn-primary" href="#claim">Reserve The Sauna</a>
+        <a class="btn btn-primary" href="#claim">Get my price</a>
       </div>
     </div>
 
     <div class="excluded">
       <h4>Quoted separately</h4>
       <ul>
-        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg><span>Local delivery from our Los Angeles warehouse to your address</span></li>
+        <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-truck"/></svg><span><span class="mkt" data-us="Local delivery from our Los Angeles warehouse to your address" data-ca="Local delivery from our Port Coquitlam warehouse to your address">Local delivery from our Los Angeles warehouse to your address</span></span></li>
         <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-box"/></svg><span>Assembly and installation in your backyard, by our crew</span></li>
         <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-zap"/></svg><span>On-site electrical work and hookup, by a licensed electrician</span></li>
         <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-pad"/></svg><span>A concrete pad or foundation mat, if you want one poured first</span></li>
         <li><svg class="ic" viewBox="0 0 24 24"><use href="#ic-file"/></svg><span>Any permit your city requires. We'll help you find out what applies</span></li>
       </ul>
       <p style="font-size: 13px; color: var(--muted); margin-top: 14px;">
-        Prices in US dollars. Sales tax is not included and appears as its own line on your quote,
-        based on your delivery address. Payment schedule and lead time are confirmed in your order.
+        <span class="mkt" data-us="Prices in US dollars. Sales tax is not included and appears as its own line on your quote," data-ca="Prices in Canadian dollars. GST and PST are not included and appear as their own lines on your quote,">Prices in US dollars. Sales tax is not included and appears as its own line on your quote,</span>
+        based on your delivery address. The items above depend on your site, so we price them for your address rather than publish an average &mdash; leave your details and a specialist comes back with the full number. Payment schedule and lead time are confirmed in your order.
       </p>
     </div>
   </div>
+  <div class="wrap"><div class="fine-block">
+        <h4>Before you order</h4>
+        <div class="fine-rows">
+          <p class="fine-row"><b>Prices.</b> Quoted in <span class="mkt" data-us="US dollars" data-ca="Canadian dollars">US dollars</span> and current at the date of your written quote. Until an order
+          is confirmed, prices may change with exchange rates, tariffs and material costs. Your written
+          quote is what binds, not this page.</p>
+          <p class="fine-row"><b>Permits.</b> The size thresholds described on this page are general and change by
+          municipality. We do not certify that your project is exempt and we do not act as your
+          design professional. Your city&rsquo;s determination governs.</p>
+          <p class="fine-row"><b>Use.</b> These are detached accessory buildings, not dwelling units and not ADUs. Local
+          rules often restrict sleeping, cooking, plumbing or rental use in a structure of this class.
+          Confirm permitted use for your address before you order.</p>
+          <p class="fine-row"><b>Site readiness.</b> Prices and schedules assume a level, cleared site with truck access.
+          Grading, drainage, tree or fence removal, craning and long carries are not included.</p>
+          <p class="fine-row"><b>Electrical.</b> No power is run to the unit as supplied. All on-site electrical work is
+          performed by a licensed <span class="mkt" data-us="California" data-ca="British Columbia">California</span> electrician under a separate permit and is quoted separately.</p>
+          <p class="fine-row"><b>Lead time.</b> &ldquo;Within three months&rdquo; is our target from confirmed order to
+          completed assembly. Ocean freight, customs, permit review and weather are outside our control
+          and can move the date.</p>
+          <p class="fine-row"><b>Finishes.</b> Timber is a natural material. Grain, colour and the weathering of charred
+          cladding vary between units and over time, and are not defects.</p>
+          <p class="fine-row"><b>Warranty.</b> Structure and frame are warranted five years, workmanship and installation
+          one year, from completion. The warranty excludes customer negligence, unauthorised modification,
+          movement of ground or foundations not supplied by us, misuse, and damage from storm, flood,
+          fire or other events beyond normal weather. Full terms are issued with your order.</p>
+          <p class="fine-row"><b>Contact.</b> &ldquo;A specialist calls you within two business days&rdquo; is our service
+          target, not a guarantee. Leaving your details places no order and no obligation on either side.</p>
+        </div>
+      </div></div>
 </section>
 
 <!-- ============================ FAQ ============================ -->
@@ -979,7 +1167,7 @@
     <p class="eyebrow">Before you ask</p>
     <h2 style="font-size: clamp(28px, 5vw, 48px); max-width: 20ch;">You are not managing this yourself.</h2>
     <p class="lede" style="margin-top: 18px; max-width: 54ch;">
-      We work with a licensed California general contractor. They handle the delivery, the assembly
+      We work with a licensed <span class="mkt" data-us="California" data-ca="British Columbia">California</span> general contractor. They handle the delivery, the assembly
       and the local trades, so you have one number to call instead of five.
     </p>
 
@@ -987,10 +1175,10 @@
       <details>
         <summary>What does the whole thing cost, all in?</summary>
         <div class="a">
-          <p>The price on this page covers the room itself and ocean freight to Los Angeles. On top of
+          <p>The price on this page covers the room itself and ocean freight to <span class="mkt" data-us="Los Angeles" data-ca="Vancouver">Los Angeles</span>. On top of
           that come delivery to your yard, assembly, and the power run from your house.</p>
           <p>We do not print numbers for those, and you should be careful with anyone who does. What
-          they cost depends on how far you are from Los Angeles, whether a truck can reach the spot,
+          they cost depends on how far you are from <span class="mkt" data-us="Los Angeles" data-ca="Port Coquitlam">Los Angeles</span>, whether a truck can reach the spot,
           how level your ground is and how far the electrical run is. A figure quoted before anyone has
           looked at your yard is a guess, and guesses move in one direction later.</p>
           <p><b>Your specialist prices every line for your actual address and sends it in writing.</b>
@@ -1012,7 +1200,7 @@
       <details>
         <summary>How does the power get there? Can I add air conditioning?</summary>
         <div class="a">
-          <p>Running a circuit from your house to the room is licensed electrical work in California.
+          <p>Running a circuit from your house to the room is licensed electrical work in <span class="mkt" data-us="California" data-ca="British Columbia">California</span>.
           Our GC partner's electrician does it, or you can use your own. Either way it is a separate
           line so you can see what you are paying for it.</p>
           <p>Air conditioning is not part of the standard build. A mini-split is the usual answer, and
@@ -1024,9 +1212,14 @@
       <details>
         <summary>Do I need a permit?</summary>
         <div class="a">
-          <p>Many California cities treat a detached structure under a certain size differently from
-          an ADU, which is part of why we keep the footprint under 100 square feet. But the line sits
-          in a different place in every city, and adding electrical usually moves it.</p>
+          <p class="only-us">Many California cities treat a detached structure under a certain size differently from
+          an ADU. In California that line is 120 square feet, which is why both of our models sit at or
+          under it. But cities read it differently and adding electrical usually moves it.</p>
+          <p class="only-ca">British Columbia exempts a detached, single-storey accessory building of
+          10 m&sup2; &mdash; about 108 square feet &mdash; from a building permit. <b>Both of our Canadian models are
+          80 sq ft, so both sit under that line.</b> The exemption covers the building permit only: zoning
+          setbacks, lot coverage and height limits still apply, any wiring needs its own electrical permit,
+          and a few municipalities ask for a notification form.</p>
           <p><b>We do not guess and we do not promise you are exempt.</b> Our GC partner looks up what
           your address requires and handles the filing if there is one. Any fee the city charges is
           yours and is shown separately.</p>
@@ -1058,7 +1251,7 @@
         <summary>What if something goes wrong after it is built?</summary>
         <div class="a">
           <p>The structure and the frame are warranted for <b>five years</b>. Workmanship and the
-          installation are warranted for <b>one year</b> from the day it is finished. Our California
+          installation are warranted for <b>one year</b> from the day it is finished. Our <span class="mkt" data-us="California" data-ca="British Columbia">California</span>
           GC partner handles the call-out, so you are not filing a claim across the Pacific.</p>
           <p>Outside it: normal wear, weather damage, misuse or neglect, and anything changed or added
           by another trade after handover. The full terms come with your quote, before you pay
@@ -1067,9 +1260,9 @@
       </details>
 
       <details>
-        <summary>Which models can I buy in the United States?</summary>
+        <summary>Which models can I buy in <span class="mkt" data-us="the United States" data-ca="Canada">the United States</span>?</summary>
         <div class="a">
-          <p>Two: <b>The Room</b> and <b>The Sauna</b>, both on this page.</p>
+          <p>Two: <b>The Studio</b> and <b>The Sauna</b>, both on this page.</p>
         </div>
       </details>
 
@@ -1157,11 +1350,11 @@
       <p class="lede" style="margin-top: 18px; color: #A8A49C;">
         Leave your details and a Wavyroom specialist calls you back. They walk you through the
         two models, look at your yard with you and give you a delivery date. Your early-bird price
-        is held while you decide, and the $200 comes off on top when you order.
+        is held while you decide, and the <span class="mkt" data-us="$200" data-ca="C$300">$200</span> comes off on top when you order.
       </p>
       <div class="coupon">
-        <div class="amt">$200</div>
-        <p>Your price when you order: The Room <b style="color:#F3F2EF;">$21,700</b>, The Sauna <b style="color:#F3F2EF;">$24,700</b>. Early bird plus the $200, no code to keep track of.</p>
+        <div class="amt"><span class="mkt" data-us="$200" data-ca="C$300">$200</span></div>
+        <p>Your price when you order: The Studio <b style="color:#F3F2EF;"><span class="mkt" data-us="$24,700" data-ca="C$30,600">$24,700</span></b>, The Sauna <b style="color:#F3F2EF;"><span class="mkt" data-us="$27,700" data-ca="C$35,600">$27,700</span></b>. Early bird plus the <span class="mkt" data-us="$200" data-ca="C$300">$200</span>, no code to keep track of.</p>
       </div>
     </div>
 
@@ -1183,17 +1376,17 @@
         </div>
         <div class="field">
           <label for="f-address">Where would it go?</label>
-          <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP is enough to start" required>
+          <input id="f-address" name="address" type="text" autocomplete="street-address" placeholder="City and ZIP is enough to start" data-us-ph="City and ZIP is enough to start" data-ca-ph="City and postal code is enough to start" required>
         </div>
         <p class="err" id="form-err" hidden></p>
-        <button class="btn btn-primary" type="submit" id="submit-btn">Reserve my early-bird price</button>
+        <button class="btn btn-primary" type="submit" id="submit-btn">Get my price</button>
         <p class="form-status" id="form-status"></p>
 
         <div class="next">
           <div>
             <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-send"/></svg></span>
             <b>You send this</b>
-            <p>City and ZIP is enough.</p>
+            <p><span class="mkt" data-us="City and ZIP is enough." data-ca="City and postal code is enough.">City and ZIP is enough.</span></p>
           </div>
           <div>
             <span class="ic-dot"><svg class="ic" viewBox="0 0 24 24"><use href="#ic-phone"/></svg></span>
@@ -1219,8 +1412,8 @@
         yard and a delivery date. Your early-bird price and the $200 are registered under your name
         and applied when you order.</p>
         <div class="applied">
-          <div><span>The Room, your price</span><b>$21,700</b></div>
-          <div><span>The Sauna, your price</span><b>$24,700</b></div>
+          <div><span>The Studio, your price</span><b><span class="mkt" data-us="$24,700" data-ca="C$30,600">$24,700</span></b></div>
+          <div><span>The Sauna, your price</span><b><span class="mkt" data-us="$27,700" data-ca="C$35,600">$27,700</span></b></div>
         </div>
         <p style="margin-top: 18px;">Nothing is charged today. The call is to answer your questions and plan the install.</p>
       </div>
@@ -1246,17 +1439,17 @@
         33 Jeongoksandan 1-gil, Seosin-myeon<br>Hwaseong-si, Gyeonggi-do, Republic of Korea
       </div>
       <div>
-        <span>United States</span>
+        <span class="mkt" data-us="United States" data-ca="Canada">United States</span>
         <!-- TODO: 미국 법인 주소 -->
-        Wavyroom USA<br>Los Angeles, California
+        <span class="only-us">Wavyroom USA<br>Los Angeles, California</span><span class="only-ca">Wavyroom Canada<br>Port Coquitlam, British Columbia</span>
       </div>
     </div>
   </div>
 </footer>
 
 <div class="sticky">
-  <div class="s-txt"><b>Early bird ends Oct 30</b>We call you back, $200 off</div>
-  <a class="btn btn-primary" href="#claim">Reserve</a>
+  <div class="s-txt"><b>Early bird pricing</b>We call you back, <span class="mkt" data-us="$200" data-ca="C$300">$200</span> off</div>
+  <a class="btn btn-primary" href="#claim">Get my price</a>
 </div>
 
 <script>
@@ -1301,7 +1494,7 @@
         ".solution .eyebrow", ".solution h2", ".solution .lede", ".sol-list li",
         ".model-head", "#the-room .lede", ".use", "#the-sauna .lede", ".mat",
         ".specs .eyebrow", ".specs h2", ".dim",
-        "#how .eyebrow", "#how h2", ".step", ".build-row figure",
+        "#how .eyebrow", "#how h2", ".step", ".build-row figure", ".filmblock", ".reelhead", ".reel", ".heater",
         ".pricing .offer", ".pricing h2", ".pricing .lede", ".plan", ".excluded",
         "#faq .eyebrow", "#faq h2", "#faq .lede", "#faq details",
         "#company .eyebrow", "#company h2", "#company .lede", "#company .co-top > div",
@@ -1391,6 +1584,7 @@
 
         var body = new URLSearchParams(Object.assign({}, f, {
           source: src, page: location.href,
+          market: (window.wrMarket ? window.wrMarket() : "us").toUpperCase(),
           submitted_at: new Date().toISOString()
         }));
         function ok() { mForm.hidden = true; mMsg.hidden = false; }
@@ -1443,6 +1637,7 @@
 
       var payload = new URLSearchParams(Object.assign({}, f, {
         source: src,
+        market: (window.wrMarket ? window.wrMarket() : "us").toUpperCase(),
         page: location.href,
         submitted_at: new Date().toISOString()
       }));
@@ -1471,5 +1666,66 @@
   })();
 </script>
 
+<script>
+(function () {
+  var vids = document.querySelectorAll("video.film, video.reelv");
+  if (!vids.length) return;
+  var play = function (v) { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); };
+  if (!("IntersectionObserver" in window)) {
+    for (var i = 0; i < vids.length; i++) play(vids[i]);
+    return;
+  }
+  // 화면 밖이면 멈춰 모바일 데이터와 배터리를 아낍니다.
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) play(e.target);
+      else if (!e.target.paused) e.target.pause();
+    });
+  }, { threshold: 0.3 });
+  for (var j = 0; j < vids.length; j++) { vids[j].muted = true; io.observe(vids[j]); }
+})();
+</script>
+<script>
+(function () {
+  var KEY = "wr-market";
+  var CA_TZ = /^America\/(Vancouver|Edmonton|Winnipeg|Toronto|Halifax|St_Johns|Regina|Whitehorse|Yellowknife|Iqaluit|Moncton|Glace_Bay|Goose_Bay|Dawson_Creek|Fort_Nelson|Creston|Swift_Current|Rankin_Inlet|Resolute|Cambridge_Bay|Inuvik|Atikokan|Blanc-Sablon|Nipigon|Rainy_River|Thunder_Bay|Montreal|Toronto)$/;
+
+  function apply(m) {
+    document.documentElement.setAttribute("data-market", m);
+    var i, els = document.querySelectorAll(".mkt");
+    for (i = 0; i < els.length; i++) {
+      var v = els[i].getAttribute("data-" + m);
+      if (v !== null) els[i].textContent = v;
+    }
+    els = document.querySelectorAll("[data-" + m + "-ph]");
+    for (i = 0; i < els.length; i++) {
+      var ph = els[i].getAttribute("data-" + m + "-ph");
+      els[i].setAttribute("placeholder", ph);
+      if (els[i].hasAttribute("aria-label")) els[i].setAttribute("aria-label", ph);
+    }
+    els = document.querySelectorAll("[data-set-market]");
+    for (i = 0; i < els.length; i++) {
+      els[i].setAttribute("aria-pressed", els[i].getAttribute("data-set-market") === m ? "true" : "false");
+    }
+    try { localStorage.setItem(KEY, m); } catch (e) {}
+  }
+  window.wrMarket = function () { return document.documentElement.getAttribute("data-market") || "us"; };
+
+  var q = null, stored = null, tz = "";
+  try { q = new URLSearchParams(location.search).get("m"); } catch (e) {}
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+  var start = (q === "ca" || q === "us") ? q : (stored === "ca" || stored === "us" ? stored : (CA_TZ.test(tz) ? "ca" : "us"));
+  apply(start);
+
+  document.addEventListener("click", function (ev) {
+    var t = ev.target;
+    while (t && t.nodeType === 1) {
+      if (t.hasAttribute("data-set-market")) { apply(t.getAttribute("data-set-market")); return; }
+      t = t.parentElement;
+    }
+  });
+})();
+</script>
 </body>
 </html>
