@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="How Wavyroom collects, uses and protects the details you send through our US enquiry form.">
+<meta name="theme-color" content="#0E0E0D">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.wavyroom.com/en/privacy.html">
+<title>Privacy Policy &middot; Wavyroom</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+
+  /* Layout: single scroll. Dark hero → warm neutral body → dark close.
+     Lime is the only accent and appears on CTAs and the offer badge. */
+  :root {
+    --ink:      #121212;
+    --paper:    #F7F6F3;
+    --sand:     #EDEBE6;
+    --line:     #D9D6CF;
+    --soft:     #4A4844;
+    --lime:     #D3F170;
+    --lime-dim: #C7E261;
+
+    --bg:        var(--paper);
+    --fg:        var(--ink);
+    --muted:     var(--soft);
+    --surface:   #FFFFFF;
+    --surface-2: var(--sand);
+    --border:    var(--line);
+
+    /* 전 요소 Pretendard. 굵기로만 위계를 만듭니다. */
+    --display: "Pretendard Variable", Pretendard, "Helvetica Neue", Arial, sans-serif;
+    --body:    "Pretendard Variable", Pretendard, "Helvetica Neue", Arial, sans-serif;
+
+    --gutter: clamp(20px, 5vw, 64px);
+    --maxw: 1180px;
+    --r-s: 8px;
+    --r-m: 16px;
+    --r-l: 24px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0E0E0D;
+      --fg:        #F3F2EF;
+      --muted:     #A8A49C;
+      --surface:   #1A1A18;
+      --surface-2: #232320;
+      --border:    #35342F;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #0E0E0D;
+    --fg:        #F3F2EF;
+    --muted:     #A8A49C;
+    --surface:   #1A1A18;
+    --surface-2: #232320;
+    --border:    #35342F;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 86px;
+  }
+  @media (min-width: 760px) { body { padding-bottom: 0; } }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    text-wrap: balance;
+    margin: 0;
+  }
+  p { margin: 0; }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+  section { padding-block: clamp(60px, 9vw, 120px); }
+
+  .eyebrow {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  .lede { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 62ch; }
+
+  /* ---------- image placeholders ---------- */
+  .ph {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: var(--r-l);
+    overflow: hidden;
+    min-height: 120px;
+  }
+  .ph span {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    padding: 20px;
+    max-width: 30ch;
+  }
+  .ph.on-dark { background: #232320; border-color: #3A3934; }
+  .ph.on-dark span { color: #A8A49C; }
+  .ratio-32 { aspect-ratio: 3/2; }
+  .ratio-43 { aspect-ratio: 4/3; }
+  .ratio-45 { aspect-ratio: 4/5; }
+  .ratio-11 { aspect-ratio: 1/1; }
+  .ph img, .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .shot { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-l); }
+  .shot.ratio-43 { aspect-ratio: 4/3; }
+  .shot.ratio-45 { aspect-ratio: 4/5; }
+  .shot.ratio-32 { aspect-ratio: 3/2; }
+  .shot.ratio-169 { aspect-ratio: 16/9; height: auto; }
+  .plan .shot { border-radius: var(--r-m); }
+  /* 히어로 사진은 원본 비율 그대로 전부 보이게 합니다. 잘라내지 않습니다. */
+  .hero-media .shot { border-radius: 0; aspect-ratio: 1672 / 941; height: auto; min-height: 0; object-fit: contain; }
+  .frame { border-radius: var(--r-l); overflow: hidden; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .18s ease, background-color .18s ease;
+  }
+  .btn-primary { background: var(--lime); color: #121212; }
+  .btn-primary:hover { background: var(--lime-dim); }
+  .btn-ghost { background: transparent; color: inherit; border-color: currentColor; opacity: .85; }
+  .btn-ghost:hover { opacity: 1; }
+  .btn:active { transform: translateY(1px); }
+  :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    background: #0E0E0D;
+    color: #F3F2EF;
+    padding-block: 0;
+    overflow: hidden;
+  }
+  .hero-media { position: relative; }
+  .hero-media .frame { border-radius: 0; border-left: 0; border-right: 0; }
+  /* 글은 왼쪽에 놓이므로 왼쪽만 어둡게, 오른쪽은 원본 그대로 둡니다. */
+  /* 아이들이 왼쪽 아래를 지나가므로 글은 왼쪽 위 나무 그늘 쪽에 둡니다.
+     그늘을 따라 대각선으로만 어둡게 해서 사진의 아래쪽은 건드리지 않습니다. */
+  .hero-scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg,
+        rgba(14,14,13,.80) 0%,
+        rgba(14,14,13,.62) 26%,
+        rgba(14,14,13,.26) 50%,
+        rgba(14,14,13,0) 72%),
+      linear-gradient(90deg,
+        rgba(14,14,13,.42) 0%,
+        rgba(14,14,13,.16) 34%,
+        rgba(14,14,13,0) 60%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding-block: clamp(76px, 9vw, 108px) clamp(28px, 5vw, 52px);
+  }
+  .hero-mark {
+    position: absolute; top: clamp(20px, 4vw, 40px); left: var(--gutter);
+    width: clamp(118px, 13vw, 158px); height: auto; display: block;
+  }
+  .hero h1 { font-size: clamp(36px, 6.4vw, 68px); font-weight: 800; letter-spacing: -0.045em; color: #FFFFFF; text-wrap: balance; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero-sub { margin-top: 16px; font-size: clamp(16px, 2.2vw, 21px); color: #D8D5CE; max-width: 34ch; }
+  @media (min-width: 760px) { .hero-inner .wrap > * { max-width: 540px; } }
+  /* 모바일에서는 사진 전체를 먼저 보여주고 글은 그 아래에 둡니다. */
+  @media (max-width: 759px) {
+    .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.72) 0%, rgba(14,14,13,.22) 30%, rgba(14,14,13,0) 56%); }
+    .hero-inner { position: static; justify-content: flex-start; padding-block: 26px 36px; }
+    .hero-scrim { background: linear-gradient(180deg, rgba(14,14,13,.68) 0%, rgba(14,14,13,.20) 28%, rgba(14,14,13,0) 54%); }
+    .hero-mark { position: absolute; top: 20px; left: var(--gutter); z-index: 2; }
+  }
+  .hero-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------- problem ---------- */
+  .compare { display: grid; gap: 16px; margin-top: 42px; }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1.45fr 1fr; gap: 20px; align-items: start; } }
+  .cmp { border-radius: var(--r-m); padding: 28px; border: 1px solid var(--border); background: var(--surface); }
+  .cmp.bad { background: transparent; border-color: var(--border); padding: 22px; }
+  .cmp.bad .cmp-num { font-size: clamp(30px, 4.6vw, 42px); color: var(--muted); }
+  .cmp.bad p { font-size: 14px; }
+  .cmp-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .cmp-num {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.04em;
+    font-size: clamp(44px, 9vw, 68px); line-height: 1; margin-top: 14px;
+  }
+  .cmp-num small { font-size: 0.34em; font-weight: 600; letter-spacing: -0.01em; margin-left: 6px; }
+  .cmp p { margin-top: 12px; font-size: 15px; color: var(--muted); }
+  .cmp.good .cmp-num { color: var(--fg); }
+  .cmp.good { border-color: var(--fg); border-width: 1.5px; }
+
+  /* ---------- solution ---------- */
+  .solution { background: var(--surface-2); }
+  .sol-grid { display: grid; gap: 30px; align-items: center; }
+  @media (min-width: 880px) { .sol-grid { grid-template-columns: 1.05fr .95fr; gap: 56px; } }
+  .sol-list { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 2px; }
+  .sol-list li { display: grid; grid-template-columns: 42px 1fr; gap: 16px; align-items: start; padding-block: 16px; border-top: 1px solid var(--border); }
+  .sol-list li:last-child { border-bottom: 1px solid var(--border); }
+  .sol-list .n { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); padding-top: 4px; }
+  .sol-list strong { font-weight: 700; display: block; }
+  .sol-list span.d { font-size: 15px; color: var(--muted); }
+
+  /* ---------- uses ---------- */
+  .uses-head { display: grid; gap: 16px; align-items: end; }
+  @media (min-width: 860px) { .uses-head { grid-template-columns: 1fr auto; } }
+  .uses { display: grid; gap: 18px; margin-top: 44px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .uses { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .uses { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { #the-room .uses { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1240px) { #the-room .uses { grid-template-columns: repeat(5, 1fr); gap: 14px; } }
+  .use { min-width: 0; display: flex; flex-direction: column; }
+  /* aspect-ratio가 그리드 늘림에 눌리지 않게 합니다. */
+  .use .shot, .use .ph { height: auto; margin-bottom: 12px; border-radius: var(--r-m); }
+  .use .tag {
+    display: inline-block; margin-top: 16px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .use h3 { font-size: 22px; margin-top: 6px; }
+  .use p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+  .use.is-sauna h3::after {
+    content: "Sauna model";
+    display: inline-block; vertical-align: middle; margin-left: 10px;
+    font-family: var(--body); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--lime); color: #121212; padding: 4px 9px; border-radius: 999px;
+  }
+
+  /* ---------- specs ---------- */
+  .specs { background: var(--ink); color: #F3F2EF; }
+  .specs .eyebrow, .specs .lede { color: #A8A49C; }
+  .spec-grid { display: grid; gap: 14px; margin-top: 44px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .spec-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .spec-grid { grid-template-columns: repeat(4, 1fr); } }
+  .spec { background: #1A1A18; border-radius: var(--r-m); padding: 24px; min-width: 0; }
+  .spec .k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #A8A49C; }
+  .spec .v { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; margin-top: 10px; }
+  .spec .d { font-size: 14px; color: #A8A49C; margin-top: 8px; }
+  .mats { display: grid; gap: 14px; margin-top: 20px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 820px) { .mats { grid-template-columns: repeat(4, 1fr); } }
+  .mat { margin: 0; display: flex; flex-direction: column; }
+  .mat .shot { border-radius: var(--r-m); aspect-ratio: 4/5; height: auto; }
+  .mat .cap { margin-top: 12px; font-size: 14px; }
+  .mat .cap b { display: block; font-weight: 700; }
+  .mat .cap span { color: var(--muted); }
+  .dims {
+    margin-top: 30px; border-top: 1px solid #35342F;
+    display: grid; gap: 0; grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .dims { grid-template-columns: repeat(3, 1fr); } }
+  .dim { padding-block: 20px; border-bottom: 1px solid #35342F; }
+  .dim .k { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49C; }
+  .dim .v { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: -0.03em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .dim .m { font-size: 13px; color: #A8A49C; margin-top: 2px; }
+
+  /* ---------- how ---------- */
+  .steps { display: grid; gap: 16px; margin-top: 42px; grid-template-columns: 1fr; counter-reset: s; }
+  @media (min-width: 680px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step { border-top: 2px solid var(--fg); padding-top: 16px; min-width: 0; }
+  .step .n { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  .step h3 { font-size: 18px; margin-top: 8px; }
+  .step p { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  /* ---------- pricing ---------- */
+  .pricing { background: var(--surface-2); }
+  .offer {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--lime); color: #121212;
+    border-radius: 999px; padding: 9px 18px;
+    font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .plans { display: grid; gap: 18px; margin-top: 36px; }
+  @media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; gap: 22px; } }
+  .plan {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-l);
+    padding: 26px; display: flex; flex-direction: column; min-width: 0;
+  }
+  .plan .frame, .plan .ph { border-radius: var(--r-m); }
+  .plan h3 { font-size: 26px; margin-top: 22px; }
+  .plan .for { font-size: 14px; color: var(--muted); margin-top: 8px; min-height: 42px; }
+  .price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .price-now {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.045em;
+    font-size: clamp(38px, 7vw, 50px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .price-was { font-size: 17px; color: var(--muted); text-decoration: line-through; }
+  .price-save { font-size: 13px; font-weight: 700; color: var(--fg); background: var(--surface-2); padding: 5px 11px; border-radius: 999px; }
+  .plan ul { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 9px; font-size: 15px; }
+  .plan ul li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
+  .plan ul li::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--fg); margin-top: 9px; }
+  .plan .btn { margin-top: 26px; width: 100%; }
+  .excluded {
+    margin-top: 26px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-m); padding: 22px;
+  }
+  .excluded h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
+  .excluded ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
+  .excluded li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: center; }
+  .excluded li .ic { width: 18px; height: 18px; color: var(--fg); opacity: .62; }
+
+  /* 사진이 아직 없는 자리는 숨깁니다. 사진을 넣으면 <img class="shot">로 교체됩니다. */
+  .ph { display: none !important; }
+  .sol-grid { grid-template-columns: 1fr !important; }
+  @media (min-width: 900px) { .co-top { grid-template-columns: 1fr 1.12fr !important; } }
+
+  /* 모바일 압축 */
+  @media (max-width: 759px) {
+    section { padding-block: 44px; }
+    .uses { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+    .use h3 { font-size: 18px; }
+    .use p { font-size: 13.5px; margin-top: 6px; }
+    .use .tag { margin-top: 0; }
+    .spec-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .spec { padding: 16px; }
+    .spec .v { font-size: 16px; margin-top: 8px; }
+    .spec .d { font-size: 12.5px; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+    .stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat .l { font-size: 12px; margin-top: 6px; }
+    .compare { gap: 12px; }
+    .cmp { padding: 20px; }
+    .plan { padding: 20px; }
+    .plan ul { gap: 7px; font-size: 14px; }
+    .creds { padding: 20px; gap: 20px; }
+    .mats { gap: 10px; }
+    .product-pair { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .product-pair .shot { aspect-ratio: 3/4; }
+  }
+
+  /* ---------- two models ---------- */
+  .model-sec.alt { background: var(--surface-2); }
+  .model-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px 20px; flex-wrap: wrap; border-top: 2px solid var(--fg); padding-top: 16px;
+  }
+  .model-no { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .model-name { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; font-size: clamp(32px, 7vw, 52px); margin-top: 4px; }
+  .model-price { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: clamp(17px, 3.4vw, 22px); }
+  .build-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; max-width: 900px; }
+  .build-row figure { flex: 1 1 190px; min-width: 0; margin: 0; }
+  .build-row .shot, .build-row .ph { border-radius: var(--r-m); aspect-ratio: 4/3; height: auto; }
+  .build-row figcaption { margin-top: 9px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+  /* 사진이 아직 없는 칸은 설명글까지 통째로 숨깁니다. */
+  .build-row figure:has(.ph) { display: none; }
+
+  /* ---------- company ---------- */
+  .co-top { display: grid; gap: 30px; }
+  @media (min-width: 900px) { .co-top { grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; } }
+  .stats { display: grid; gap: 16px; margin-top: 48px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+  .stat { border-top: 2px solid var(--fg); padding-top: 16px; min-width: 0; }
+  .stat .n {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.045em;
+    font-size: clamp(36px, 7vw, 52px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .stat .l { margin-top: 10px; font-size: 14px; color: var(--muted); }
+  .creds {
+    margin-top: 40px; background: var(--surface-2); border-radius: var(--r-m);
+    padding: 28px; display: grid; gap: 26px;
+  }
+  @media (min-width: 820px) { .creds { grid-template-columns: 1fr 1fr; gap: 44px; } }
+  .cred h4 { font-family: var(--display); font-size: 15px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .cred p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .badge {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 14px; font-size: 13px; font-weight: 500;
+  }
+
+  /* ---------- form ---------- */
+  .capture { background: var(--ink); color: #F3F2EF; }
+  .capture .eyebrow { color: #A8A49C; }
+  .cap-grid { display: grid; gap: 34px; }
+  @media (min-width: 900px) { .cap-grid { grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; } }
+  .coupon {
+    margin-top: 26px; border: 1.5px dashed var(--lime); border-radius: var(--r-m);
+    padding: 22px; display: flex; gap: 18px; align-items: center;
+  }
+  .coupon .amt { font-family: var(--display); font-weight: 800; font-size: 40px; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+  .coupon p { font-size: 14px; color: #D8D5CE; }
+  form { display: grid; gap: 14px; }
+  .field { display: grid; gap: 7px; min-width: 0; }
+  .row2 { display: grid; gap: 14px; }
+  @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49C; }
+  input, textarea {
+    font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    background: #1A1A18; border: 1px solid #35342F; border-radius: var(--r-s);
+    padding: 14px 15px; width: 100%; min-width: 0;
+  }
+  input::placeholder, textarea::placeholder { color: #6F6C65; }
+  input:focus, textarea:focus { border-color: var(--lime); outline: none; }
+  input[aria-invalid="true"] { border-color: #E4785F; }
+  .err { font-size: 13px; color: #E4785F; }
+  .consent { font-size: 13px; color: #A8A49C; line-height: 1.5; }
+  .consent a { color: #D8D5CE; }
+  form .btn { width: 100%; margin-top: 4px; }
+  .form-status { font-size: 14px; color: #A8A49C; min-height: 20px; }
+  .done {
+    border: 1.5px solid var(--lime); border-radius: var(--r-m); padding: 30px; text-align: left;
+  }
+  .done h3 { font-size: 24px; }
+  .done p { margin-top: 12px; font-size: 15px; color: #D8D5CE; }
+  .applied { margin-top: 22px; display: grid; gap: 1px; background: #35342F; border-radius: var(--r-s); overflow: hidden; }
+  .applied div { background: #1A1A18; padding: 14px 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .applied span { font-size: 14px; color: #A8A49C; }
+  .applied b { font-family: var(--display); font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--lime); }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ink); color: #A8A49C; border-top: 1px solid #262521; padding-block: 40px; font-size: 13px; }
+  .foot { display: grid; gap: 28px; align-items: start; }
+  @media (min-width: 820px) { .foot { grid-template-columns: minmax(230px, 300px) 1fr; gap: 48px; } }
+  .foot .brand { width: 136px; height: auto; display: block; }
+  .addr { display: grid; gap: 20px 32px; }
+  @media (min-width: 560px) { .addr { grid-template-columns: repeat(3, 1fr); } }
+  .addr span {
+    display: block; margin-bottom: 5px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #6E6B64;
+  }
+  .addr div { line-height: 1.6; }
+
+
+  /* ---------- 중간 CTA ---------- */
+  /* --fg 는 다크모드에서 밝은색으로 뒤집히므로 항상 어두운 --ink 를 씁니다. */
+  .midcta { background: var(--ink); color: #F3F2EF; padding-block: clamp(36px, 5vw, 54px); }
+  .mid-in { display: grid; gap: 22px; align-items: center; }
+  @media (min-width: 900px) { .mid-in { grid-template-columns: 1.1fr 1fr; gap: 44px; } }
+  .midcta h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
+                font-size: clamp(22px, 3.2vw, 30px); color: #FFFFFF; }
+  .midcta p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: #A8A49C; max-width: 46ch; }
+  #mid-form { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { #mid-form { grid-template-columns: 1fr 1fr; } }
+  #mid-form input {
+    min-width: 0; font-family: var(--body); font-size: 16px; color: #F3F2EF;
+    background: rgba(255,255,255,.07); border: 1px solid #3A3934; border-radius: 999px;
+    padding: 14px 20px; -webkit-appearance: none;
+  }
+  #mid-form input::placeholder { color: #7D7A73; }
+  #mid-form input[aria-invalid="true"] { border-color: #E4705F; }
+  #mid-form .btn { width: 100%; margin-top: 2px; }
+  @media (min-width: 560px) { #mid-form .btn { grid-column: 1 / -1; } }
+  #mid-form input { scroll-margin-bottom: 120px; }
+  .mid-msg { margin-top: 0; font-size: 15px; color: var(--lime); }
+
+  /* ---------- FAQ ---------- */
+  .faq { margin-top: 36px; border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    list-style: none; cursor: pointer; padding: 18px 34px 18px 0; position: relative;
+    font-family: var(--display); font-weight: 700; font-size: clamp(16px, 2.4vw, 19px);
+    letter-spacing: -0.015em;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%);
+    font-size: 22px; font-weight: 400; color: var(--muted); line-height: 1;
+  }
+  .faq details[open] summary::after { content: "\2212"; }
+  .faq .a { padding: 0 0 20px; max-width: 62ch; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
+  .faq .a p + p { margin-top: 10px; }
+  .faq .a b { color: var(--fg); font-weight: 700; }
+
+  /* ---------- sticky mobile bar ---------- */
+  .sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: rgba(14,14,13,.94);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #2B2A26;
+    padding: 12px var(--gutter);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  }
+  .sticky .s-txt { font-size: 13px; color: #D8D5CE; line-height: 1.3; min-width: 0; }
+  .sticky .s-txt b { display: block; color: #FFFFFF; font-weight: 700; }
+  .sticky .btn { padding: 13px 22px; font-size: 15px; white-space: nowrap; }
+  @media (min-width: 760px) { .sticky { display: none; } }
+  /* 폼을 작성하는 동안에는 하단 바를 내려서 입력란을 가리지 않게 합니다. */
+  .sticky { transition: transform .22s ease; }
+  body.form-focus .sticky { transform: translateY(110%); pointer-events: none; }
+  #lead-form input { scroll-margin-bottom: 120px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+
+  /* ---------- 아이콘 ---------- */
+  .ic { width: 22px; height: 22px; display: block; fill: none; stroke: currentColor;
+        stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .ic-dot {
+    width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center;
+    background: rgba(18,18,18,.06); color: var(--fg); flex: none;
+  }
+  .specs .ic-dot { background: #4A4844; color: #FFFFFF; }
+
+  /* 공정 다이어그램 */
+  .steps .ic-dot { margin-bottom: 14px; }
+  .step { position: relative; }
+  @media (min-width: 680px) {
+    .step::after {
+      content: ""; position: absolute; left: 50px; right: -16px; top: 37px;
+      border-top: 1px dashed var(--line);
+    }
+    .step:last-child::after { display: none; }
+  }
+
+  /* 다음 단계 3컷 */
+  .next { display: grid; gap: 16px; margin-top: 26px; grid-template-columns: repeat(3, 1fr); }
+  .next div { min-width: 0; }
+  .next .ic-dot { background: rgba(255,255,255,.08); color: #FFFFFF; width: 36px; height: 36px; margin-bottom: 10px; }
+  .next .ic { width: 18px; height: 18px; }
+  .next b { display: block; font-family: var(--display); font-size: 13px; color: #FFFFFF; }
+  .next p { font-size: 12.5px; line-height: 1.5; color: #A8A49C; margin-top: 4px; }
+
+  /* ================= MOTION =================
+     브랜드 가이드 §Brand Mode: 등장 모션은 fade + 12px rise, 500ms ease-out.
+     JS가 꺼져 있으면 .reveal 규칙이 적용되지 않아 모든 요소가 그대로 보입니다.
+     기기에서 모션 줄이기를 켠 사용자에게는 전부 비활성화됩니다. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .reveal { opacity: 0; transform: translateY(12px); will-change: opacity, transform; }
+    html.js .reveal.in {
+      opacity: 1; transform: none;
+      transition: opacity .5s ease-out, transform .5s ease-out;
+    }
+    html.js .hero-inner > *, html.js .hero-mark { opacity: 0; transform: translateY(12px); }
+    html.js.ready .hero-inner > *, html.js.ready .hero-mark {
+      opacity: 1; transform: none;
+      transition: opacity .6s ease-out, transform .6s ease-out;
+    }
+    html.js.ready .hero-mark   { transition-delay: .05s; }
+    html.js.ready .hero-inner > .wrap { transition-delay: .14s; }
+
+    html.js .sticky { transform: translateY(110%); }
+    html.js.ready .sticky { transform: none; transition: transform .45s ease-out .5s; }
+    html.js.ready body.form-focus .sticky { transition-duration: .22s; transition-delay: 0s; }
+
+    .faq details[open] .a { animation: wr-fade .4s ease-out both; }
+    @keyframes wr-fade { from { opacity: 0; transform: translateY(-4px); } }
+
+    html { scroll-behavior: smooth; }
+  }
+
+  .faq summary { transition: color .18s ease; }
+  .faq summary:hover { color: var(--muted); }
+  .faq summary::after { transition: transform .22s ease; }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); }
+
+  @media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+    .use .shot, .mat .shot, .build-row .shot { transition: transform .45s cubic-bezier(.2,.6,.2,1); }
+    .use:hover .shot, .mat:hover .shot, .build-row figure:hover .shot { transform: scale(1.018); }
+  }
+
+
+  /* ---------- 정책 페이지 ---------- */
+  .pg-head { background: var(--ink); color: #F3F2EF; padding-block: clamp(36px, 6vw, 72px); }
+  .pg-logo { width: 136px; height: auto; display: block; }
+  .pg-back { display: inline-block; }
+  .pg-head h1 {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.04em;
+    font-size: clamp(32px, 6vw, 56px); color: #FFFFFF; margin-top: 28px;
+  }
+  .pg-date { margin-top: 10px; font-size: 14px; color: #A8A49C; }
+  .pg { padding-block: clamp(40px, 6vw, 72px); }
+  .pg .wrap > * { max-width: 68ch; }
+  .pg h2 {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
+    font-size: clamp(20px, 3vw, 26px); margin-top: 44px;
+    padding-top: 18px; border-top: 1px solid var(--line);
+  }
+  .pg p { margin-top: 14px; font-size: 16px; line-height: 1.7; color: var(--muted); }
+  .pg .lede { font-size: 18px; color: var(--fg); }
+  .pg ul { margin-top: 14px; padding-left: 20px; }
+  .pg li { font-size: 16px; line-height: 1.7; color: var(--muted); margin-top: 7px; }
+  .pg b { color: var(--fg); font-weight: 700; }
+  .pg a { color: var(--fg); text-underline-offset: 3px; }
+  .pg-foot { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+</style>
+</head>
+<body>
+
+<header class="pg-head">
+  <div class="wrap">
+    <a href="./" class="pg-back"><img src="images/logo_white.png" alt="Wavyroom" class="pg-logo"></a>
+    <h1>Privacy Policy</h1>
+    <p class="pg-date">Last updated 29 October 2026</p>
+  </div>
+</header>
+
+<main class="pg">
+  <div class="wrap">
+
+    <p class="lede">This policy covers the Wavyroom pages where you can request pricing for a backyard
+    room in the United States. It is operated by <b>Spacewavy Co., Ltd.</b>, the manufacturer of the
+    Wavyroom brand, in the Republic of Korea.</p>
+
+    <h2>What we collect</h2>
+    <p>When you use the form on this site, you give us:</p>
+    <ul>
+      <li>Your name</li>
+      <li>Your email address</li>
+      <li>Your phone number</li>
+      <li>The city and ZIP code where the room would go</li>
+    </ul>
+    <p>We also record which link or QR code you arrived from, the page address you submitted from,
+    and the time of your submission, so we know which campaigns are working.</p>
+    <p><b>We do not collect payment card details on this site.</b> Nothing is charged here.</p>
+
+    <h2>Why we use it</h2>
+    <ul>
+      <li>To call or email you back with a quote for your address</li>
+      <li>To hold your early-bird price and apply your coupon when you order</li>
+      <li>To arrange delivery and installation if you go ahead</li>
+      <li>To understand which campaigns bring genuine enquiries</li>
+    </ul>
+    <p>We do not use your details for anything you did not ask us about.</p>
+
+    <h2>Who sees it</h2>
+    <p>Your details are shared only with the people needed to answer you:</p>
+    <ul>
+      <li><b>Our own team</b>, in Korea and the United States</li>
+      <li><b>Our California general contractor partner</b>, when a quote or a site visit needs them</li>
+      <li><b>Service providers</b> that store or move the data for us, such as Google for form storage
+      and Vercel for hosting this page</li>
+    </ul>
+    <p><b>We do not sell your information, and we do not share it for anyone else's advertising.</b></p>
+
+    <h2>Where it goes</h2>
+    <p>Spacewavy is a Korean company, so your details are transferred to and stored in the Republic of
+    Korea as well as the United States. We use providers that handle the transfer under standard
+    contractual protections.</p>
+
+    <h2>How long we keep it</h2>
+    <p>We keep enquiry records for as long as we are in contact with you about a room, and afterwards
+    only as long as we need them for accounting and legal obligations. <b>Ask us to delete your record
+    and we will.</b></p>
+
+    <h2>Your choices</h2>
+    <ul>
+      <li>Ask us what we hold about you</li>
+      <li>Ask us to correct it</li>
+      <li>Ask us to delete it</li>
+      <li>Tell us to stop contacting you</li>
+    </ul>
+    <p>Email <a href="mailto:support@spacewavy.com">support@spacewavy.com</a> and we will act on it.
+    You do not need to give a reason.</p>
+    <p><b>California residents:</b> under the CCPA and CPRA you have the right to know what personal
+    information we collect, to have it deleted, to correct it, and not to be discriminated against for
+    exercising those rights. We do not sell or share personal information as those terms are defined in
+    that law. Use the same email address above.</p>
+
+    <h2>Security</h2>
+    <p>Enquiries are stored in access-controlled systems and sent over encrypted connections. No system
+    is perfect, and we will tell you if something goes wrong with your data.</p>
+
+    <h2>Children</h2>
+    <p>This site is for adults buying a building. We do not knowingly collect information from anyone
+    under 16. If you believe a child has sent us details, email us and we will remove them.</p>
+
+    <h2>Cookies</h2>
+    <p>This page does not set advertising or tracking cookies. If you arrived from a QR code or an ad,
+    the link itself tells us which campaign it was. That is recorded with your enquiry, not stored on
+    your device.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the date at the top changes with it.</p>
+
+    <h2>Contact</h2>
+    <p>
+      <b>Spacewavy Co., Ltd.</b><br>
+      17-10 Cheongdam-dong, Gangnam-gu, Seoul, Republic of Korea<br>
+      Privacy enquiries: <a href="mailto:support@spacewavy.com">support@spacewavy.com</a><br>
+      General enquiries: <a href="mailto:hello@spacewavy.com">hello@spacewavy.com</a>
+    </p>
+
+    <p class="pg-foot"><a href="./">&larr; Back to Wavyroom</a></p>
+  </div>
+</main>
+
+</body>
+</html>
